@@ -38,9 +38,29 @@ namespace Cyotek.Demo.EColiSimulation
     public Environment()
     {
       _scale = 1;
-      _random = new Random(10);
+      _seed = 10;
+      _size = new Size(256, 256);
+
+      this.Reset();
     }
 
+    private int _seed;
+
+    public int Seed
+    {
+      get { return _seed; }
+      set { _seed = value; }
+    }
+
+    public void Reset()
+    {
+      _random = new Random(_seed);
+
+      _strand = new Strand
+      {
+        Position = new Point(_random.Next(1, _size.Width), _random.Next(1, _size.Height))
+      };
+    }
 
     public void Draw(Graphics graphics)
     {
@@ -54,7 +74,7 @@ namespace Cyotek.Demo.EColiSimulation
       {
         Point[] buffer;
 
-        buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size+1);
+        buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size + 1);
 
         _strand.PreviousPositions.CopyTo(buffer);
         buffer[buffer.Length - 1] = _strand.Position;
@@ -63,7 +83,7 @@ namespace Cyotek.Demo.EColiSimulation
 
         ArrayPool<Point>.Shared.Free(buffer);
       }
-      
+
       graphics.DrawEllipse(Pens.Black, _strand.Position.X - 1, _strand.Position.Y - 1, 2, 2);
     }
 

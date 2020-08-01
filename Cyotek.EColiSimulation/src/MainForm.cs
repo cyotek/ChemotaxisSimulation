@@ -36,13 +36,15 @@ namespace Cyotek.Demo
     {
       _environment = new Environment
       {
-        Size = new Size(100, 100),
+        Size = new Size(256, 256),
         Strand = new Strand
         {
-          Position = new Point(50, 50)
+          Position = new Point(128, 128)
         },
         Scale = 2
       };
+
+      this.UpdateSimulationControls();
 
       base.OnShown(e);
 
@@ -76,11 +78,29 @@ namespace Cyotek.Demo
     private void PlayToolStripButton_Click(object sender, EventArgs e)
     {
       timer.Start();
+
+      this.UpdateSimulationControls();
     }
 
     private void PauseToolStripButton_Click(object sender, EventArgs e)
     {
       timer.Stop();
+
+      this.UpdateSimulationControls();
+    }
+
+    private void UpdateSimulationControls()
+    {
+      bool isRunning;
+
+      isRunning = timer.Enabled;
+
+      playToolStripButton.Enabled = !isRunning;
+      runToolStripMenuItem.Enabled = !isRunning;
+      pauseToolStripButton.Enabled = isRunning;
+      pauseToolStripMenuItem.Enabled = isRunning;
+      nextMoveToolStripButton.Enabled = !isRunning;
+      nextMoveToolStripMenuItem.Enabled = !isRunning;
     }
 
     private void timer_Tick(object sender, EventArgs e)

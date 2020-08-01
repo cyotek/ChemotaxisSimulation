@@ -30,7 +30,7 @@
     {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+      this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,11 @@
       this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
       this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+      this.nextMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +65,7 @@
       this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+      this.toolStrip = new System.Windows.Forms.ToolStrip();
       this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -71,34 +76,42 @@
       this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
       this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-      this.nextMoveToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.scaleToolStripTrackBar = new Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar();
+      this.nextMoveToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.playToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.pauseToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.speedToolStripTrackBar = new Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar();
-      this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+      this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.renderPanel = new Cyotek.Demo.EColiSimulation.Panel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
       this.timer = new System.Windows.Forms.Timer(this.components);
-      this.menuStrip1.SuspendLayout();
-      this.toolStrip1.SuspendLayout();
+      this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+      this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
+      this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+      this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.menuStrip.SuspendLayout();
+      this.toolStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
       this.splitContainer.Panel1.SuspendLayout();
       this.splitContainer.SuspendLayout();
+      this.toolStripContainer1.ContentPanel.SuspendLayout();
+      this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+      this.toolStripContainer1.SuspendLayout();
+      this.simulationToolStrip.SuspendLayout();
       this.SuspendLayout();
       // 
-      // menuStrip1
+      // menuStrip
       // 
-      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.simulationToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
-      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-      this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-      this.menuStrip1.TabIndex = 0;
-      this.menuStrip1.Text = "menuStrip1";
+      this.menuStrip.Location = new System.Drawing.Point(0, 0);
+      this.menuStrip.Name = "menuStrip";
+      this.menuStrip.Size = new System.Drawing.Size(1008, 24);
+      this.menuStrip.TabIndex = 0;
       // 
       // fileToolStripMenuItem
       // 
@@ -261,6 +274,49 @@
       this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.selectAllToolStripMenuItem.Text = "Select &All";
       // 
+      // simulationToolStripMenuItem
+      // 
+      this.simulationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.runToolStripMenuItem,
+            this.pauseToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.nextMoveToolStripMenuItem});
+      this.simulationToolStripMenuItem.Name = "simulationToolStripMenuItem";
+      this.simulationToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+      this.simulationToolStripMenuItem.Text = "&Simulation";
+      // 
+      // runToolStripMenuItem
+      // 
+      this.runToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Play;
+      this.runToolStripMenuItem.Name = "runToolStripMenuItem";
+      this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+      this.runToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.runToolStripMenuItem.Text = "&Run";
+      this.runToolStripMenuItem.Click += new System.EventHandler(this.PlayToolStripButton_Click);
+      // 
+      // pauseToolStripMenuItem
+      // 
+      this.pauseToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Pause;
+      this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
+      this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.pauseToolStripMenuItem.Text = "&Pause";
+      this.pauseToolStripMenuItem.Click += new System.EventHandler(this.PauseToolStripButton_Click);
+      // 
+      // toolStripMenuItem1
+      // 
+      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
+      // 
+      // nextMoveToolStripMenuItem
+      // 
+      this.nextMoveToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Next;
+      this.nextMoveToolStripMenuItem.Name = "nextMoveToolStripMenuItem";
+      this.nextMoveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.nextMoveToolStripMenuItem.Text = "&Next Move";
+      this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.nextMoveToolStripButton_Click);
+      // 
       // toolsToolStripMenuItem
       // 
       this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -324,9 +380,10 @@
       this.aboutToolStripMenuItem.Text = "&About...";
       this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
       // 
-      // toolStrip1
+      // toolStrip
       // 
-      this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+      this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton,
@@ -337,16 +394,11 @@
             this.pasteToolStripButton,
             this.toolStripSeparator7,
             this.helpToolStripButton,
-            this.nextMoveToolStripButton,
-            this.scaleToolStripTrackBar,
-            this.playToolStripButton,
-            this.pauseToolStripButton,
-            this.speedToolStripTrackBar});
-      this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-      this.toolStrip1.Name = "toolStrip1";
-      this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-      this.toolStrip1.TabIndex = 1;
-      this.toolStrip1.Text = "toolStrip1";
+            this.scaleToolStripTrackBar});
+      this.toolStrip.Location = new System.Drawing.Point(3, 0);
+      this.toolStrip.Name = "toolStrip";
+      this.toolStrip.Size = new System.Drawing.Size(312, 25);
+      this.toolStrip.TabIndex = 1;
       // 
       // newToolStripButton
       // 
@@ -430,16 +482,6 @@
       this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
       this.helpToolStripButton.Text = "He&lp";
       // 
-      // nextMoveToolStripButton
-      // 
-      this.nextMoveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.nextMoveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("nextMoveToolStripButton.Image")));
-      this.nextMoveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.nextMoveToolStripButton.Name = "nextMoveToolStripButton";
-      this.nextMoveToolStripButton.Size = new System.Drawing.Size(23, 22);
-      this.nextMoveToolStripButton.Text = "Next Move";
-      this.nextMoveToolStripButton.Click += new System.EventHandler(this.nextMoveToolStripButton_Click);
-      // 
       // scaleToolStripTrackBar
       // 
       this.scaleToolStripTrackBar.LargeChange = 10;
@@ -452,10 +494,20 @@
       this.scaleToolStripTrackBar.Value = 20;
       this.scaleToolStripTrackBar.ValueChanged += new System.EventHandler(this.ScaleToolStripTrackBar_ValueChanged);
       // 
+      // nextMoveToolStripButton
+      // 
+      this.nextMoveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.nextMoveToolStripButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Next;
+      this.nextMoveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.nextMoveToolStripButton.Name = "nextMoveToolStripButton";
+      this.nextMoveToolStripButton.Size = new System.Drawing.Size(23, 22);
+      this.nextMoveToolStripButton.Text = "Next Move";
+      this.nextMoveToolStripButton.Click += new System.EventHandler(this.nextMoveToolStripButton_Click);
+      // 
       // playToolStripButton
       // 
       this.playToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.playToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("playToolStripButton.Image")));
+      this.playToolStripButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Play;
       this.playToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.playToolStripButton.Name = "playToolStripButton";
       this.playToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -465,7 +517,7 @@
       // pauseToolStripButton
       // 
       this.pauseToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.pauseToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pauseToolStripButton.Image")));
+      this.pauseToolStripButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Pause;
       this.pauseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.pauseToolStripButton.Name = "pauseToolStripButton";
       this.pauseToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -484,20 +536,19 @@
       this.speedToolStripTrackBar.Value = 100;
       this.speedToolStripTrackBar.ValueChanged += new System.EventHandler(this.SpeedToolStripTrackBar_ValueChanged);
       // 
-      // statusStrip1
+      // statusStrip
       // 
-      this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-      this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-      this.statusStrip1.TabIndex = 2;
-      this.statusStrip1.Text = "statusStrip1";
+      this.statusStrip.Location = new System.Drawing.Point(0, 639);
+      this.statusStrip.Name = "statusStrip";
+      this.statusStrip.Size = new System.Drawing.Size(1008, 22);
+      this.statusStrip.TabIndex = 2;
       // 
       // renderPanel
       // 
       this.renderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.renderPanel.Location = new System.Drawing.Point(0, 0);
       this.renderPanel.Name = "renderPanel";
-      this.renderPanel.Size = new System.Drawing.Size(498, 379);
+      this.renderPanel.Size = new System.Drawing.Size(706, 565);
       this.renderPanel.TabIndex = 3;
       this.renderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.RenderPanel_Paint);
       // 
@@ -505,45 +556,95 @@
       // 
       this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
       this.splitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-      this.splitContainer.Location = new System.Drawing.Point(0, 49);
+      this.splitContainer.Location = new System.Drawing.Point(0, 0);
       this.splitContainer.Name = "splitContainer";
       // 
       // splitContainer.Panel1
       // 
       this.splitContainer.Panel1.Controls.Add(this.renderPanel);
-      this.splitContainer.Size = new System.Drawing.Size(800, 379);
-      this.splitContainer.SplitterDistance = 498;
+      this.splitContainer.Size = new System.Drawing.Size(1008, 565);
+      this.splitContainer.SplitterDistance = 706;
       this.splitContainer.TabIndex = 0;
       // 
       // timer
       // 
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
       // 
+      // toolStripContainer1
+      // 
+      // 
+      // toolStripContainer1.ContentPanel
+      // 
+      this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer);
+      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1008, 565);
+      this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
+      this.toolStripContainer1.Name = "toolStripContainer1";
+      this.toolStripContainer1.Size = new System.Drawing.Size(1008, 615);
+      this.toolStripContainer1.TabIndex = 3;
+      this.toolStripContainer1.Text = "toolStripContainer1";
+      // 
+      // toolStripContainer1.TopToolStripPanel
+      // 
+      this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip);
+      this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.simulationToolStrip);
+      // 
+      // simulationToolStrip
+      // 
+      this.simulationToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+      this.simulationToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.playToolStripButton,
+            this.pauseToolStripButton,
+            this.toolStripSeparator8,
+            this.nextMoveToolStripButton,
+            this.toolStripSeparator9,
+            this.speedToolStripTrackBar});
+      this.simulationToolStrip.Location = new System.Drawing.Point(3, 25);
+      this.simulationToolStrip.Name = "simulationToolStrip";
+      this.simulationToolStrip.Size = new System.Drawing.Size(197, 25);
+      this.simulationToolStrip.TabIndex = 2;
+      // 
+      // toolStripSeparator8
+      // 
+      this.toolStripSeparator8.Name = "toolStripSeparator8";
+      this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+      // 
+      // toolStripSeparator9
+      // 
+      this.toolStripSeparator9.Name = "toolStripSeparator9";
+      this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
-      this.Controls.Add(this.splitContainer);
-      this.Controls.Add(this.statusStrip1);
-      this.Controls.Add(this.toolStrip1);
-      this.Controls.Add(this.menuStrip1);
+      this.ClientSize = new System.Drawing.Size(1008, 661);
+      this.Controls.Add(this.toolStripContainer1);
+      this.Controls.Add(this.statusStrip);
+      this.Controls.Add(this.menuStrip);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.MainMenuStrip = this.menuStrip1;
+      this.MainMenuStrip = this.menuStrip;
       this.MaximizeBox = true;
       this.MinimizeBox = true;
       this.Name = "MainForm";
       this.ShowIcon = true;
       this.ShowInTaskbar = true;
       this.Text = "Form1";
-      this.menuStrip1.ResumeLayout(false);
-      this.menuStrip1.PerformLayout();
-      this.toolStrip1.ResumeLayout(false);
-      this.toolStrip1.PerformLayout();
+      this.menuStrip.ResumeLayout(false);
+      this.menuStrip.PerformLayout();
+      this.toolStrip.ResumeLayout(false);
+      this.toolStrip.PerformLayout();
       this.splitContainer.Panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
       this.splitContainer.ResumeLayout(false);
+      this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+      this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+      this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+      this.toolStripContainer1.ResumeLayout(false);
+      this.toolStripContainer1.PerformLayout();
+      this.simulationToolStrip.ResumeLayout(false);
+      this.simulationToolStrip.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -551,7 +652,7 @@
 
     #endregion
 
-    private System.Windows.Forms.MenuStrip menuStrip1;
+    private System.Windows.Forms.MenuStrip menuStrip;
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -581,7 +682,7 @@
     private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-    private System.Windows.Forms.ToolStrip toolStrip1;
+    private System.Windows.Forms.ToolStrip toolStrip;
     private System.Windows.Forms.ToolStripButton newToolStripButton;
     private System.Windows.Forms.ToolStripButton openToolStripButton;
     private System.Windows.Forms.ToolStripButton saveToolStripButton;
@@ -592,7 +693,7 @@
     private System.Windows.Forms.ToolStripButton pasteToolStripButton;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     private System.Windows.Forms.ToolStripButton helpToolStripButton;
-    private System.Windows.Forms.StatusStrip statusStrip1;
+    private System.Windows.Forms.StatusStrip statusStrip;
     private EColiSimulation.Panel renderPanel;
     private System.Windows.Forms.SplitContainer splitContainer;
     private System.Windows.Forms.ToolStripButton nextMoveToolStripButton;
@@ -601,6 +702,15 @@
     private System.Windows.Forms.ToolStripButton playToolStripButton;
     private System.Windows.Forms.ToolStripButton pauseToolStripButton;
     private Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar speedToolStripTrackBar;
+    private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+    private System.Windows.Forms.ToolStripMenuItem nextMoveToolStripMenuItem;
+    private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+    private System.Windows.Forms.ToolStrip simulationToolStrip;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
   }
 }
 
