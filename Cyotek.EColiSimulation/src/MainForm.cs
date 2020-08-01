@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Environment = Cyotek.Demo.EColiSimulation.Environment;
+using Cyotek.Demo.EColiSimulation;
 
 namespace Cyotek.Demo
 {
@@ -26,6 +28,71 @@ namespace Cyotek.Demo
     private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.Close();
+    }
+
+    private Environment _environment;
+
+    protected override void OnShown(EventArgs e)
+    {
+      _environment = new Environment
+      {
+        Size = new Size(100, 100),
+        Strand = new Strand
+        {
+          Position = new Point(50, 50)
+        },
+        Scale = 2
+      };
+
+      base.OnShown(e);
+
+      renderPanel.Invalidate();
+    }
+
+    private void RenderPanel_Paint(object sender, PaintEventArgs e)
+    {
+      _environment.Draw(e.Graphics);
+    }
+
+    private void renderPanel_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void nextMoveToolStripButton_Click(object sender, EventArgs e)
+    {
+      _environment.NextMove();
+
+      renderPanel.Invalidate();
+    }
+
+    private void ScaleToolStripTrackBar_ValueChanged(object sender, EventArgs e)
+    {
+      _environment.Scale = scaleToolStripTrackBar.Value / 10F;
+
+      renderPanel.Invalidate();
+    }
+
+    private void PlayToolStripButton_Click(object sender, EventArgs e)
+    {
+      timer.Start();
+    }
+
+    private void PauseToolStripButton_Click(object sender, EventArgs e)
+    {
+      timer.Stop();
+    }
+
+    private void timer_Tick(object sender, EventArgs e)
+    {
+      _environment.NextMove();
+
+      renderPanel.Invalidate();
+    }
+
+    private void SpeedToolStripTrackBar_ValueChanged(object sender, EventArgs e)
+    {
+      timer.Interval = speedToolStripTrackBar.Value;
     }
   }
 }
