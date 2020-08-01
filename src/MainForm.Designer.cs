@@ -84,7 +84,7 @@
       this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.renderPanel = new Cyotek.Demo.EColiSimulation.Panel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
-      this.timer = new System.Windows.Forms.Timer(this.components);
+      this.timer = new Cyotek.Demo.Timer();
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -315,7 +315,7 @@
       this.nextMoveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
       this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
       this.nextMoveToolStripMenuItem.Text = "&Next Move";
-      this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.nextMoveToolStripButton_Click);
+      this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.NextMoveToolStripButton_Click);
       // 
       // toolsToolStripMenuItem
       // 
@@ -502,7 +502,7 @@
       this.nextMoveToolStripButton.Name = "nextMoveToolStripButton";
       this.nextMoveToolStripButton.Size = new System.Drawing.Size(23, 22);
       this.nextMoveToolStripButton.Text = "Next Move";
-      this.nextMoveToolStripButton.Click += new System.EventHandler(this.nextMoveToolStripButton_Click);
+      this.nextMoveToolStripButton.Click += new System.EventHandler(this.NextMoveToolStripButton_Click);
       // 
       // playToolStripButton
       // 
@@ -568,7 +568,7 @@
       // 
       // timer
       // 
-      this.timer.Tick += new System.EventHandler(this.timer_Tick);
+      this.timer.Tick += new System.EventHandler(this.Timer_Tick);
       // 
       // toolStripContainer1
       // 
@@ -697,7 +697,7 @@
     private EColiSimulation.Panel renderPanel;
     private System.Windows.Forms.SplitContainer splitContainer;
     private System.Windows.Forms.ToolStripButton nextMoveToolStripButton;
-    private System.Windows.Forms.Timer timer;
+    private Cyotek.Demo.Timer timer;
     private Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar scaleToolStripTrackBar;
     private System.Windows.Forms.ToolStripButton playToolStripButton;
     private System.Windows.Forms.ToolStripButton pauseToolStripButton;

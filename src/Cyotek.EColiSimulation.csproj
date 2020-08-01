@@ -65,6 +65,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Timer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ToolStripControllerHosts\ToolStripTrackBar.cs">
       <SubType>Component</SubType>
     </Compile>

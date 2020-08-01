@@ -56,12 +56,7 @@ namespace Cyotek.Demo
       _environment.Draw(e.Graphics);
     }
 
-    private void renderPanel_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
-
-    private void nextMoveToolStripButton_Click(object sender, EventArgs e)
+    private void NextMoveToolStripButton_Click(object sender, EventArgs e)
     {
       _environment.NextMove();
 
@@ -103,8 +98,21 @@ namespace Cyotek.Demo
       nextMoveToolStripMenuItem.Enabled = !isRunning;
     }
 
-    private void timer_Tick(object sender, EventArgs e)
+    private long _ticks;
+
+    private void Timer_Tick(object sender, EventArgs e)
     {
+      long ticks;
+
+      ticks = DateTime.Now.Ticks;
+
+      if (_ticks != 0)
+      {
+        Console.WriteLine((ticks - _ticks).ToString());
+      }
+
+      _ticks = ticks;
+
       _environment.NextMove();
 
       renderPanel.Invalidate();
