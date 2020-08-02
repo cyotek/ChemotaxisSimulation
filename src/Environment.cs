@@ -175,9 +175,14 @@ namespace Cyotek.Demo.EColiSimulation
 
     private void DrawFood(Graphics graphics, Chemoeffector food)
     {
+      this.DrawChemoeffector(graphics, food, Color.SeaGreen);
+    }
+
+    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Color color)
+    {
       Rectangle bounds;
 
-      bounds = new Rectangle(food.Position.X - (food.Size / 2), food.Position.Y - (food.Size / 2), food.Size, food.Size);
+      bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Size / 2), chemoeffector.Position.Y - (chemoeffector.Size / 2), chemoeffector.Size, chemoeffector.Size);
 
       using (GraphicsPath ellipsePath = new GraphicsPath())
       {
@@ -185,16 +190,18 @@ namespace Cyotek.Demo.EColiSimulation
 
         using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
         {
-          brush.CenterPoint = food.Position;
-          brush.CenterColor = Color.FromArgb(128, Color.SeaGreen);
+          brush.CenterPoint = chemoeffector.Position;
+          brush.CenterColor = Color.FromArgb(128, color);
           brush.SurroundColors = new[] { Color.Transparent };
 
           graphics.FillEllipse(brush, bounds);
         }
       }
 
-
-      graphics.DrawEllipse(Pens.SeaGreen, food.Position.X - 1, food.Position.Y - 1, 2, 2);
+      using (Pen pen = new Pen(color))
+      {
+        graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
+      }
     }
 
 
