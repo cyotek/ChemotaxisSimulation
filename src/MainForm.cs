@@ -36,31 +36,20 @@ namespace Cyotek.Demo
     {
       _environment = new Environment
       {
-        Size = new Size(256, 256),
-        //Strands =
-        //{
-        //  new Strand
-        //  {
-        //    Position = new Point(128, 128)
-        //  }
-        //},
-        //FoodSources =
-        //{
-        //  new Chemoeffector
-        //  {
-        //    Size = 128,
-        //    Position = new Point(192, 64)
-        //  }
-        //},
+        Size = new Size(256, 256)
+      };
+
+      _environmentRenderer = new EnvironmentRenderer
+      {
         Scale = 2
       };
 
-      for (int i = 0; i < 25; i++)
+      for (int i = 0; i < 1500; i++)
       {
         _environment.AddStrand();
       }
 
-      for (int i = 0; i < 10; i++)
+      for (int i = 0; i < 20; i++)
       {
         _environment.AddFoodSource();
       }
@@ -74,8 +63,10 @@ namespace Cyotek.Demo
 
     private void RenderPanel_Paint(object sender, PaintEventArgs e)
     {
-      _environment.Draw(e.Graphics);
+      _environmentRenderer.Draw(_environment, e.Graphics);
     }
+
+    private EnvironmentRenderer _environmentRenderer;
 
     private void NextMoveToolStripButton_Click(object sender, EventArgs e)
     {
@@ -86,7 +77,7 @@ namespace Cyotek.Demo
 
     private void ScaleToolStripTrackBar_ValueChanged(object sender, EventArgs e)
     {
-      _environment.Scale = scaleToolStripTrackBar.Value / 10F;
+      _environmentRenderer.Scale = scaleToolStripTrackBar.Value / 10F;
 
       renderPanel.Invalidate();
     }
@@ -129,6 +120,45 @@ namespace Cyotek.Demo
     private void SpeedToolStripTrackBar_ValueChanged(object sender, EventArgs e)
     {
       timer.Interval = speedToolStripTrackBar.Value;
+    }
+
+    private void BacteriaStrandsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.ShowStrands = !_environmentRenderer.ShowStrands;
+
+      bacteriaStrandsToolStripMenuItem.Checked = _environmentRenderer.ShowStrands;
+
+      renderPanel.Invalidate();
+    }
+
+    private void BacteriaStrandTailsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.ShowTails = !_environmentRenderer.ShowTails;
+
+      bacteriaStrandTailsToolStripMenuItem.Checked = _environmentRenderer.ShowTails;
+
+      renderPanel.Invalidate();
+
+    }
+
+    private void FoodSourcesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.ShowFoodSources = !_environmentRenderer.ShowFoodSources;
+
+      foodSourcesToolStripMenuItem.Checked = _environmentRenderer.ShowFoodSources;
+
+      renderPanel.Invalidate();
+
+    }
+
+    private void FoodSourceDetectionZonesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.ShowFoodDetectionZone = !_environmentRenderer.ShowFoodDetectionZone;
+
+      foodSourceDetectionZonesToolStripMenuItem.Checked = _environmentRenderer.ShowFoodDetectionZone;
+
+      renderPanel.Invalidate();
+
     }
   }
 }

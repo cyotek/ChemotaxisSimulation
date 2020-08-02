@@ -66,6 +66,7 @@
     <Compile Include="ChemoeffectorCollection.cs" />
     <Compile Include="Compass.cs" />
     <Compile Include="EmptyArray.cs" />
+    <Compile Include="EnvironmentRenderer.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -30,13 +30,6 @@ namespace Cyotek.Demo.EColiSimulation
       set { _size = value; }
     }
 
-    private float _scale;
-
-    public float Scale
-    {
-      get { return _scale; }
-      set { _scale = value; }
-    }
     private ChemoeffectorCollection _foodSources;
 
     public ChemoeffectorCollection FoodSources
@@ -48,7 +41,6 @@ namespace Cyotek.Demo.EColiSimulation
 
     public Environment()
     {
-      _scale = 1;
       _seed = 10;
       _size = new Size(256, 256);
       _strands = new StrandCollection(this);
@@ -86,181 +78,7 @@ namespace Cyotek.Demo.EColiSimulation
       });
     }
 
-    public void Draw(Graphics graphics)
-    {
-      graphics.Clear(SystemColors.Control);
-      graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-      graphics.ScaleTransform(_scale, _scale);
-
-      graphics.FillRectangle(Brushes.White, new Rectangle(Point.Empty, _size));
-
-      for (int i = 0; i < _foodSources.Count; i++)
-      {
-        this.DrawFood(graphics, _foodSources[i]);
-      }
-
-      for (int i = 0; i < _strands.Count; i++)
-      {
-        this.DrawStrand(graphics, _strands[i]);
-      }
-    }
-
-    private void DrawStrand(Graphics graphics, Strand strand)
-    {
-      if (strand.PreviousPositions.Size > 1)
-      {
-        //int start;
-        //start = 0;
-        //for (int i = 1; i < strand.PreviousPositions.Size; i++)
-        //{
-        //  Point previous;
-        //  Point current;
-
-        //  previous = strand.PreviousPositions.PeekAt(i - 1);
-        //  current = strand.PreviousPositions.PeekAt(i);
-
-        //  if (!new Rectangle(current.X - 1, current.Y - 1, 3, 3).Contains(previous) && i - start > 1)
-        //  {
-        //    Point[] buffer;
-
-        //    buffer = ArrayPool<Point>.Shared.Allocate(i - start);
-
-
-        //    strand.PreviousPositions.CopyTo(start, buffer, 0, i - start);
-        //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        //    start = i;
-        //  }
-        //}
-
-        //if (start < strand.PreviousPositions.Size && strand.PreviousPositions.Size - start > 1)
-        //{
-        //  Point[] buffer;
-
-        //  buffer = ArrayPool<Point>.Shared.Allocate(strand.PreviousPositions.Size - start);
-
-        //  strand.PreviousPositions.CopyTo(start, buffer, 0, strand.PreviousPositions.Size - start);
-        //  graphics.DrawLines(Pens.CornflowerBlue, buffer);
-        //}
-        //Point[] buffer;
-
-        //buffer = ArrayPool<Point>.Shared.Allocate(strand.PreviousPositions.Size + 1);
-
-        //strand.PreviousPositions.CopyTo(buffer);
-        //buffer[buffer.Length - 1] = strand.Position;
-
-        //graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        //ArrayPool<Point>.Shared.Free(buffer);
-        this.DrawTail(graphics, strand, Color.CornflowerBlue);
-      }
-
-      graphics.DrawEllipse(Pens.Black, strand.Position.X - 1, strand.Position.Y - 1, 2, 2);
-    }
-
-    private void DrawFood(Graphics graphics, Chemoeffector food)
-    {
-      this.DrawChemoeffector(graphics, food, Color.SeaGreen);
-    }
-
-    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Color color)
-    {
-      Rectangle bounds;
-
-      bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Size / 2), chemoeffector.Position.Y - (chemoeffector.Size / 2), chemoeffector.Size, chemoeffector.Size);
-
-      using (GraphicsPath ellipsePath = new GraphicsPath())
-      {
-        ellipsePath.AddEllipse(bounds);
-
-        using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
-        {
-          brush.CenterPoint = chemoeffector.Position;
-          brush.CenterColor = Color.FromArgb(128, color);
-          brush.SurroundColors = new[] { Color.Transparent };
-
-          graphics.FillEllipse(brush, bounds);
-        }
-      }
-
-      using (Pen pen = new Pen(color))
-      {
-        graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
-      }
-    }
-
-
-    private void DrawTail(Graphics graphics, Strand strand, Color color)
-    {
-      CircularBuffer<Point> positions;
-      GraphicsPath path;
-      int start;
-
-      positions = strand.PreviousPositions;
-      path = new GraphicsPath();
-      start = 0;
-
-      for (int i = 0; i < positions.Size; i++)
-      {
-        Point current;
-        Point next;
-
-        current = strand.PreviousPositions.PeekAt(i);
-
-        if (i == positions.Size - 1)
-        {
-          this.DrawTail(graphics, positions, color, start, positions.Size - start);
-        }
-        else
-        {
-          next = positions.PeekAt(i + 1);
-          if (Geometry.GetDistance(next, current) > 1)
-          {
-            this.DrawTail(graphics, positions, color, start, i - start);
-            start = i;
-          }
-        }
-
-        //if (draw)
-        //{
-        //  int length;
-
-        //  length = i - start;
-
-        //  if (length > 1)
-        //  {
-        //    Point[] buffer;
-
-        //    buffer = ArrayPool<Point>.Shared.Allocate(length);
-
-        //    positions.CopyTo(start,buffer,0,length);
-
-        //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        //    ArrayPool<Point>.Shared.Free(buffer);
-        //  start = i;
-        //  }
-        //}
-      }
-    }
-
-    private void DrawTail(Graphics graphics, CircularBuffer<Point> positions, Color color, int start, int length)
-    {
-      if (length > 1)
-      {
-        Point[] buffer;
-
-        buffer = ArrayPool<Point>.Shared.Allocate(length);
-
-        positions.CopyTo(start, buffer, 0, length);
-
-        graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        ArrayPool<Point>.Shared.Free(buffer);
-      }
-    }
-
+    
     public void NextMove()
     {
       for (int i = 0; i < _strands.Count; i++)

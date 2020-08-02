@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +51,11 @@
       this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
       this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.bacteriaStrandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.bacteriaStrandTailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.foodSourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.foodSourceDetectionZonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,6 +110,7 @@
       this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.simulationToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -272,6 +279,53 @@
       this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
       this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.selectAllToolStripMenuItem.Text = "Select &All";
+      // 
+      // viewToolStripMenuItem
+      // 
+      this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bacteriaStrandsToolStripMenuItem,
+            this.bacteriaStrandTailsToolStripMenuItem,
+            this.foodSourcesToolStripMenuItem,
+            this.foodSourceDetectionZonesToolStripMenuItem});
+      this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+      this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+      this.viewToolStripMenuItem.Text = "&View";
+      // 
+      // bacteriaStrandsToolStripMenuItem
+      // 
+      this.bacteriaStrandsToolStripMenuItem.Checked = true;
+      this.bacteriaStrandsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.bacteriaStrandsToolStripMenuItem.Name = "bacteriaStrandsToolStripMenuItem";
+      this.bacteriaStrandsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.bacteriaStrandsToolStripMenuItem.Text = "Bacteria &Strands";
+      this.bacteriaStrandsToolStripMenuItem.Click += new System.EventHandler(this.BacteriaStrandsToolStripMenuItem_Click);
+      // 
+      // bacteriaStrandTailsToolStripMenuItem
+      // 
+      this.bacteriaStrandTailsToolStripMenuItem.Checked = true;
+      this.bacteriaStrandTailsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.bacteriaStrandTailsToolStripMenuItem.Name = "bacteriaStrandTailsToolStripMenuItem";
+      this.bacteriaStrandTailsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.bacteriaStrandTailsToolStripMenuItem.Text = "Bacteria Strand &Tails";
+      this.bacteriaStrandTailsToolStripMenuItem.Click += new System.EventHandler(this.BacteriaStrandTailsToolStripMenuItem_Click);
+      // 
+      // foodSourcesToolStripMenuItem
+      // 
+      this.foodSourcesToolStripMenuItem.Checked = true;
+      this.foodSourcesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.foodSourcesToolStripMenuItem.Name = "foodSourcesToolStripMenuItem";
+      this.foodSourcesToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.foodSourcesToolStripMenuItem.Text = "&Food Sources";
+      this.foodSourcesToolStripMenuItem.Click += new System.EventHandler(this.FoodSourcesToolStripMenuItem_Click);
+      // 
+      // foodSourceDetectionZonesToolStripMenuItem
+      // 
+      this.foodSourceDetectionZonesToolStripMenuItem.Checked = true;
+      this.foodSourceDetectionZonesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.foodSourceDetectionZonesToolStripMenuItem.Name = "foodSourceDetectionZonesToolStripMenuItem";
+      this.foodSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.foodSourceDetectionZonesToolStripMenuItem.Text = "Food Source &Detection Zones";
+      this.foodSourceDetectionZonesToolStripMenuItem.Click += new System.EventHandler(this.FoodSourceDetectionZonesToolStripMenuItem_Click);
       // 
       // simulationToolStripMenuItem
       // 
@@ -709,6 +763,11 @@
     private System.Windows.Forms.ToolStrip simulationToolStrip;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+    private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem bacteriaStrandsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem bacteriaStrandTailsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem foodSourcesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem foodSourceDetectionZonesToolStripMenuItem;
   }
 }
 
