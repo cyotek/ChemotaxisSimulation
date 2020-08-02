@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cyotek.Collections.Generic.CircularBuffer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\packages\Cyotek.CircularBuffer.1.1.0-alpha2\lib\net48\Cyotek.Collections.Generic.CircularBuffer.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Cyotek.CircularBuffer.1.1.0-alpha4\lib\net48\Cyotek.Collections.Generic.CircularBuffer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
