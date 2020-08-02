@@ -26,6 +26,22 @@ namespace Cyotek.EColiSimulation.Tests
       }
     }
 
+    public static IEnumerable<TestCaseData> GetOppositeTestCaseSource
+    {
+      get
+      {
+        yield return new TestCaseData(Compass.North, Compass.South).SetName(nameof(GetOppositeTestCases) + "North");
+        yield return new TestCaseData(Compass.NorthEast, Compass.SouthWest).SetName(nameof(GetOppositeTestCases) + "NorthEast");
+        yield return new TestCaseData(Compass.East, Compass.West).SetName(nameof(GetOppositeTestCases) + "East");
+        yield return new TestCaseData(Compass.SouthEast, Compass.NorthWest).SetName(nameof(GetOppositeTestCases) + "SouthEast");
+        yield return new TestCaseData(Compass.South, Compass.North).SetName(nameof(GetOppositeTestCases) + "South");
+        yield return new TestCaseData(Compass.SouthWest, Compass.NorthEast).SetName(nameof(GetOppositeTestCases) + "SouthWest");
+        yield return new TestCaseData(Compass.West, Compass.East).SetName(nameof(GetOppositeTestCases) + "West");
+        yield return new TestCaseData(Compass.NorthWest, Compass.SouthEast).SetName(nameof(GetOppositeTestCases) + "NorthWest");
+        yield return new TestCaseData(new Point(20, 21), Point.Empty).SetName(nameof(GetOppositeTestCases) + "Invalid");
+      }
+    }
+
     public static IEnumerable<TestCaseData> GetPreviousTestCaseSource
     {
       get
@@ -55,6 +71,20 @@ namespace Cyotek.EColiSimulation.Tests
 
       // act
       actual = Compass.GetNext(current);
+
+      // assert
+      Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(GetOppositeTestCaseSource))]
+    public void GetOppositeTestCases(Point current, Point expected)
+    {
+      // arrange
+      Point actual;
+
+      // act
+      actual = Compass.GetOpposite(current);
 
       // assert
       Assert.AreEqual(expected, actual);

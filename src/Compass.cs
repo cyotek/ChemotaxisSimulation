@@ -70,6 +70,50 @@ namespace Cyotek.Demo.EColiSimulation
       return result;
     }
 
+    public static Point GetOpposite(Point current)
+    {
+      Point result;
+
+      if (current == Compass.North)
+      {
+        result = Compass.South;
+      }
+      else if (current == Compass.NorthEast)
+      {
+        result = Compass.SouthWest;
+      }
+      else if (current == Compass.East)
+      {
+        result = Compass.West;
+      }
+      else if (current == Compass.SouthEast)
+      {
+        result = Compass.NorthWest;
+      }
+      else if (current == Compass.South)
+      {
+        result = Compass.North;
+      }
+      else if (current == Compass.SouthWest)
+      {
+        result = Compass.NorthEast;
+      }
+      else if (current == Compass.West)
+      {
+        result = Compass.East;
+      }
+      else if (current == Compass.NorthWest)
+      {
+        result = Compass.SouthEast;
+      }
+      else
+      {
+        result = Point.Empty;
+      }
+
+      return result;
+    }
+
     public static Point GetPrevious(Point current)
     {
       Point result;
