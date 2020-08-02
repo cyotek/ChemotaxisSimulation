@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Cyotek.Collections.Generic;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -16,7 +19,12 @@ namespace Cyotek.Demo.EColiSimulation
     public Strand Strand
     {
       get { return _strand; }
-      set { _strand = value; }
+      set
+      {
+        _strand = value;
+
+        _strand.Environment = this;
+      }
     }
 
     private Size _size;
@@ -62,6 +70,38 @@ namespace Cyotek.Demo.EColiSimulation
       };
     }
 
+    private void DumpBuffer(int start, int count)
+    {
+      Point[] buffer;
+
+      buffer = (Point[])typeof(CircularBuffer<Point>).GetField("_buffer", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_strand.PreviousPositions);
+
+      this.WriteBuffer(@"t:\internal.txt", buffer, _strand.PreviousPositions.Head, _strand.PreviousPositions.Tail);
+      this.WriteBuffer(@"t:\array.txt", _strand.PreviousPositions.ToArray(), _strand.PreviousPositions.Head, _strand.PreviousPositions.Tail);
+
+      buffer = ArrayPool<Point>.Shared.Allocate(count - start);
+
+      _strand.PreviousPositions.CopyTo(start, buffer, 0, count - start);
+
+      this.WriteBuffer(@"t:\range.txt", buffer.ToArray(), start, count);
+    }
+
+    private void WriteBuffer(string fileName, Point[] points, int head, int tail)
+    {
+      using (TextWriter writer = new StreamWriter(fileName))
+      {
+        writer.WriteLine(head);
+        writer.WriteLine(tail);
+        for (int i = 0; i < points.Length; i++)
+        {
+          writer.Write(points[i].X);
+          writer.Write(',');
+          writer.Write(points[i].Y);
+          writer.WriteLine();
+        }
+      }
+    }
+
     public void Draw(Graphics graphics)
     {
       graphics.Clear(SystemColors.Control);
@@ -70,69 +110,179 @@ namespace Cyotek.Demo.EColiSimulation
 
       graphics.FillRectangle(Brushes.White, new Rectangle(Point.Empty, _size));
 
-      if (!_strand.PreviousPositions.IsEmpty)
+      graphics.DrawEllipse(Pens.SeaGreen, _food.Position.X - (_food.Size / 2), _food.Position.Y - (_food.Size / 2), _food.Size, _food.Size);
+
+      if (_strand.PreviousPositions.Size > 1)
       {
-        Point[] buffer;
+        //int start;
+        //start = 0;
+        //for (int i = 1; i < _strand.PreviousPositions.Size; i++)
+        //{
+        //  Point previous;
+        //  Point current;
 
-        buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size + 1);
+        //  previous = _strand.PreviousPositions.PeekAt(i - 1);
+        //  current = _strand.PreviousPositions.PeekAt(i);
 
-        _strand.PreviousPositions.CopyTo(buffer);
-        buffer[buffer.Length - 1] = _strand.Position;
+        //  if (!new Rectangle(current.X - 1, current.Y - 1, 3, 3).Contains(previous) && i - start > 1)
+        //  {
+        //    Point[] buffer;
 
-        graphics.DrawLines(Pens.CornflowerBlue, buffer);
+        //    buffer = ArrayPool<Point>.Shared.Allocate(i - start);
 
-        ArrayPool<Point>.Shared.Free(buffer);
+
+        //    _strand.PreviousPositions.CopyTo(start, buffer, 0, i - start);
+        //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
+
+        //    start = i;
+        //  }
+        //}
+
+        //if (start < _strand.PreviousPositions.Size && _strand.PreviousPositions.Size - start > 1)
+        //{
+        //  Point[] buffer;
+
+        //  buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size - start);
+
+        //  _strand.PreviousPositions.CopyTo(start, buffer, 0, _strand.PreviousPositions.Size - start);
+        //  graphics.DrawLines(Pens.CornflowerBlue, buffer);
+        //}
+        //Point[] buffer;
+
+        //buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size + 1);
+
+        //_strand.PreviousPositions.CopyTo(buffer);
+        //buffer[buffer.Length - 1] = _strand.Position;
+
+        //graphics.DrawLines(Pens.CornflowerBlue, buffer);
+
+        //ArrayPool<Point>.Shared.Free(buffer);
+        this.DrawTail(graphics, _strand.PreviousPositions, Color.CornflowerBlue);
       }
 
       graphics.DrawEllipse(Pens.Black, _strand.Position.X - 1, _strand.Position.Y - 1, 2, 2);
     }
 
+    private void DrawTail(Graphics graphics, CircularBuffer<Point> positions, Color color)
+    {
+      GraphicsPath path;
+      int start;
+
+      path = new GraphicsPath();
+      start = 0;
+
+      for (int i = 0; i < positions.Size; i++)
+      {
+        Point current;
+        Point next;
+        bool draw;
+
+        current = _strand.PreviousPositions.PeekAt(i);
+
+        if (i == positions.Size - 1)
+        {
+          this.DrawTail(graphics, positions, color, start, positions.Size - start);
+        }
+        else
+        {
+          next = _strand.PreviousPositions.PeekAt(i + 1);
+          if (Geometry.GetDistance(next, current) > 1)
+          {
+            this.DrawTail(graphics, positions, color, start, i - start);
+            start = i;
+          }
+        }
+
+        //if (draw)
+        //{
+        //  int length;
+
+        //  length = i - start;
+
+        //  if (length > 1)
+        //  {
+        //    Point[] buffer;
+
+        //    buffer = ArrayPool<Point>.Shared.Allocate(length);
+
+        //    positions.CopyTo(start,buffer,0,length);
+
+        //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
+
+        //    ArrayPool<Point>.Shared.Free(buffer);
+        //  start = i;
+        //  }
+        //}
+      }
+    }
+
+    private void DrawTail(Graphics graphics, CircularBuffer<Point> positions, Color color, int start, int length)
+    {
+      if (length > 1)
+      {
+        Point[] buffer;
+
+        buffer = ArrayPool<Point>.Shared.Allocate(length);
+
+        positions.CopyTo(start, buffer, 0, length);
+
+        graphics.DrawLines(Pens.CornflowerBlue, buffer);
+
+        ArrayPool<Point>.Shared.Free(buffer);
+      }
+    }
+
     public void NextMove()
     {
-      _strand.Move();
 
       if (this.IsOutOfBounds(_strand))
       {
-        _strand.UndoMove();
+        //_strand.UndoMove();
       }
 
-      // if (_random.NextDouble() > 0.25)
+      if (!Geometry.DoesPointIntersectCircle(_strand.Position, _food.Position, _food.Size / 2))
       {
-        double dir;
-        int x;
-        int y;
-
-        dir = _random.NextDouble();
-        x = _strand.Heading.X;
-        y = _strand.Heading.Y;
-
-        if (dir < 0.125)
-        {
-          x = -1;
-        }
-        else if (dir > 0.125 && dir < 0.250)
-        {
-          x = 1;
-        }
-        else if (dir > 0.250 && dir < 0.375 && y != 0)
-        {
-          x = 0;
-        }
-        else if (dir > 0.375 && dir < 0.5)
-        {
-          y = -1;
-        }
-        else if (dir > 0.5 && dir < 0.625)
-        {
-          y = 1;
-        }
-        else if (dir > 0.625 && dir < 0.75 && x != 0)
-        {
-          y = 0;
-        }
-
-        _strand.Heading = new Point(x, y);
+        _strand.Move();
+        this.Tumble();
       }
+    }
+
+    private void Tumble()
+    {
+      double dir;
+      int x;
+      int y;
+
+      dir = _random.NextDouble();
+      x = _strand.Heading.X;
+      y = _strand.Heading.Y;
+
+      if (dir < 0.125)
+      {
+        x = -1;
+      }
+      else if (dir > 0.125 && dir < 0.250)
+      {
+        x = 1;
+      }
+      else if (dir > 0.250 && dir < 0.375 && y != 0)
+      {
+        x = 0;
+      }
+      else if (dir > 0.375 && dir < 0.5)
+      {
+        y = -1;
+      }
+      else if (dir > 0.5 && dir < 0.625)
+      {
+        y = 1;
+      }
+      else if (dir > 0.625 && dir < 0.75 && x != 0)
+      {
+        y = 0;
+      }
+
+      _strand.Heading = new Point(x, y);
     }
 
     private bool IsOutOfBounds(Strand strand)

@@ -47,13 +47,45 @@ namespace Cyotek.Demo.EColiSimulation
       set { _previousSensor = value; }
     }
 
+    private Environment _environment;
+
+    internal Environment Environment
+    {
+      get { return _environment; }
+      set { _environment = value; }
+    }
+
+
     public void Move()
     {
       if (!_heading.IsEmpty)
       {
+        int x;
+        int y;
         _previousPositions.Put(_position);
-        _position.X += _heading.X;
-        _position.Y += _heading.Y;
+
+        x = _position.X + _heading.X;
+        y = _position.Y + _heading.Y;
+
+        if (x <= 1)
+        {
+          x = _environment.Size.Width - 1;
+        }
+        else if (x >= _environment.Size.Width - 1)
+        {
+          x = 1;
+        }
+
+        if (y <= 1)
+        {
+          y = _environment.Size.Height - 1;
+        }
+        else if (y >= _environment.Size.Height - 1)
+        {
+          y = 1;
+        }
+
+        _position = new Point(x, y);
       }
     }
 

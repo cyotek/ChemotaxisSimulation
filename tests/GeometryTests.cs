@@ -35,6 +35,26 @@ namespace Cyotek.EColiSimulation.Tests
         yield return new TestCaseData(new object[] { 20, 20, 10, 10, 10, false }).SetName(nameof(DoesPointIntersectCircleTestCases) + "Outside2");
       }
     }
+    
+    public static IEnumerable<TestCaseData> GetDistanceTestCaseData
+    {
+      get
+      {
+        yield return new TestCaseData(new object[] { 0, 0, 0, 0, 0 }).SetName(nameof(GetDistanceTestCases) + "Zero");
+        yield return new TestCaseData(new object[] { 12, 24, 12, 24, 0 }).SetName(nameof(GetDistanceTestCases) + "Same");
+        yield return new TestCaseData(new object[] { 12, 26, 12, 24, 2 }).SetName(nameof(GetDistanceTestCases) + "North");
+        yield return new TestCaseData(new object[] { 12, 26, 12, 28, 2 }).SetName(nameof(GetDistanceTestCases) + "South");
+        yield return new TestCaseData(new object[] { 6, 26, 12, 26, 6 }).SetName(nameof(GetDistanceTestCases) + "West");
+        yield return new TestCaseData(new object[] { 18, 26, 12, 26, 6 }).SetName(nameof(GetDistanceTestCases) + "East");
+        yield return new TestCaseData(new object[] { 12, 24, 12, 26, 2 }).SetName(nameof(GetDistanceTestCases) + "NorthReversed");
+        yield return new TestCaseData(new object[] { 12, 28, 12, 26, 2 }).SetName(nameof(GetDistanceTestCases) + "SouthReversed");
+        yield return new TestCaseData(new object[] { 12, 26, 6, 26, 6 }).SetName(nameof(GetDistanceTestCases) + "WestReversed");
+        yield return new TestCaseData(new object[] { 12, 26, 18, 26, 6 }).SetName(nameof(GetDistanceTestCases) + "EastReversed");
+        yield return new TestCaseData(new object[] { 18, 26, 12, 32, 8 }).SetName(nameof(GetDistanceTestCases) + "NorthEast");
+        yield return new TestCaseData(new object[] { 18, 26, 12, 20, 8 }).SetName(nameof(GetDistanceTestCases) + "NorthWest");
+        yield return new TestCaseData(new object[] { 1, 1, 2, 2, 1 }).SetName(nameof(GetDistanceTestCases) + "Diagonal");
+      }
+    }
 
     #endregion Public Properties
 
@@ -63,6 +83,19 @@ namespace Cyotek.EColiSimulation.Tests
 
       // act
       actual = Geometry.DoesPointIntersectCircle(x, y, cx, cy, r);
+
+      // assert
+      Assert.AreEqual(expected, actual);
+    }
+    [Test]
+    [TestCaseSource(nameof(GeometryTests.GetDistanceTestCaseData))]
+    public void GetDistanceTestCases(int x1, int y1, int x2, int y2, int expected)
+    {
+      // arrange
+      int actual;
+
+      // act
+      actual = Geometry.GetDistance(x1, y1, x2, y2);
 
       // assert
       Assert.AreEqual(expected, actual);

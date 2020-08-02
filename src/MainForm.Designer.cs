@@ -28,7 +28,6 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,10 +81,10 @@
       this.pauseToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.speedToolStripTrackBar = new Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar();
       this.statusStrip = new System.Windows.Forms.StatusStrip();
-      this.renderPanel = new Cyotek.Demo.EColiSimulation.Panel();
+      this.renderPanel = new Cyotek.Demo.Windows.Forms.BufferedPanel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
-      this.timer = new Cyotek.Demo.Timer();
-      this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+      this.timer = new System.Windows.Forms.Timer();
+      this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -94,9 +93,9 @@
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
       this.splitContainer.Panel1.SuspendLayout();
       this.splitContainer.SuspendLayout();
-      this.toolStripContainer1.ContentPanel.SuspendLayout();
-      this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-      this.toolStripContainer1.SuspendLayout();
+      this.toolStripContainer.ContentPanel.SuspendLayout();
+      this.toolStripContainer.TopToolStripPanel.SuspendLayout();
+      this.toolStripContainer.SuspendLayout();
       this.simulationToolStrip.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -570,24 +569,23 @@
       // 
       this.timer.Tick += new System.EventHandler(this.Timer_Tick);
       // 
-      // toolStripContainer1
+      // toolStripContainer
       // 
       // 
-      // toolStripContainer1.ContentPanel
+      // toolStripContainer.ContentPanel
       // 
-      this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer);
-      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1008, 565);
-      this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
-      this.toolStripContainer1.Name = "toolStripContainer1";
-      this.toolStripContainer1.Size = new System.Drawing.Size(1008, 615);
-      this.toolStripContainer1.TabIndex = 3;
-      this.toolStripContainer1.Text = "toolStripContainer1";
+      this.toolStripContainer.ContentPanel.Controls.Add(this.splitContainer);
+      this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(1008, 565);
+      this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.toolStripContainer.Location = new System.Drawing.Point(0, 24);
+      this.toolStripContainer.Name = "toolStripContainer";
+      this.toolStripContainer.Size = new System.Drawing.Size(1008, 615);
+      this.toolStripContainer.TabIndex = 3;
       // 
-      // toolStripContainer1.TopToolStripPanel
+      // toolStripContainer.TopToolStripPanel
       // 
-      this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip);
-      this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.simulationToolStrip);
+      this.toolStripContainer.TopToolStripPanel.Controls.Add(this.toolStrip);
+      this.toolStripContainer.TopToolStripPanel.Controls.Add(this.simulationToolStrip);
       // 
       // simulationToolStrip
       // 
@@ -619,7 +617,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1008, 661);
-      this.Controls.Add(this.toolStripContainer1);
+      this.Controls.Add(this.toolStripContainer);
       this.Controls.Add(this.statusStrip);
       this.Controls.Add(this.menuStrip);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
@@ -638,11 +636,11 @@
       this.splitContainer.Panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
       this.splitContainer.ResumeLayout(false);
-      this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-      this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-      this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-      this.toolStripContainer1.ResumeLayout(false);
-      this.toolStripContainer1.PerformLayout();
+      this.toolStripContainer.ContentPanel.ResumeLayout(false);
+      this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
+      this.toolStripContainer.TopToolStripPanel.PerformLayout();
+      this.toolStripContainer.ResumeLayout(false);
+      this.toolStripContainer.PerformLayout();
       this.simulationToolStrip.ResumeLayout(false);
       this.simulationToolStrip.PerformLayout();
       this.ResumeLayout(false);
@@ -694,10 +692,10 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     private System.Windows.Forms.ToolStripButton helpToolStripButton;
     private System.Windows.Forms.StatusStrip statusStrip;
-    private EColiSimulation.Panel renderPanel;
+    private Cyotek.Demo.Windows.Forms.BufferedPanel renderPanel;
     private System.Windows.Forms.SplitContainer splitContainer;
     private System.Windows.Forms.ToolStripButton nextMoveToolStripButton;
-    private Cyotek.Demo.Timer timer;
+    private System.Windows.Forms.Timer timer;
     private Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar scaleToolStripTrackBar;
     private System.Windows.Forms.ToolStripButton playToolStripButton;
     private System.Windows.Forms.ToolStripButton pauseToolStripButton;
@@ -707,7 +705,7 @@
     private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem nextMoveToolStripMenuItem;
-    private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+    private System.Windows.Forms.ToolStripContainer toolStripContainer;
     private System.Windows.Forms.ToolStrip simulationToolStrip;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;

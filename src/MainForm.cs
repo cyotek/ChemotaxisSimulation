@@ -98,21 +98,8 @@ namespace Cyotek.Demo
       nextMoveToolStripMenuItem.Enabled = !isRunning;
     }
 
-    private long _ticks;
-
     private void Timer_Tick(object sender, EventArgs e)
     {
-      long ticks;
-
-      ticks = DateTime.Now.Ticks;
-
-      if (_ticks != 0)
-      {
-        Console.WriteLine((ticks - _ticks).ToString());
-      }
-
-      _ticks = ticks;
-
       _environment.NextMove();
 
       renderPanel.Invalidate();
