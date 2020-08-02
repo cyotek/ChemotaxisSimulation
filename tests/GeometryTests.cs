@@ -35,7 +35,7 @@ namespace Cyotek.EColiSimulation.Tests
         yield return new TestCaseData(new object[] { 20, 20, 10, 10, 10, false }).SetName(nameof(DoesPointIntersectCircleTestCases) + "Outside2");
       }
     }
-    
+
     public static IEnumerable<TestCaseData> GetDistanceTestCaseData
     {
       get
@@ -87,6 +87,7 @@ namespace Cyotek.EColiSimulation.Tests
       // assert
       Assert.AreEqual(expected, actual);
     }
+
     [Test]
     [TestCaseSource(nameof(GeometryTests.GetDistanceTestCaseData))]
     public void GetDistanceTestCases(int x1, int y1, int x2, int y2, int expected)

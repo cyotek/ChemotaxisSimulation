@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Reflection;
 
 namespace Cyotek.Demo.EColiSimulation
 {
@@ -15,25 +14,34 @@ namespace Cyotek.Demo.EColiSimulation
 
     public static bool DoesPointIntersectCircle(float x, float y, float cx, float cy, float radius)
     {
+      return Geometry.GetDistance(x, y, cx, cy) < radius;
+    }
+
+    public static double GetDistance(float x1, float y1, float x2, float y2)
+    {
       float dx;
       float dy;
-      double distance;
 
-      dx = x - cx;
-      dy = y - cy;
-      distance = Math.Sqrt((dx * dx) + (dy * dy));
+      dx = x1 - x2;
+      dy = y1 - y2;
 
-      return distance < radius;
+      return Math.Sqrt((dx * dx) + (dy * dy));
     }
 
     public static int GetDistance(int x1, int y1, int x2, int y2)
     {
-      return (int)Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+      float dx;
+      float dy;
+
+      dx = x1 - x2;
+      dy = y1 - y2;
+
+      return (int)Math.Sqrt((dx * dx) + (dy * dy));
     }
 
     public static int GetDistance(Point p1, Point p2)
     {
-      return (int)Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
+      return Geometry.GetDistance(p1.X, p1.Y, p2.X, p2.Y);
     }
 
     #endregion Public Methods
