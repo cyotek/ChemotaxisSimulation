@@ -259,39 +259,50 @@ namespace Cyotek.Demo.EColiSimulation
     private void Tumble()
     {
       double dir;
-      int x;
-      int y;
+      //int x;
+      //int y;
 
       dir = _random.NextDouble();
-      x = _strand.Heading.X;
-      y = _strand.Heading.Y;
+      //x = _strand.Heading.X;
+      //y = _strand.Heading.Y;
 
-      if (dir < 0.125)
+      if (dir < 0.25)
       {
-        x = -1;
+        // counter-clockwise
+        _strand.Heading = Compass.GetPrevious(_strand.Heading);
       }
-      else if (dir > 0.125 && dir < 0.250)
+      else if (dir > 0.75)
       {
-        x = 1;
-      }
-      else if (dir > 0.250 && dir < 0.375 && y != 0)
-      {
-        x = 0;
-      }
-      else if (dir > 0.375 && dir < 0.5)
-      {
-        y = -1;
-      }
-      else if (dir > 0.5 && dir < 0.625)
-      {
-        y = 1;
-      }
-      else if (dir > 0.625 && dir < 0.75 && x != 0)
-      {
-        y = 0;
+        // clockwise
+        _strand.Heading = Compass.GetNext(_strand.Heading);
       }
 
-      _strand.Heading = new Point(x, y);
+      //if (dir < 0.125)
+      //{
+      //  x = -1;
+      //}
+      //else if (dir > 0.125 && dir < 0.250)
+      //{
+      //  x = 1;
+      //}
+      //else if (dir > 0.250 && dir < 0.375 && y != 0)
+      //{
+      //  x = 0;
+      //}
+      //else if (dir > 0.375 && dir < 0.5)
+      //{
+      //  y = -1;
+      //}
+      //else if (dir > 0.5 && dir < 0.625)
+      //{
+      //  y = 1;
+      //}
+      //else if (dir > 0.625 && dir < 0.75 && x != 0)
+      //{
+      //  y = 0;
+      //}
+
+      //_strand.Heading = new Point(x, y);
     }
 
     private bool IsOutOfBounds(Strand strand)

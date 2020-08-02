@@ -63,6 +63,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Chemoeffector.cs" />
+    <Compile Include="Compass.cs" />
     <Compile Include="EmptyArray.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
