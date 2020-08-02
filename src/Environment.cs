@@ -43,6 +43,15 @@ namespace Cyotek.Demo.EColiSimulation
       set { _scale = value; }
     }
 
+    private Chemoeffector _food;
+
+    public Chemoeffector Food
+    {
+      get { return _food; }
+      set { _food = value; }
+    }
+
+
     public Environment()
     {
       _scale = 1;

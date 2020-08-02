@@ -41,6 +41,11 @@ namespace Cyotek.Demo
         {
           Position = new Point(128, 128)
         },
+        Food = new Chemoeffector
+        {
+          Size = 128,
+          Position = new Point(192, 64)
+        },
         Scale = 2
       };
 
