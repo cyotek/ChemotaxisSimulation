@@ -89,7 +89,7 @@
       this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.renderPanel = new Cyotek.Demo.Windows.Forms.BufferedPanel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
-      this.timer = new System.Windows.Forms.Timer();
+      this.timer = new Cyotek.Demo.Timer();
       this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -749,7 +749,7 @@
     private Cyotek.Demo.Windows.Forms.BufferedPanel renderPanel;
     private System.Windows.Forms.SplitContainer splitContainer;
     private System.Windows.Forms.ToolStripButton nextMoveToolStripButton;
-    private System.Windows.Forms.Timer timer;
+    private Cyotek.Demo.Timer timer;
     private Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar scaleToolStripTrackBar;
     private System.Windows.Forms.ToolStripButton playToolStripButton;
     private System.Windows.Forms.ToolStripButton pauseToolStripButton;
