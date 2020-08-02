@@ -114,12 +114,13 @@ namespace Cyotek.Demo.EColiSimulation
     public void Draw(Graphics graphics)
     {
       graphics.Clear(SystemColors.Control);
+      graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
       graphics.ScaleTransform(_scale, _scale);
 
       graphics.FillRectangle(Brushes.White, new Rectangle(Point.Empty, _size));
 
-      graphics.DrawEllipse(Pens.SeaGreen, _food.Position.X - (_food.Size / 2), _food.Position.Y - (_food.Size / 2), _food.Size, _food.Size);
+      this.DrawFood(graphics, _food);
 
       if (_strand.PreviousPositions.Size > 1)
       {
@@ -171,6 +172,31 @@ namespace Cyotek.Demo.EColiSimulation
 
       graphics.DrawEllipse(Pens.Black, _strand.Position.X - 1, _strand.Position.Y - 1, 2, 2);
     }
+
+    private void DrawFood(Graphics graphics, Chemoeffector food)
+    {
+      Rectangle bounds;
+
+      bounds = new Rectangle(food.Position.X - (food.Size / 2), food.Position.Y - (food.Size / 2), food.Size, food.Size);
+
+      using (GraphicsPath ellipsePath = new GraphicsPath())
+      {
+        ellipsePath.AddEllipse(bounds);
+
+        using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
+        {
+          brush.CenterPoint = food.Position;
+          brush.CenterColor = Color.FromArgb(128, Color.SeaGreen);
+          brush.SurroundColors = new[] { Color.Transparent };
+
+          graphics.FillEllipse(brush, bounds);
+        }
+      }
+
+
+      graphics.DrawEllipse(Pens.SeaGreen, food.Position.X - 1, food.Position.Y - 1, 2, 2);
+    }
+
 
     private void DrawTail(Graphics graphics, CircularBuffer<Point> positions, Color color)
     {
@@ -243,17 +269,60 @@ namespace Cyotek.Demo.EColiSimulation
 
     public void NextMove()
     {
+      _strand.Move();
 
-      if (this.IsOutOfBounds(_strand))
+      if (Geometry.DoesPointIntersectCircle(_strand.Position, _food.Position, _food.Size / 2))
       {
-        //_strand.UndoMove();
+        double distance;
+
+        distance = Geometry.GetDistance(_strand.Position, _food.Position);
+
+        if (distance <= 1)
+        {
+          _food = new Chemoeffector
+          {
+            Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
+            Size = _random.Next(32, 128)
+          };
+
+          _strand.PreviousSensor = 0;
+        }
+        else
+        {
+          if (distance > _strand.PreviousSensor)
+          {
+            this.Tumble();
+          }
+          else
+          {
+            double newDistance;
+            Point heading;
+            heading = _strand.Heading;
+            this.Tumble();
+            _strand.Move();
+            newDistance = Geometry.GetDistance(_strand.Position, _food.Position);
+            if (newDistance >= distance)
+            {
+              _strand.Heading = heading;
+            }
+            _strand.UndoMove();
+          }
+
+          _strand.PreviousSensor = distance;
+        }
       }
-
-      if (!Geometry.DoesPointIntersectCircle(_strand.Position, _food.Position, _food.Size / 2))
+      else if (_strand.PreviousSensor != 0)
       {
-        _strand.Move();
+        _strand.Heading = Compass.GetOpposite(_strand.Heading);
         this.Tumble();
+        _strand.PreviousSensor = 0;
       }
+      else
+      {
+        this.Tumble();
+        _strand.PreviousSensor = 0;
+      }
+
     }
 
     private void Tumble()
