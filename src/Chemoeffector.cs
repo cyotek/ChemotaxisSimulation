@@ -9,6 +9,15 @@ namespace Cyotek.Demo.EColiSimulation
 {
   internal class Chemoeffector
   {
+
+
+    private Environment _environment;
+
+    internal Environment Environment
+    {
+      get { return _environment; }
+      set { _environment = value; }
+    }
     private double _strength;
 
     public double Strength

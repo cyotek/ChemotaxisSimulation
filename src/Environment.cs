@@ -14,17 +14,12 @@ namespace Cyotek.Demo.EColiSimulation
 {
   internal class Environment
   {
-    private Strand _strand;
+    private StrandCollection _strands;
 
-    public Strand Strand
+    public StrandCollection Strands
     {
-      get { return _strand; }
-      set
-      {
-        _strand = value;
-
-        _strand.Environment = this;
-      }
+      get { return _strands; }
+      set { _strands = value; }
     }
 
     private Size _size;
@@ -42,13 +37,12 @@ namespace Cyotek.Demo.EColiSimulation
       get { return _scale; }
       set { _scale = value; }
     }
+    private ChemoeffectorCollection _foodSources;
 
-    private Chemoeffector _food;
-
-    public Chemoeffector Food
+    public ChemoeffectorCollection FoodSources
     {
-      get { return _food; }
-      set { _food = value; }
+      get { return _foodSources; }
+      set { _foodSources = value; }
     }
 
 
@@ -57,6 +51,8 @@ namespace Cyotek.Demo.EColiSimulation
       _scale = 1;
       _seed = 10;
       _size = new Size(256, 256);
+      _strands = new StrandCollection(this);
+      _foodSources = new ChemoeffectorCollection(this);
 
       this.Reset();
     }
@@ -73,42 +69,21 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _random = new Random(_seed);
 
-      _strand = new Strand
+      _strands.Clear();
+      _foodSources.Clear();
+
+      //_strand = new Strand
+      //{
+      //  Position = new Point(_random.Next(1, _size.Width), _random.Next(1, _size.Height))
+      //};
+    }
+
+    public void AddStrand()
+    {
+      _strands.Add(new Strand
       {
         Position = new Point(_random.Next(1, _size.Width), _random.Next(1, _size.Height))
-      };
-    }
-
-    private void DumpBuffer(int start, int count)
-    {
-      Point[] buffer;
-
-      buffer = (Point[])typeof(CircularBuffer<Point>).GetField("_buffer", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_strand.PreviousPositions);
-
-      this.WriteBuffer(@"t:\internal.txt", buffer, _strand.PreviousPositions.Head, _strand.PreviousPositions.Tail);
-      this.WriteBuffer(@"t:\array.txt", _strand.PreviousPositions.ToArray(), _strand.PreviousPositions.Head, _strand.PreviousPositions.Tail);
-
-      buffer = ArrayPool<Point>.Shared.Allocate(count - start);
-
-      _strand.PreviousPositions.CopyTo(start, buffer, 0, count - start);
-
-      this.WriteBuffer(@"t:\range.txt", buffer.ToArray(), start, count);
-    }
-
-    private void WriteBuffer(string fileName, Point[] points, int head, int tail)
-    {
-      using (TextWriter writer = new StreamWriter(fileName))
-      {
-        writer.WriteLine(head);
-        writer.WriteLine(tail);
-        for (int i = 0; i < points.Length; i++)
-        {
-          writer.Write(points[i].X);
-          writer.Write(',');
-          writer.Write(points[i].Y);
-          writer.WriteLine();
-        }
-      }
+      });
     }
 
     public void Draw(Graphics graphics)
@@ -120,19 +95,30 @@ namespace Cyotek.Demo.EColiSimulation
 
       graphics.FillRectangle(Brushes.White, new Rectangle(Point.Empty, _size));
 
-      this.DrawFood(graphics, _food);
+      for (int i = 0; i < _foodSources.Count; i++)
+      {
+        this.DrawFood(graphics, _foodSources[i]);
+      }
 
-      if (_strand.PreviousPositions.Size > 1)
+      for (int i = 0; i < _strands.Count; i++)
+      {
+        this.DrawStrand(graphics, _strands[i]);
+      }
+    }
+
+    private void DrawStrand(Graphics graphics, Strand strand)
+    {
+      if (strand.PreviousPositions.Size > 1)
       {
         //int start;
         //start = 0;
-        //for (int i = 1; i < _strand.PreviousPositions.Size; i++)
+        //for (int i = 1; i < strand.PreviousPositions.Size; i++)
         //{
         //  Point previous;
         //  Point current;
 
-        //  previous = _strand.PreviousPositions.PeekAt(i - 1);
-        //  current = _strand.PreviousPositions.PeekAt(i);
+        //  previous = strand.PreviousPositions.PeekAt(i - 1);
+        //  current = strand.PreviousPositions.PeekAt(i);
 
         //  if (!new Rectangle(current.X - 1, current.Y - 1, 3, 3).Contains(previous) && i - start > 1)
         //  {
@@ -141,36 +127,36 @@ namespace Cyotek.Demo.EColiSimulation
         //    buffer = ArrayPool<Point>.Shared.Allocate(i - start);
 
 
-        //    _strand.PreviousPositions.CopyTo(start, buffer, 0, i - start);
+        //    strand.PreviousPositions.CopyTo(start, buffer, 0, i - start);
         //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
 
         //    start = i;
         //  }
         //}
 
-        //if (start < _strand.PreviousPositions.Size && _strand.PreviousPositions.Size - start > 1)
+        //if (start < strand.PreviousPositions.Size && strand.PreviousPositions.Size - start > 1)
         //{
         //  Point[] buffer;
 
-        //  buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size - start);
+        //  buffer = ArrayPool<Point>.Shared.Allocate(strand.PreviousPositions.Size - start);
 
-        //  _strand.PreviousPositions.CopyTo(start, buffer, 0, _strand.PreviousPositions.Size - start);
+        //  strand.PreviousPositions.CopyTo(start, buffer, 0, strand.PreviousPositions.Size - start);
         //  graphics.DrawLines(Pens.CornflowerBlue, buffer);
         //}
         //Point[] buffer;
 
-        //buffer = ArrayPool<Point>.Shared.Allocate(_strand.PreviousPositions.Size + 1);
+        //buffer = ArrayPool<Point>.Shared.Allocate(strand.PreviousPositions.Size + 1);
 
-        //_strand.PreviousPositions.CopyTo(buffer);
-        //buffer[buffer.Length - 1] = _strand.Position;
+        //strand.PreviousPositions.CopyTo(buffer);
+        //buffer[buffer.Length - 1] = strand.Position;
 
         //graphics.DrawLines(Pens.CornflowerBlue, buffer);
 
         //ArrayPool<Point>.Shared.Free(buffer);
-        this.DrawTail(graphics, _strand.PreviousPositions, Color.CornflowerBlue);
+        this.DrawTail(graphics, strand, Color.CornflowerBlue);
       }
 
-      graphics.DrawEllipse(Pens.Black, _strand.Position.X - 1, _strand.Position.Y - 1, 2, 2);
+      graphics.DrawEllipse(Pens.Black, strand.Position.X - 1, strand.Position.Y - 1, 2, 2);
     }
 
     private void DrawFood(Graphics graphics, Chemoeffector food)
@@ -205,11 +191,13 @@ namespace Cyotek.Demo.EColiSimulation
     }
 
 
-    private void DrawTail(Graphics graphics, CircularBuffer<Point> positions, Color color)
+    private void DrawTail(Graphics graphics, Strand strand, Color color)
     {
+      CircularBuffer<Point> positions;
       GraphicsPath path;
       int start;
 
+      positions = strand.PreviousPositions;
       path = new GraphicsPath();
       start = 0;
 
@@ -217,9 +205,8 @@ namespace Cyotek.Demo.EColiSimulation
       {
         Point current;
         Point next;
-        bool draw;
 
-        current = _strand.PreviousPositions.PeekAt(i);
+        current = strand.PreviousPositions.PeekAt(i);
 
         if (i == positions.Size - 1)
         {
@@ -227,7 +214,7 @@ namespace Cyotek.Demo.EColiSimulation
         }
         else
         {
-          next = _strand.PreviousPositions.PeekAt(i + 1);
+          next = positions.PeekAt(i + 1);
           if (Geometry.GetDistance(next, current) > 1)
           {
             this.DrawTail(graphics, positions, color, start, i - start);
@@ -276,81 +263,114 @@ namespace Cyotek.Demo.EColiSimulation
 
     public void NextMove()
     {
-      _strand.Move();
+      for (int i = 0; i < _strands.Count; i++)
+      {
+        this.MoveStrand(_strands[i]);
+      }
+    }
 
-      if (Geometry.DoesPointIntersectCircle(_strand.Position, _food.Position, _food.Size / 2))
+    private void MoveStrand(Strand strand)
+    {
+      Chemoeffector food;
+
+      strand.Move();
+
+
+      food = null;
+
+      for (int i = 0; i < _foodSources.Count; i++)
+      {
+        Chemoeffector foodSource;
+
+        foodSource = _foodSources[i];
+
+        if (Geometry.DoesPointIntersectCircle(strand.Position, foodSource.Position, foodSource.Size / 2))
+        {
+          food = foodSource;
+          break;
+        }
+      }
+
+      if (food != null)
       {
         double distance;
 
-        distance = Geometry.GetDistance(_strand.Position, _food.Position);
+        distance = Geometry.GetDistance(strand.Position, food.Position);
 
         if (distance <= 1)
         {
-          _food = new Chemoeffector
-          {
-            Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
-            Size = _random.Next(32, 128)
-          };
+          _foodSources.Remove(food);
 
-          _strand.PreviousSensor = 0;
+          this.AddFoodSource();
+
+          strand.PreviousSensor = 0;
         }
         else
         {
-          if (distance > _strand.PreviousSensor)
+          if (distance > strand.PreviousSensor)
           {
-            this.Tumble();
+            this.Tumble(strand);
           }
           else
           {
             double newDistance;
             Point heading;
-            heading = _strand.Heading;
-            this.Tumble();
-            _strand.Move();
-            newDistance = Geometry.GetDistance(_strand.Position, _food.Position);
+            heading = strand.Heading;
+            this.Tumble(strand);
+            strand.Move();
+            newDistance = Geometry.GetDistance(strand.Position, food.Position);
             if (newDistance >= distance)
             {
-              _strand.Heading = heading;
+              strand.Heading = heading;
             }
-            _strand.UndoMove();
+            strand.UndoMove();
           }
 
-          _strand.PreviousSensor = distance;
+          strand.PreviousSensor = distance;
         }
       }
-      else if (_strand.PreviousSensor != 0)
+      else if (strand.PreviousSensor != 0)
       {
-        _strand.Heading = Compass.GetOpposite(_strand.Heading);
-        this.Tumble();
-        _strand.PreviousSensor = 0;
+        strand.Heading = Compass.GetOpposite(strand.Heading);
+        this.Tumble(strand);
+        strand.PreviousSensor = 0;
       }
       else
       {
-        this.Tumble();
-        _strand.PreviousSensor = 0;
+        this.Tumble(strand);
+        strand.PreviousSensor = 0;
       }
 
     }
 
-    private void Tumble()
+    public void AddFoodSource()
+    {
+      _foodSources.Add(new Chemoeffector
+      {
+        Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
+        Size = _random.Next(32, 128)
+      });
+    }
+
+    private void Tumble(Strand strand)
     {
       double dir;
       //int x;
       //int y;
 
       dir = _random.NextDouble();
-      //x = _strand.Heading.X;
-      //y = _strand.Heading.Y;
+      //x = strand.Heading.X;
+      //y = strand.Heading.Y;
 
       if (dir < 0.25)
       {
         // counter-clockwise
-        _strand.Heading = Compass.GetPrevious(_strand.Heading);
+        strand.Heading = Compass.GetPrevious(strand.Heading);
       }
       else if (dir > 0.75)
       {
         // clockwise
-        _strand.Heading = Compass.GetNext(_strand.Heading);
+        strand.Heading = Compass.GetNext(strand.Heading);
       }
 
       //if (dir < 0.125)
@@ -378,13 +398,9 @@ namespace Cyotek.Demo.EColiSimulation
       //  y = 0;
       //}
 
-      //_strand.Heading = new Point(x, y);
+      //strand.Heading = new Point(x, y);
     }
 
-    private bool IsOutOfBounds(Strand strand)
-    {
-      return _strand.Position.X <= 0 || _strand.Position.Y <= 0 || _strand.Position.X >= _size.Width - 1 || _strand.Position.Y >= _size.Height;
-    }
 
     private Random _random;
   }

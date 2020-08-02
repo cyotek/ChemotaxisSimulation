@@ -37,17 +37,33 @@ namespace Cyotek.Demo
       _environment = new Environment
       {
         Size = new Size(256, 256),
-        Strand = new Strand
-        {
-          Position = new Point(128, 128)
-        },
-        Food = new Chemoeffector
-        {
-          Size = 128,
-          Position = new Point(192, 64)
-        },
+        //Strands =
+        //{
+        //  new Strand
+        //  {
+        //    Position = new Point(128, 128)
+        //  }
+        //},
+        //FoodSources =
+        //{
+        //  new Chemoeffector
+        //  {
+        //    Size = 128,
+        //    Position = new Point(192, 64)
+        //  }
+        //},
         Scale = 2
       };
+
+      for (int i = 0; i < 25; i++)
+      {
+        _environment.AddStrand();
+      }
+
+      for (int i = 0; i < 10; i++)
+      {
+        _environment.AddFoodSource();
+      }
 
       this.UpdateSimulationControls();
 

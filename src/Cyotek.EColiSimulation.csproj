@@ -63,6 +63,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Chemoeffector.cs" />
+    <Compile Include="ChemoeffectorCollection.cs" />
     <Compile Include="Compass.cs" />
     <Compile Include="EmptyArray.cs" />
     <Compile Include="Geometry.cs" />
@@ -71,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StrandCollection.cs" />
     <Compile Include="Timer.cs">
       <SubType>Component</SubType>
     </Compile>
