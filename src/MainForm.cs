@@ -44,22 +44,40 @@ namespace Cyotek.Demo
         Scale = 2
       };
 
-      for (int i = 0; i < 1500; i++)
+      this.InitializeScenario();
+
+      base.OnShown(e);
+    }
+
+    private void InitializeScenario()
+    {
+      pauseToolStripButton.PerformClick();
+
+      _environment.EnvironmentSeed = (int)environmentSeedNumericUpDown.Value;
+      _environment.MovementSeed = (int)movementSeedNumericUpDown.Value;
+      _environment.MinimumAttractorSize = (int)minimumAttractorSizeNumericUpDown.Value;
+      _environment.MaximumAttractorSize = (int)maximumAttractorSizeNumericUpDown.Value;
+      _environment.MinimumRepellentSize = (int)minimumRepellentSizeNumericUpDown.Value;
+      _environment.MaximumRepellentSize = (int)maximumRepellentSizeNumericUpDown.Value;
+      _environment.Reset();
+
+      for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)
       {
         _environment.AddStrand();
       }
 
-      for (int i = 0; i < 20; i++)
+      for (int i = 0; i < (int)attractorsNumericUpDown.Value; i++)
       {
         _environment.AddFoodSource();
       }
-       
-      _environment.AddNoxiousSource();
+
+      for (int i = 0; i < (int)repellentsNumericUpDown.Value; i++)
+      {
+        _environment.AddNoxiousSource();
+      }
 
       this.UpdateSimulationControls();
       this.UpdateStatusBar();
-
-      base.OnShown(e);
 
       renderPanel.Invalidate();
     }
@@ -131,7 +149,7 @@ namespace Cyotek.Demo
 
       _environment.NextMove();
 
-      if((_environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count) != sum)
+      if ((_environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count) != sum)
       {
         this.UpdateStatusBar();
       }
@@ -195,12 +213,17 @@ namespace Cyotek.Demo
 
     private void NoxiousSourceDetectionZonesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowNoxiousDetectionZone= !_environmentRenderer.ShowNoxiousDetectionZone;
+      _environmentRenderer.ShowNoxiousDetectionZone = !_environmentRenderer.ShowNoxiousDetectionZone;
 
       noxiousSourceDetectionZonesToolStripMenuItem.Checked = _environmentRenderer.ShowNoxiousDetectionZone;
 
       renderPanel.Invalidate();
 
+    }
+
+    private void InitializeButton_Click(object sender, EventArgs e)
+    {
+      this.InitializeScenario();
     }
   }
 }

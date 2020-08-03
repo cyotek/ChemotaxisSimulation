@@ -49,44 +49,91 @@ namespace Cyotek.Demo.EColiSimulation
 
     public Environment()
     {
-      _seed = 10;
+      _environmentSeed = 20200803;
+      _movementSeed = 1622;
       _size = new Size(256, 256);
       _strands = new StrandCollection(this);
       _foodSources = new ChemoeffectorCollection(this);
       _noxiousSources = new ChemoeffectorCollection(this);
+      _minimumAttractorSize = 1;
+      _maximumAttractorSize = 128;
+      _minimumRepellentSize = 1;
+      _maximumRepellentSize = 128;
 
       this.Reset();
     }
 
-    private int _seed;
+    private int _movementSeed;
 
-    public int Seed
+    public int MovementSeed
     {
-      get { return _seed; }
-      set { _seed = value; }
+      get { return _movementSeed; }
+      set { _movementSeed = value; }
+    }
+
+    private int _maximumAttractorSize;
+
+    public int MaximumAttractorSize
+    {
+      get { return _maximumAttractorSize; }
+      set { _maximumAttractorSize = value; }
+    }
+
+    private int _minimumAttractorSize;
+
+    public int MinimumAttractorSize
+    {
+      get { return _minimumAttractorSize; }
+      set { _minimumAttractorSize = value; }
+    }
+
+    private int _minimumRepellentSize;
+
+    public int MinimumRepellentSize
+    {
+      get { return _minimumRepellentSize; }
+      set { _minimumRepellentSize = value; }
+    }
+    private int _maximumRepellentSize;
+
+    public int MaximumRepellentSize
+    {
+      get { return _maximumRepellentSize; }
+      set { _maximumRepellentSize = value; }
+    }
+
+
+
+    private int _environmentSeed;
+
+    public int EnvironmentSeed
+    {
+      get { return _environmentSeed; }
+      set { _environmentSeed = value; }
     }
 
     public void Reset()
     {
-      _random = new Random(_seed);
+      _environmentRandom = new Random(_environmentSeed);
+      _movementRandom = new Random(_movementSeed);
 
       _strands.Clear();
       _foodSources.Clear();
-
-      //_strand = new Strand
-      //{
-      //  Position = new Point(_random.Next(1, _size.Width), _random.Next(1, _size.Height))
-      //};
+      _noxiousSources.Clear();
     }
 
     public void AddStrand()
     {
       _strands.Add(new Strand
       {
-        Position = new Point(_random.Next(1, _size.Width), _random.Next(1, _size.Height))
+        Position = this.GetRandomPoint()
       });
     }
 
+    private Point GetRandomPoint()
+    {
+      return new Point(_environmentRandom.Next(1, _size.Width), _environmentRandom.Next(1, _size.Height));
+    }
 
     public void NextMove()
     {
@@ -285,8 +332,8 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _foodSources.Add(new Chemoeffector
       {
-        Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
-        Size = _random.Next(32, 128)
+        Position = this.GetRandomPoint(),
+        Size = this.GetRandomSize(_minimumAttractorSize, _maximumAttractorSize)
       });
     }
 
@@ -294,9 +341,14 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _noxiousSources.Add(new Chemoeffector
       {
-        Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
-        Size = _random.Next(32, 128)
+        Position = this.GetRandomPoint(),
+        Size = this.GetRandomSize(_minimumRepellentSize, _maximumRepellentSize)
       });
+    }
+
+    private int GetRandomSize(int min, int max)
+    {
+      return _environmentRandom.Next(min, max);
     }
 
     private void Tumble(Strand strand)
@@ -305,7 +357,7 @@ namespace Cyotek.Demo.EColiSimulation
       //int x;
       //int y;
 
-      dir = _random.NextDouble();
+      dir = _movementRandom.NextDouble();
       //x = strand.Heading.X;
       //y = strand.Heading.Y;
 
@@ -349,6 +401,7 @@ namespace Cyotek.Demo.EColiSimulation
     }
 
 
-    private Random _random;
+    private Random _environmentRandom;
+    private Random _movementRandom;
   }
 }

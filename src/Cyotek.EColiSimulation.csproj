@@ -68,6 +68,9 @@
     <Compile Include="EmptyArray.cs" />
     <Compile Include="EnvironmentRenderer.cs" />
     <Compile Include="Geometry.cs" />
+    <Compile Include="Line.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
