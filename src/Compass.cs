@@ -70,6 +70,50 @@ namespace Cyotek.Demo.EColiSimulation
       return result;
     }
 
+    public static Point GetNextQuarter(Point current)
+    {
+      Point result;
+
+      if (current == Compass.North)
+      {
+        result = Compass.East;
+      }
+      else if (current == Compass.East)
+      {
+        result = Compass.South;
+      }
+      else if (current == Compass.South)
+      {
+        result = Compass.West;
+      }
+      else if (current == Compass.West)
+      {
+        result = Compass.North;
+      }
+      else if (current == Compass.NorthEast)
+      {
+        result = Compass.SouthEast;
+      }
+      else if (current == Compass.SouthEast)
+      {
+        result = Compass.SouthWest;
+      }
+      else if (current == Compass.SouthWest)
+      {
+        result = Compass.NorthWest;
+      }
+      else if (current == Compass.NorthWest)
+      {
+        result = Compass.NorthEast;
+      }
+      else
+      {
+        result = Point.Empty;
+      }
+
+      return result;
+    }
+
     public static Point GetOpposite(Point current)
     {
       Point result;
@@ -149,6 +193,50 @@ namespace Cyotek.Demo.EColiSimulation
       else if (current == Compass.NorthEast)
       {
         result = Compass.North;
+      }
+      else
+      {
+        result = Point.Empty;
+      }
+
+      return result;
+    }
+
+    public static Point GetPreviousQuarter(Point current)
+    {
+      Point result;
+
+      if (current == Compass.North)
+      {
+        result = Compass.West;
+      }
+      else if (current == Compass.West)
+      {
+        result = Compass.South;
+      }
+      else if (current == Compass.South)
+      {
+        result = Compass.East;
+      }
+      else if (current == Compass.East)
+      {
+        result = Compass.North;
+      }
+      else if (current == Compass.NorthEast)
+      {
+        result = Compass.NorthWest;
+      }
+      else if (current == Compass.NorthWest)
+      {
+        result = Compass.SouthWest;
+      }
+      else if (current == Compass.SouthWest)
+      {
+        result = Compass.SouthEast;
+      }
+      else if (current == Compass.SouthEast)
+      {
+        result = Compass.NorthEast;
       }
       else
       {

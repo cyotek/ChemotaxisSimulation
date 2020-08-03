@@ -10,6 +10,22 @@ namespace Cyotek.EColiSimulation.Tests
   {
     #region Public Properties
 
+    public static IEnumerable<TestCaseData> GetNextQuarterTestCaseSource
+    {
+      get
+      {
+        yield return new TestCaseData(Compass.North, Compass.East).SetName(nameof(GetNextQuarterTestCases) + "North");
+        yield return new TestCaseData(Compass.NorthEast, Compass.SouthEast).SetName(nameof(GetNextQuarterTestCases) + "NorthEast");
+        yield return new TestCaseData(Compass.East, Compass.South).SetName(nameof(GetNextQuarterTestCases) + "East");
+        yield return new TestCaseData(Compass.SouthEast, Compass.SouthWest).SetName(nameof(GetNextQuarterTestCases) + "SouthEast");
+        yield return new TestCaseData(Compass.South, Compass.West).SetName(nameof(GetNextQuarterTestCases) + "South");
+        yield return new TestCaseData(Compass.SouthWest, Compass.NorthWest).SetName(nameof(GetNextQuarterTestCases) + "SouthWest");
+        yield return new TestCaseData(Compass.West, Compass.North).SetName(nameof(GetNextQuarterTestCases) + "West");
+        yield return new TestCaseData(Compass.NorthWest, Compass.NorthEast).SetName(nameof(GetNextQuarterTestCases) + "NorthWest");
+        yield return new TestCaseData(new Point(20, 21), Point.Empty).SetName(nameof(GetNextQuarterTestCases) + "Invalid");
+      }
+    }
+
     public static IEnumerable<TestCaseData> GetNextTestCaseSource
     {
       get
@@ -42,6 +58,22 @@ namespace Cyotek.EColiSimulation.Tests
       }
     }
 
+    public static IEnumerable<TestCaseData> GetPreviousQuarterTestCaseSource
+    {
+      get
+      {
+        yield return new TestCaseData(Compass.North, Compass.West).SetName(nameof(GetPreviousQuarterTestCases) + "North");
+        yield return new TestCaseData(Compass.NorthWest, Compass.SouthWest).SetName(nameof(GetPreviousQuarterTestCases) + "NorthWest");
+        yield return new TestCaseData(Compass.West, Compass.South).SetName(nameof(GetPreviousQuarterTestCases) + "West");
+        yield return new TestCaseData(Compass.SouthWest, Compass.SouthEast).SetName(nameof(GetPreviousQuarterTestCases) + "SouthWest");
+        yield return new TestCaseData(Compass.South, Compass.East).SetName(nameof(GetPreviousQuarterTestCases) + "South");
+        yield return new TestCaseData(Compass.SouthEast, Compass.NorthEast).SetName(nameof(GetPreviousQuarterTestCases) + "SouthEast");
+        yield return new TestCaseData(Compass.East, Compass.North).SetName(nameof(GetPreviousQuarterTestCases) + "East");
+        yield return new TestCaseData(Compass.NorthEast, Compass.NorthWest).SetName(nameof(GetPreviousQuarterTestCases) + "NorthEast");
+        yield return new TestCaseData(new Point(20, 21), Point.Empty).SetName(nameof(GetPreviousQuarterTestCases) + "Invalid");
+      }
+    }
+
     public static IEnumerable<TestCaseData> GetPreviousTestCaseSource
     {
       get
@@ -61,6 +93,20 @@ namespace Cyotek.EColiSimulation.Tests
     #endregion Public Properties
 
     #region Public Methods
+
+    [Test]
+    [TestCaseSource(nameof(GetNextQuarterTestCaseSource))]
+    public void GetNextQuarterTestCases(Point current, Point expected)
+    {
+      // arrange
+      Point actual;
+
+      // act
+      actual = Compass.GetNextQuarter(current);
+
+      // assert
+      Assert.AreEqual(expected, actual);
+    }
 
     [Test]
     [TestCaseSource(nameof(GetNextTestCaseSource))]
@@ -85,6 +131,20 @@ namespace Cyotek.EColiSimulation.Tests
 
       // act
       actual = Compass.GetOpposite(current);
+
+      // assert
+      Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(GetPreviousQuarterTestCaseSource))]
+    public void GetPreviousQuarterTestCases(Point current, Point expected)
+    {
+      // arrange
+      Point actual;
+
+      // act
+      actual = Compass.GetPreviousQuarter(current);
 
       // assert
       Assert.AreEqual(expected, actual);
