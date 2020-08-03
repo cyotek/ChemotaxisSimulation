@@ -169,7 +169,9 @@ namespace Cyotek.Demo.EColiSimulation
 
       using (Pen pen = new Pen(color))
       {
-        graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
+        graphics.DrawLine(pen, new Point(chemoeffector.Position.X - 1, chemoeffector.Position.Y), new Point(chemoeffector.Position.X + 1, chemoeffector.Position.Y));
+        graphics.DrawLine(pen, new Point(chemoeffector.Position.X, chemoeffector.Position.Y - 1), new Point(chemoeffector.Position.X, chemoeffector.Position.Y + 1));
+        //graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
       }
     }
 
@@ -232,7 +234,9 @@ namespace Cyotek.Demo.EColiSimulation
         //this.DrawTail(graphics, strand, Color.CornflowerBlue);
       }
 
-      graphics.DrawEllipse(Pens.Black, strand.Position.X - 1, strand.Position.Y - 1, 2, 2);
+      //graphics.DrawEllipse(Pens.Black, strand.Position.X - 1, strand.Position.Y - 1, 2, 2);
+      graphics.DrawLine(Pens.SaddleBrown, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
+      graphics.DrawLine(Pens.SaddleBrown, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
     }
 
     private void DrawTail(Graphics graphics, Strand strand, Color color)

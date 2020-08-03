@@ -64,6 +64,7 @@
       this.noxiousSourceDetectionZonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.fillShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.antiAliasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -401,7 +402,8 @@
             this.noxiousSourcesToolStripMenuItem,
             this.noxiousSourceDetectionZonesToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.fillShapesToolStripMenuItem});
+            this.fillShapesToolStripMenuItem,
+            this.antiAliasToolStripMenuItem});
       this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
       this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
       this.viewToolStripMenuItem.Text = "&View";
@@ -473,6 +475,15 @@
       this.fillShapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.fillShapesToolStripMenuItem.Text = "Fill S&hapes";
       this.fillShapesToolStripMenuItem.Click += new System.EventHandler(this.FillShapesToolStripMenuItem_Click);
+      // 
+      // antiAliasToolStripMenuItem
+      // 
+      this.antiAliasToolStripMenuItem.Checked = true;
+      this.antiAliasToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.antiAliasToolStripMenuItem.Name = "antiAliasToolStripMenuItem";
+      this.antiAliasToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.antiAliasToolStripMenuItem.Text = "&Anti Alias";
+      this.antiAliasToolStripMenuItem.Click += new System.EventHandler(this.AntiAliasToolStripMenuItem_Click);
       // 
       // simulationToolStripMenuItem
       // 
@@ -1623,6 +1634,7 @@
     private System.Windows.Forms.NumericUpDown movementSeedNumericUpDown;
     private System.Windows.Forms.Button button10;
     private System.Windows.Forms.Button button9;
+    private System.Windows.Forms.ToolStripMenuItem antiAliasToolStripMenuItem;
   }
 }
 

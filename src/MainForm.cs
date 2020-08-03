@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Environment = Cyotek.Demo.EColiSimulation.Environment;
 using Cyotek.Demo.EColiSimulation;
+using System.Drawing.Drawing2D;
 
 namespace Cyotek.Demo
 {
@@ -35,6 +36,7 @@ namespace Cyotek.Demo
     protected override void OnShown(EventArgs e)
     {
       _random = new Random();
+      _antiAlias = true;
 
       _environment = new Environment
       {
@@ -111,6 +113,11 @@ namespace Cyotek.Demo
 
     private void RenderPanel_Paint(object sender, PaintEventArgs e)
     {
+      if (_antiAlias)
+      {
+        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+      }
+
       _environmentRenderer.Draw(_environment, e.Graphics);
     }
 
@@ -292,5 +299,14 @@ namespace Cyotek.Demo
     }
 
     private Random _random;
+    private bool _antiAlias;
+    private void AntiAliasToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _antiAlias = !_antiAlias;
+
+      antiAliasToolStripMenuItem.Checked = _antiAlias;
+
+      renderPanel.Invalidate();
+    }
   }
 }
