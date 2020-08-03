@@ -263,5 +263,13 @@ namespace Cyotek.Demo
       _environment.Wrap = wrapCheckBox.Checked;
     }
 
+    private void FillShapesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.OutlinesOnly = !_environmentRenderer.OutlinesOnly;
+
+      fillShapesToolStripMenuItem.Checked = !_environmentRenderer.OutlinesOnly;
+
+      renderPanel.Invalidate();
+    }
   }
 }

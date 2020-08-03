@@ -83,6 +83,15 @@ namespace Cyotek.Demo.EColiSimulation
       set { _showTails = value; }
     }
 
+    private bool _outlinesOnly;
+
+    public bool OutlinesOnly
+    {
+      get { return _outlinesOnly; }
+      set { _outlinesOnly = value; }
+    }
+
+
     #endregion Public Properties
 
     #region Public Methods
@@ -90,7 +99,7 @@ namespace Cyotek.Demo.EColiSimulation
     public void Draw(Environment environment, Graphics graphics)
     {
       graphics.Clear(SystemColors.Control);
-      graphics.SmoothingMode = SmoothingMode.AntiAlias;
+      //graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
       graphics.ScaleTransform(_scale, _scale);
 
@@ -133,17 +142,27 @@ namespace Cyotek.Demo.EColiSimulation
 
         bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Strength / 2), chemoeffector.Position.Y - (chemoeffector.Strength / 2), chemoeffector.Strength, chemoeffector.Strength);
 
-        using (GraphicsPath ellipsePath = new GraphicsPath())
+        if (_outlinesOnly)
         {
-          ellipsePath.AddEllipse(bounds);
-
-          using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
+          using (Pen pen = new Pen(color))
           {
-            brush.CenterPoint = chemoeffector.Position;
-            brush.CenterColor = Color.FromArgb(128, color);
-            brush.SurroundColors = new[] { Color.Transparent };
+            graphics.DrawEllipse(pen, bounds);
+          }
+        }
+        else
+        {
+          using (GraphicsPath ellipsePath = new GraphicsPath())
+          {
+            ellipsePath.AddEllipse(bounds);
 
-            graphics.FillEllipse(brush, bounds);
+            using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
+            {
+              brush.CenterPoint = chemoeffector.Position;
+              brush.CenterColor = Color.FromArgb(128, color);
+              brush.SurroundColors = new[] { Color.Transparent };
+
+              graphics.FillEllipse(brush, bounds);
+            }
           }
         }
       }
