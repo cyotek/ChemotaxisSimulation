@@ -91,9 +91,16 @@ namespace Cyotek.Demo
 
     private void UpdateStatusBar()
     {
-      standsToolStripStatusLabel.Text = _environment.Strands.Count.ToString();
-      attractorsToolStripStatusLabel.Text = _environment.FoodSources.Count.ToString();
-      repellentsToolStripStatusLabel.Text = _environment.NoxiousSources.Count.ToString();
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(this.UpdateStatusBar));
+      }
+      else
+      {
+        standsToolStripStatusLabel.Text = _environment.Strands.Count.ToString();
+        attractorsToolStripStatusLabel.Text = _environment.FoodSources.Count.ToString();
+        repellentsToolStripStatusLabel.Text = _environment.NoxiousSources.Count.ToString();
+      }
     }
 
     private void RenderPanel_Paint(object sender, PaintEventArgs e)
