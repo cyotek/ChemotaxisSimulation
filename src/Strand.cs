@@ -99,14 +99,18 @@ namespace Cyotek.Demo.EColiSimulation
             {
               y = 1;
             }
+
+            _position = new Point(x, y);
           }
           else
           {
             _heading = Compass.GetOpposite(_heading);
           }
         }
-
-        _position = new Point(x, y);
+        else
+        {
+          _position = new Point(x, y);
+        }
       }
     }
 
