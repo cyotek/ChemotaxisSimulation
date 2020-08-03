@@ -45,7 +45,7 @@ namespace Cyotek.Demo
       };
 
       attractorCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.ReduceSelf - 1);
-      repellentCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.ReduceOther - 1);
+      repellentCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.DestroyOther - 1);
 
       this.InitializeScenario();
 
@@ -66,6 +66,8 @@ namespace Cyotek.Demo
       _environment.RepelleCollisionAction = (CollisionAction)(repellentCollisionModeComboBox.SelectedIndex + 1);
       _environment.RespawnAttractor = respawnAttractorsCheckBox.Checked;
       _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
+      _environment.Size = new Size((int)widthNumericUpDown.Value, (int)heightNumericUpDown.Value);
+      _environment.Wrap = wrapCheckBox.Checked;
       _environment.Reset();
 
       for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)
