@@ -164,7 +164,7 @@ namespace Cyotek.Demo.EColiSimulation
     {
       if (_binaryFission && _environmentRandom.NextDouble() < 0.001 && strand.Strength % 2 == 0)
       {
-        strand.Strength /= 2;
+        strand.Strength = 1;
         _strands.Add(strand.Copy());
       }
     }
@@ -183,7 +183,7 @@ namespace Cyotek.Demo.EColiSimulation
 
         chemoeffector = _foodSources[i];
 
-        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, (chemoeffector.Strength / 2)+4) // add a bit of a buffer so even the smallest have a gradient
+        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, (chemoeffector.Strength / 2) + 4) // add a bit of a buffer so even the smallest have a gradient
           && chemoeffector.Strength > strength)
         {
           strength = chemoeffector.Strength;
