@@ -173,6 +173,16 @@ namespace Cyotek.Demo.EColiSimulation
 
         this.CheckFission(strand);
         this.MoveStrand(strand);
+
+        if (_attrition && _environmentRandom.NextDouble() < 0.001)
+        {
+          strand.Strength--;
+
+          if (strand.Strength <= 0)
+          {
+            _strands.Remove(strand);
+          }
+        }
       }
     }
 
@@ -189,7 +199,7 @@ namespace Cyotek.Demo.EColiSimulation
     {
       if (_binaryFission && _environmentRandom.NextDouble() < 0.001 && strand.Strength % 2 == 0)
       {
-        strand.Strength = 1;
+        strand.Strength /= 2;
         _strands.Add(strand.Copy());
       }
     }
@@ -553,6 +563,14 @@ namespace Cyotek.Demo.EColiSimulation
     {
       get { return _repellentCollisionAction; }
       set { _repellentCollisionAction = value; }
+    }
+
+    private bool _attrition;
+
+    public bool Attrition
+    {
+      get { return _attrition; }
+      set { _attrition = value; }
     }
 
   }

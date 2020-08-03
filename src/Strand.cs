@@ -29,7 +29,7 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _previousPositions = new CircularBuffer<Point>(128);
       _heading = new Point(1, 1);
-      _strength = 1;
+      _strength = 100;
       _generation = 1;
     }
 
