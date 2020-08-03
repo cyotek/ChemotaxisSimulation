@@ -68,6 +68,7 @@ namespace Cyotek.Demo
       _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
       _environment.Size = new Size((int)widthNumericUpDown.Value, (int)heightNumericUpDown.Value);
       _environment.Wrap = wrapCheckBox.Checked;
+      _environment.SolidStrands = solidStrandsCheckBox.Checked;
       _environment.Reset();
 
       for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)
@@ -241,5 +242,26 @@ namespace Cyotek.Demo
     {
       this.InitializeScenario();
     }
+
+    private void RespawnAttractorsCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+      _environment.RespawnAttractor = respawnAttractorsCheckBox.Checked;
+    }
+
+    private void AllowBinaryFissionCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+      _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
+    }
+
+    private void SolidStrandsCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+      _environment.SolidStrands = solidStrandsCheckBox.Checked;
+    }
+
+    private void WrapCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+      _environment.Wrap = wrapCheckBox.Checked;
+    }
+
   }
 }
