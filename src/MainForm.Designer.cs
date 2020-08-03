@@ -62,6 +62,8 @@
       this.foodSourceDetectionZonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.noxiousSourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.noxiousSourceDetectionZonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+      this.fillShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,8 +139,6 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-      this.fillShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -447,6 +447,20 @@
       this.noxiousSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.noxiousSourceDetectionZonesToolStripMenuItem.Text = "N&oxious Source Detection Zones";
       this.noxiousSourceDetectionZonesToolStripMenuItem.Click += new System.EventHandler(this.NoxiousSourceDetectionZonesToolStripMenuItem_Click);
+      // 
+      // toolStripMenuItem2
+      // 
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(243, 6);
+      // 
+      // fillShapesToolStripMenuItem
+      // 
+      this.fillShapesToolStripMenuItem.Checked = true;
+      this.fillShapesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.fillShapesToolStripMenuItem.Name = "fillShapesToolStripMenuItem";
+      this.fillShapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.fillShapesToolStripMenuItem.Text = "Fill S&hapes";
+      this.fillShapesToolStripMenuItem.Click += new System.EventHandler(this.FillShapesToolStripMenuItem_Click);
       // 
       // simulationToolStripMenuItem
       // 
@@ -841,7 +855,7 @@
       this.wrapCheckBox.Name = "wrapCheckBox";
       this.wrapCheckBox.Size = new System.Drawing.Size(108, 17);
       this.wrapCheckBox.TabIndex = 28;
-      this.wrapCheckBox.Text = "&Wrap Boundaries";
+      this.wrapCheckBox.Text = "Wrap Bo&undaries";
       this.wrapCheckBox.UseVisualStyleBackColor = true;
       this.wrapCheckBox.CheckedChanged += new System.EventHandler(this.WrapCheckBox_CheckedChanged);
       // 
@@ -1092,7 +1106,7 @@
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(93, 13);
       this.label6.TabIndex = 21;
-      this.label6.Text = "Attra&ctor Strength:";
+      this.label6.Text = "Attractor Stren&gth:";
       // 
       // movementSeedNumericUpDown
       // 
@@ -1233,7 +1247,7 @@
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(46, 13);
       this.label1.TabIndex = 11;
-      this.label1.Text = "St&rands:";
+      this.label1.Text = "Stran&ds:";
       // 
       // timer
       // 
@@ -1281,20 +1295,6 @@
       // 
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripMenuItem2
-      // 
-      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-      this.toolStripMenuItem2.Size = new System.Drawing.Size(243, 6);
-      // 
-      // fillShapesToolStripMenuItem
-      // 
-      this.fillShapesToolStripMenuItem.Checked = true;
-      this.fillShapesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.fillShapesToolStripMenuItem.Name = "fillShapesToolStripMenuItem";
-      this.fillShapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.fillShapesToolStripMenuItem.Text = "Fill S&hapes";
-      this.fillShapesToolStripMenuItem.Click += new System.EventHandler(this.FillShapesToolStripMenuItem_Click);
       // 
       // MainForm
       // 

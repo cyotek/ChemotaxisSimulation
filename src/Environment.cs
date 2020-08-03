@@ -139,8 +139,23 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _strands.Add(new Strand
       {
-        Position = this.GetRandomPoint()
+        Position = this.GetRandomPoint(),
+        Heading = this.GetRandomHeading()
       });
+    }
+
+    private Point GetRandomHeading()
+    {
+      int x;
+      int y;
+
+      do
+      {
+        x = _environmentRandom.Next(-1, 2);
+        y = _environmentRandom.Next(-1, 2);
+      } while (x + y == 0);
+
+      return new Point(x, y);
     }
 
     private Point GetRandomPoint()
@@ -438,7 +453,7 @@ namespace Cyotek.Demo.EColiSimulation
 
           other = _strands[i];
 
-          if(!object.ReferenceEquals(strand,other) && strand.Position == other.Position)
+          if (!object.ReferenceEquals(strand, other) && strand.Position == other.Position)
           {
             strand.UndoMove();
             strand.Heading = _movementRandom.NextDouble() >= 0.5 ? Compass.GetNextQuarter(strand.Heading) : Compass.GetPreviousQuarter(strand.Heading);
