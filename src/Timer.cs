@@ -151,7 +151,7 @@ namespace Cyotek.Demo
 
       this.OnTick(EventArgs.Empty);
 
-      _timer?.Change(0, _interval);
+      _timer?.Change(_interval, _interval);
     }
 
     #endregion Private Methods
