@@ -66,34 +66,44 @@ namespace Cyotek.Demo.EColiSimulation
       set { _environment = value; }
     }
 
-
     public void Move()
     {
       if (!_heading.IsEmpty)
       {
         int x;
         int y;
+
         _previousPositions.Put(_position);
 
         x = _position.X + _heading.X;
         y = _position.Y + _heading.Y;
 
-        if (x <= 1)
+        if (x < 0 || y < 0 || x > _environment.Size.Width - 1 || y > _environment.Size.Height)
         {
-          x = _environment.Size.Width - 1;
-        }
-        else if (x >= _environment.Size.Width - 1)
-        {
-          x = 1;
-        }
+          if (_environment.Wrap)
+          {
+            if (x < 0)
+            {
+              x = _environment.Size.Width - 1;
+            }
+            else if (x > _environment.Size.Width - 1)
+            {
+              x = 1;
+            }
 
-        if (y <= 1)
-        {
-          y = _environment.Size.Height - 1;
-        }
-        else if (y >= _environment.Size.Height - 1)
-        {
-          y = 1;
+            if (y < 0)
+            {
+              y = _environment.Size.Height - 1;
+            }
+            else if (y > _environment.Size.Height - 1)
+            {
+              y = 1;
+            }
+          }
+          else
+          {
+            _heading = Compass.GetOpposite(_heading);
+          }
         }
 
         _position = new Point(x, y);

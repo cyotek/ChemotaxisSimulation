@@ -62,6 +62,7 @@ namespace Cyotek.Demo.EColiSimulation
       _attractorCollisionAction = CollisionAction.ReduceSelf;
       _repellentCollisionAction = CollisionAction.ReduceOther;
       _respawnAttractor = true;
+      _wrap = true;
 
       this.Reset();
     }
@@ -159,6 +160,15 @@ namespace Cyotek.Demo.EColiSimulation
         this.MoveStrand(strand);
       }
     }
+
+    private bool _wrap;
+
+    public bool Wrap
+    {
+      get { return _wrap; }
+      set { _wrap = value; }
+    }
+
 
     private void CheckFission(Strand strand)
     {
