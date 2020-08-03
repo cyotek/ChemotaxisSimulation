@@ -57,10 +57,18 @@ namespace Cyotek.Demo
       _environment.AddNoxiousSource();
 
       this.UpdateSimulationControls();
+      this.UpdateStatusBar();
 
       base.OnShown(e);
 
       renderPanel.Invalidate();
+    }
+
+    private void UpdateStatusBar()
+    {
+      standsToolStripStatusLabel.Text = _environment.Strands.Count.ToString();
+      attractorsToolStripStatusLabel.Text = _environment.FoodSources.Count.ToString();
+      repellentsToolStripStatusLabel.Text = _environment.NoxiousSources.Count.ToString();
     }
 
     private void RenderPanel_Paint(object sender, PaintEventArgs e)
@@ -72,9 +80,7 @@ namespace Cyotek.Demo
 
     private void NextMoveToolStripButton_Click(object sender, EventArgs e)
     {
-      _environment.NextMove();
-
-      renderPanel.Invalidate();
+      this.NextMove();
     }
 
     private void ScaleToolStripTrackBar_ValueChanged(object sender, EventArgs e)
@@ -114,7 +120,21 @@ namespace Cyotek.Demo
 
     private void Timer_Tick(object sender, EventArgs e)
     {
+      this.NextMove();
+    }
+
+    private void NextMove()
+    {
+      int sum;
+
+      sum = _environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count;
+
       _environment.NextMove();
+
+      if((_environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count) != sum)
+      {
+        this.UpdateStatusBar();
+      }
 
       renderPanel.Invalidate();
     }
