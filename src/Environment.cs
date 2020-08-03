@@ -181,17 +181,22 @@ namespace Cyotek.Demo.EColiSimulation
 
     private Chemoeffector GetStrongestAttractor(Strand strand)
     {
+      return this.GetStrongestChemoeffector(strand, _foodSources);
+    }
+
+    private Chemoeffector GetStrongestChemoeffector(Strand strand, ChemoeffectorCollection container)
+    {
       Chemoeffector result;
       int strength;
 
       result = null;
       strength = 0;
 
-      for (int i = 0; i < _foodSources.Count; i++)
+      for (int i = 0; i < container.Count; i++)
       {
         Chemoeffector chemoeffector;
 
-        chemoeffector = _foodSources[i];
+        chemoeffector = container[i];
 
         if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, (chemoeffector.Strength / 2) + 4) // add a bit of a buffer so even the smallest have a gradient
           && chemoeffector.Strength > strength)
@@ -206,20 +211,30 @@ namespace Cyotek.Demo.EColiSimulation
 
     private Chemoeffector GetStrongestRepellor(Strand strand)
     {
+      return this.GetStrongestChemoeffector(strand, _noxiousSources);
+    }
+
+    private Chemoeffector GetClosestAttractor(Strand strand)
+    {
+      return this.GetClosestChemoeffector(strand, _foodSources);
+    }
+
+    private Chemoeffector GetClosestChemoeffector(Strand strand, ChemoeffectorCollection container)
+    {
       Chemoeffector result;
       int strength;
 
       result = null;
       strength = 0;
 
-      for (int i = 0; i < _noxiousSources.Count; i++)
+      for (int i = 0; i < container.Count; i++)
       {
         Chemoeffector chemoeffector;
 
-        chemoeffector = _noxiousSources[i];
+        chemoeffector = container[i];
 
         if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, (chemoeffector.Strength / 2) + 4) // add a bit of a buffer so even the smallest have a gradient
-          && chemoeffector.Strength > strength)
+          && (strength == 0 || chemoeffector.Strength < strength))
         {
           strength = chemoeffector.Strength;
           result = chemoeffector;
@@ -229,13 +244,17 @@ namespace Cyotek.Demo.EColiSimulation
       return result;
     }
 
+    private Chemoeffector GetClosestRepellor(Strand strand)
+    {
+      return this.GetClosestChemoeffector(strand, _noxiousSources);
+    }
     private void MoveStrand(Strand strand)
     {
       Chemoeffector noxious;
 
       strand.Move();
 
-      noxious = this.GetStrongestRepellor(strand);
+      noxious = this.GetClosestRepellor(strand);
 
       if (noxious != null)
       {
@@ -245,7 +264,7 @@ namespace Cyotek.Demo.EColiSimulation
       {
         Chemoeffector food;
 
-        food = this.GetStrongestAttractor(strand);
+        food = this.GetClosestAttractor(strand);
 
         if (food != null)
         {
