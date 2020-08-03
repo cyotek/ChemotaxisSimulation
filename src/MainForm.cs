@@ -34,6 +34,8 @@ namespace Cyotek.Demo
 
     protected override void OnShown(EventArgs e)
     {
+      _random = new Random();
+
       _environment = new Environment
       {
         Size = new Size(256, 256)
@@ -69,6 +71,7 @@ namespace Cyotek.Demo
       _environment.Size = new Size((int)widthNumericUpDown.Value, (int)heightNumericUpDown.Value);
       _environment.Wrap = wrapCheckBox.Checked;
       _environment.SolidStrands = solidStrandsCheckBox.Checked;
+      _environment.Attrition = attritionCheckBox.Checked;
       _environment.Reset();
 
       for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)
@@ -271,5 +274,23 @@ namespace Cyotek.Demo
 
       renderPanel.Invalidate();
     }
+
+    private void AttritionCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+      _environment.Attrition = attritionCheckBox.Checked;
+    }
+
+    private void environmentSeedRandomButton_Click(object sender, EventArgs e)
+    {
+      string name;
+      NumericUpDown control;
+
+      name = (string)((Control)sender).Tag;
+      control = (NumericUpDown)setupGroupBox.Controls[name];
+
+      control.Value = _random.Next((int)control.Minimum,(int) control.Maximum + 1);
+    }
+
+    private Random _random;
   }
 }

@@ -121,6 +121,9 @@
     <Content Include="..\res\control.png">
       <Link>Resources\control.png</Link>
     </Content>
+    <Content Include="..\res\dice.png">
+      <Link>Resources\dice.png</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
