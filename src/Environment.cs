@@ -38,6 +38,14 @@ namespace Cyotek.Demo.EColiSimulation
       set { _foodSources = value; }
     }
 
+    private ChemoeffectorCollection _noxiousSources;
+
+    public ChemoeffectorCollection NoxiousSources
+    {
+      get { return _noxiousSources; }
+      set { _noxiousSources = value; }
+    }
+
 
     public Environment()
     {
@@ -45,6 +53,7 @@ namespace Cyotek.Demo.EColiSimulation
       _size = new Size(256, 256);
       _strands = new StrandCollection(this);
       _foodSources = new ChemoeffectorCollection(this);
+      _noxiousSources = new ChemoeffectorCollection(this);
 
       this.Reset();
     }
@@ -78,7 +87,7 @@ namespace Cyotek.Demo.EColiSimulation
       });
     }
 
-    
+
     public void NextMove()
     {
       for (int i = 0; i < _strands.Count; i++)
@@ -87,83 +96,178 @@ namespace Cyotek.Demo.EColiSimulation
       }
     }
 
-    private void MoveStrand(Strand strand)
+    private Chemoeffector GetStrongestAttractor(Strand strand)
     {
-      Chemoeffector food;
+      Chemoeffector result;
+      int strength;
 
-      strand.Move();
-
-
-      food = null;
+      result = null;
+      strength = 0;
 
       for (int i = 0; i < _foodSources.Count; i++)
       {
-        Chemoeffector foodSource;
+        Chemoeffector chemoeffector;
 
-        foodSource = _foodSources[i];
+        chemoeffector = _foodSources[i];
 
-        if (Geometry.DoesPointIntersectCircle(strand.Position, foodSource.Position, foodSource.Size / 2))
+        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, chemoeffector.Size / 2)
+          && chemoeffector.Size > strength)
         {
-          food = foodSource;
-          break;
+          strength = chemoeffector.Size;
+          result = chemoeffector;
         }
       }
 
-      if (food != null)
+      return result;
+    }
+
+    private Chemoeffector GetStrongestRepellor(Strand strand)
+    {
+      Chemoeffector result;
+      int strength;
+
+      result = null;
+      strength = 0;
+
+      for (int i = 0; i < _noxiousSources.Count; i++)
       {
-        double distance;
+        Chemoeffector chemoeffector;
 
-        distance = Geometry.GetDistance(strand.Position, food.Position);
+        chemoeffector = _noxiousSources[i];
 
-        if (distance <= 1)
+        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, chemoeffector.Size / 2)
+          && chemoeffector.Size > strength)
         {
-          _foodSources.Remove(food);
+          strength = chemoeffector.Size;
+          result = chemoeffector;
+        }
+      }
 
-          this.AddFoodSource();
+      return result;
+    }
 
+    private void MoveStrand(Strand strand)
+    {
+      Chemoeffector noxious;
+
+      strand.Move();
+
+      noxious = this.GetStrongestRepellor(strand);
+
+      if (noxious != null)
+      {
+        this.Flee(strand, noxious);
+      }
+      else
+      {
+        Chemoeffector food;
+
+        food = this.GetStrongestAttractor(strand);
+
+        if (food != null)
+        {
+          this.Approach(strand, food);
+        }
+        else if (strand.PreviousSensor != 0)
+        {
+          strand.Heading = Compass.GetOpposite(strand.Heading);
+          this.Tumble(strand);
           strand.PreviousSensor = 0;
         }
         else
         {
-          if (distance > strand.PreviousSensor)
-          {
-            this.Tumble(strand);
-          }
-          else
-          {
-            double newDistance;
-            Point heading;
-            heading = strand.Heading;
-            this.Tumble(strand);
-            strand.Move();
-            newDistance = Geometry.GetDistance(strand.Position, food.Position);
-            if (newDistance >= distance)
-            {
-              strand.Heading = heading;
-            }
-            strand.UndoMove();
-          }
-
-          strand.PreviousSensor = distance;
+          this.Tumble(strand);
+          strand.PreviousSensor = 0;
         }
       }
-      else if (strand.PreviousSensor != 0)
+    }
+
+    private void Approach(Strand strand, Chemoeffector food)
+    {
+      double distance;
+
+      distance = Geometry.GetDistance(strand.Position, food.Position);
+
+      if (distance <= 1)
       {
-        strand.Heading = Compass.GetOpposite(strand.Heading);
-        this.Tumble(strand);
+        _foodSources.Remove(food);
+
+        this.AddFoodSource();
+
         strand.PreviousSensor = 0;
       }
       else
       {
-        this.Tumble(strand);
-        strand.PreviousSensor = 0;
-      }
+        if (distance > strand.PreviousSensor)
+        {
+          this.Tumble(strand);
+        }
+        else
+        {
+          double newDistance;
+          Point heading;
+          heading = strand.Heading;
+          this.Tumble(strand);
+          strand.Move();
+          newDistance = Geometry.GetDistance(strand.Position, food.Position);
+          if (newDistance >= distance)
+          {
+            strand.Heading = heading;
+          }
+          strand.UndoMove();
+        }
 
+        strand.PreviousSensor = distance;
+      }
+    }
+
+    private void Flee(Strand strand, Chemoeffector noxious)
+    {
+      double distance;
+
+      distance = Geometry.GetDistance(strand.Position, noxious.Position);
+
+      if (distance <= 1)
+      {
+        _strands.Remove(strand);
+      }
+      else
+      {
+        if (distance < strand.PreviousSensor)
+        {
+          this.Tumble(strand);
+        }
+        else
+        {
+          double newDistance;
+          Point heading;
+          heading = strand.Heading;
+          this.Tumble(strand);
+          strand.Move();
+          newDistance = Geometry.GetDistance(strand.Position, noxious.Position);
+          if (newDistance < distance)
+          {
+            strand.Heading = heading;
+          }
+          strand.UndoMove();
+        }
+
+        strand.PreviousSensor = distance;
+      }
     }
 
     public void AddFoodSource()
     {
       _foodSources.Add(new Chemoeffector
+      {
+        Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
+        Size = _random.Next(32, 128)
+      });
+    }
+
+    public void AddNoxiousSource()
+    {
+      _noxiousSources.Add(new Chemoeffector
       {
         Position = new Point(_random.Next(1, _size.Width - 32), _random.Next(1, _size.Height - 32)),
         Size = _random.Next(32, 128)

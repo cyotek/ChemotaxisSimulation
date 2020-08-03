@@ -28,7 +28,6 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +93,8 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.noxiousSourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.noxiousSourceDetectionZonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip.SuspendLayout();
       this.toolStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -286,7 +287,9 @@
             this.bacteriaStrandsToolStripMenuItem,
             this.bacteriaStrandTailsToolStripMenuItem,
             this.foodSourcesToolStripMenuItem,
-            this.foodSourceDetectionZonesToolStripMenuItem});
+            this.foodSourceDetectionZonesToolStripMenuItem,
+            this.noxiousSourcesToolStripMenuItem,
+            this.noxiousSourceDetectionZonesToolStripMenuItem});
       this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
       this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
       this.viewToolStripMenuItem.Text = "&View";
@@ -296,7 +299,7 @@
       this.bacteriaStrandsToolStripMenuItem.Checked = true;
       this.bacteriaStrandsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.bacteriaStrandsToolStripMenuItem.Name = "bacteriaStrandsToolStripMenuItem";
-      this.bacteriaStrandsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.bacteriaStrandsToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.bacteriaStrandsToolStripMenuItem.Text = "Bacteria &Strands";
       this.bacteriaStrandsToolStripMenuItem.Click += new System.EventHandler(this.BacteriaStrandsToolStripMenuItem_Click);
       // 
@@ -305,7 +308,7 @@
       this.bacteriaStrandTailsToolStripMenuItem.Checked = true;
       this.bacteriaStrandTailsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.bacteriaStrandTailsToolStripMenuItem.Name = "bacteriaStrandTailsToolStripMenuItem";
-      this.bacteriaStrandTailsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.bacteriaStrandTailsToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.bacteriaStrandTailsToolStripMenuItem.Text = "Bacteria Strand &Tails";
       this.bacteriaStrandTailsToolStripMenuItem.Click += new System.EventHandler(this.BacteriaStrandTailsToolStripMenuItem_Click);
       // 
@@ -314,7 +317,7 @@
       this.foodSourcesToolStripMenuItem.Checked = true;
       this.foodSourcesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.foodSourcesToolStripMenuItem.Name = "foodSourcesToolStripMenuItem";
-      this.foodSourcesToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.foodSourcesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.foodSourcesToolStripMenuItem.Text = "&Food Sources";
       this.foodSourcesToolStripMenuItem.Click += new System.EventHandler(this.FoodSourcesToolStripMenuItem_Click);
       // 
@@ -323,7 +326,7 @@
       this.foodSourceDetectionZonesToolStripMenuItem.Checked = true;
       this.foodSourceDetectionZonesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.foodSourceDetectionZonesToolStripMenuItem.Name = "foodSourceDetectionZonesToolStripMenuItem";
-      this.foodSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+      this.foodSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.foodSourceDetectionZonesToolStripMenuItem.Text = "Food Source &Detection Zones";
       this.foodSourceDetectionZonesToolStripMenuItem.Click += new System.EventHandler(this.FoodSourceDetectionZonesToolStripMenuItem_Click);
       // 
@@ -666,6 +669,24 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
+      // noxiousSourcesToolStripMenuItem
+      // 
+      this.noxiousSourcesToolStripMenuItem.Checked = true;
+      this.noxiousSourcesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.noxiousSourcesToolStripMenuItem.Name = "noxiousSourcesToolStripMenuItem";
+      this.noxiousSourcesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.noxiousSourcesToolStripMenuItem.Text = "&Noxious Sources";
+      this.noxiousSourcesToolStripMenuItem.Click += new System.EventHandler(this.NoxiousSourcesToolStripMenuItem_Click);
+      // 
+      // noxiousSourceDetectionZonesToolStripMenuItem
+      // 
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Checked = true;
+      this.noxiousSourceDetectionZonesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Name = "noxiousSourceDetectionZonesToolStripMenuItem";
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Text = "N&oxious Source Detection Zones";
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Click += new System.EventHandler(this.NoxiousSourceDetectionZonesToolStripMenuItem_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -768,6 +789,8 @@
     private System.Windows.Forms.ToolStripMenuItem bacteriaStrandTailsToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem foodSourcesToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem foodSourceDetectionZonesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem noxiousSourcesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem noxiousSourceDetectionZonesToolStripMenuItem;
   }
 }
 

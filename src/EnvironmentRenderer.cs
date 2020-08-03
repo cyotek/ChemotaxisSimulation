@@ -1,5 +1,4 @@
 ﻿using Cyotek.Collections.Generic;
-using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -9,9 +8,15 @@ namespace Cyotek.Demo.EColiSimulation
   {
     #region Private Fields
 
+    private float _scale;
+
     private bool _showFoodDetectionZone;
 
     private bool _showFoodSources;
+
+    private bool _showNoxiousDetectionZone;
+
+    private bool _showNoxiousSources;
 
     private bool _showStrands;
 
@@ -28,11 +33,19 @@ namespace Cyotek.Demo.EColiSimulation
       _showTails = true;
       _showStrands = true;
       _showFoodSources = true;
+      _showNoxiousSources = true;
+      _showNoxiousDetectionZone = true;
     }
 
     #endregion Public Constructors
 
     #region Public Properties
+
+    public float Scale
+    {
+      get { return _scale; }
+      set { _scale = value; }
+    }
 
     public bool ShowFoodDetectionZone
     {
@@ -44,6 +57,18 @@ namespace Cyotek.Demo.EColiSimulation
     {
       get { return _showFoodSources; }
       set { _showFoodSources = value; }
+    }
+
+    public bool ShowNoxiousDetectionZone
+    {
+      get { return _showNoxiousDetectionZone; }
+      set { _showNoxiousDetectionZone = value; }
+    }
+
+    public bool ShowNoxiousSources
+    {
+      get { return _showNoxiousSources; }
+      set { _showNoxiousSources = value; }
     }
 
     public bool ShowStrands
@@ -58,16 +83,9 @@ namespace Cyotek.Demo.EColiSimulation
       set { _showTails = value; }
     }
 
-    private float _scale;
-
-    public float Scale
-    {
-      get { return _scale; }
-      set { _scale = value; }
-    }
-
-
     #endregion Public Properties
+
+    #region Public Methods
 
     public void Draw(Environment environment, Graphics graphics)
     {
@@ -86,6 +104,14 @@ namespace Cyotek.Demo.EColiSimulation
         }
       }
 
+      if (_showNoxiousSources)
+      {
+        for (int i = 0; i < environment.NoxiousSources.Count; i++)
+        {
+          this.DrawNoxious(graphics, environment.NoxiousSources[i]);
+        }
+      }
+
       if (_showStrands)
       {
         for (int i = 0; i < environment.Strands.Count; i++)
@@ -93,6 +119,49 @@ namespace Cyotek.Demo.EColiSimulation
           this.DrawStrand(graphics, environment.Strands[i]);
         }
       }
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
+    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Color color, bool showDetectionZone)
+    {
+      if (showDetectionZone)
+      {
+        Rectangle bounds;
+
+        bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Size / 2), chemoeffector.Position.Y - (chemoeffector.Size / 2), chemoeffector.Size, chemoeffector.Size);
+
+        using (GraphicsPath ellipsePath = new GraphicsPath())
+        {
+          ellipsePath.AddEllipse(bounds);
+
+          using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
+          {
+            brush.CenterPoint = chemoeffector.Position;
+            brush.CenterColor = Color.FromArgb(128, color);
+            brush.SurroundColors = new[] { Color.Transparent };
+
+            graphics.FillEllipse(brush, bounds);
+          }
+        }
+      }
+
+      using (Pen pen = new Pen(color))
+      {
+        graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
+      }
+    }
+
+    private void DrawFood(Graphics graphics, Chemoeffector food)
+    {
+      this.DrawChemoeffector(graphics, food, Color.SeaGreen, _showFoodDetectionZone);
+    }
+
+    private void DrawNoxious(Graphics graphics, Chemoeffector noxious)
+    {
+      this.DrawChemoeffector(graphics, noxious, Color.Firebrick, _showNoxiousDetectionZone);
     }
 
     private void DrawStrand(Graphics graphics, Strand strand)
@@ -114,7 +183,6 @@ namespace Cyotek.Demo.EColiSimulation
         //    Point[] buffer;
 
         //    buffer = ArrayPool<Point>.Shared.Allocate(i - start);
-
 
         //    strand.PreviousPositions.CopyTo(start, buffer, 0, i - start);
         //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
@@ -147,41 +215,6 @@ namespace Cyotek.Demo.EColiSimulation
 
       graphics.DrawEllipse(Pens.Black, strand.Position.X - 1, strand.Position.Y - 1, 2, 2);
     }
-
-    private void DrawFood(Graphics graphics, Chemoeffector food)
-    {
-      this.DrawChemoeffector(graphics, food, Color.SeaGreen);
-    }
-
-    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Color color)
-    {
-      if (_showFoodDetectionZone)
-      {
-        Rectangle bounds;
-
-        bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Size / 2), chemoeffector.Position.Y - (chemoeffector.Size / 2), chemoeffector.Size, chemoeffector.Size);
-
-        using (GraphicsPath ellipsePath = new GraphicsPath())
-        {
-          ellipsePath.AddEllipse(bounds);
-
-          using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
-          {
-            brush.CenterPoint = chemoeffector.Position;
-            brush.CenterColor = Color.FromArgb(128, color);
-            brush.SurroundColors = new[] { Color.Transparent };
-
-            graphics.FillEllipse(brush, bounds);
-          }
-        }
-      }
-
-      using (Pen pen = new Pen(color))
-      {
-        graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
-      }
-    }
-
 
     private void DrawTail(Graphics graphics, Strand strand, Color color)
     {
@@ -253,5 +286,6 @@ namespace Cyotek.Demo.EColiSimulation
       }
     }
 
+    #endregion Private Methods
   }
 }

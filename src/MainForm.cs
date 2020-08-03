@@ -53,6 +53,8 @@ namespace Cyotek.Demo
       {
         _environment.AddFoodSource();
       }
+       
+      _environment.AddNoxiousSource();
 
       this.UpdateSimulationControls();
 
@@ -156,6 +158,26 @@ namespace Cyotek.Demo
       _environmentRenderer.ShowFoodDetectionZone = !_environmentRenderer.ShowFoodDetectionZone;
 
       foodSourceDetectionZonesToolStripMenuItem.Checked = _environmentRenderer.ShowFoodDetectionZone;
+
+      renderPanel.Invalidate();
+
+    }
+
+    private void NoxiousSourcesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.ShowNoxiousSources = !_environmentRenderer.ShowNoxiousSources;
+
+      noxiousSourcesToolStripMenuItem.Checked = _environmentRenderer.ShowNoxiousSources;
+
+      renderPanel.Invalidate();
+
+    }
+
+    private void NoxiousSourceDetectionZonesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.ShowNoxiousDetectionZone= !_environmentRenderer.ShowNoxiousDetectionZone;
+
+      noxiousSourceDetectionZonesToolStripMenuItem.Checked = _environmentRenderer.ShowNoxiousDetectionZone;
 
       renderPanel.Invalidate();
 
