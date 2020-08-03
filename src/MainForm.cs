@@ -296,6 +296,8 @@ namespace Cyotek.Demo
       control = (NumericUpDown)setupGroupBox.Controls[name];
 
       control.Value = _random.Next((int)control.Minimum,(int) control.Maximum + 1);
+
+      this.InitializeScenario();
     }
 
     private Random _random;
