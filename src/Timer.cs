@@ -147,7 +147,11 @@ namespace Cyotek.Demo
 
     private void TimerCallback(object state)
     {
+      _timer.Change(Timeout.Infinite, Timeout.Infinite);
+
       this.OnTick(EventArgs.Empty);
+
+      _timer?.Change(0, _interval);
     }
 
     #endregion Private Methods
