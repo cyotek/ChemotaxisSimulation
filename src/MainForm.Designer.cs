@@ -868,6 +868,7 @@
       this.button10.TabIndex = 10;
       this.button10.Tag = "widthNumericUpDown";
       this.button10.UseVisualStyleBackColor = true;
+      this.button10.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button9
       // 
@@ -878,6 +879,7 @@
       this.button9.TabIndex = 11;
       this.button9.Tag = "heightNumericUpDown";
       this.button9.UseVisualStyleBackColor = true;
+      this.button9.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button8
       // 
@@ -888,7 +890,7 @@
       this.button8.TabIndex = 32;
       this.button8.Tag = "minimumRepellentSizeNumericUpDown";
       this.button8.UseVisualStyleBackColor = true;
-      this.button8.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button8.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button7
       // 
@@ -899,7 +901,7 @@
       this.button7.TabIndex = 28;
       this.button7.Tag = "minimumAttractorSizeNumericUpDown";
       this.button7.UseVisualStyleBackColor = true;
-      this.button7.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button7.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button6
       // 
@@ -910,7 +912,7 @@
       this.button6.TabIndex = 33;
       this.button6.Tag = "maximumRepellentSizeNumericUpDown";
       this.button6.UseVisualStyleBackColor = true;
-      this.button6.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button6.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button5
       // 
@@ -921,7 +923,7 @@
       this.button5.TabIndex = 29;
       this.button5.Tag = "maximumAttractorSizeNumericUpDown";
       this.button5.UseVisualStyleBackColor = true;
-      this.button5.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button5.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button4
       // 
@@ -932,7 +934,7 @@
       this.button4.TabIndex = 22;
       this.button4.Tag = "repellentsNumericUpDown";
       this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button4.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button3
       // 
@@ -943,7 +945,7 @@
       this.button3.TabIndex = 18;
       this.button3.Tag = "attractorsNumericUpDown";
       this.button3.UseVisualStyleBackColor = true;
-      this.button3.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button3.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button2
       // 
@@ -954,7 +956,7 @@
       this.button2.TabIndex = 15;
       this.button2.Tag = "strandsNumericUpDown";
       this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button2.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // button1
       // 
@@ -965,7 +967,7 @@
       this.button1.TabIndex = 5;
       this.button1.Tag = "movementSeedNumericUpDown";
       this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.button1.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // environmentSeedRandomButton
       // 
@@ -976,7 +978,7 @@
       this.environmentSeedRandomButton.TabIndex = 2;
       this.environmentSeedRandomButton.Tag = "environmentSeedNumericUpDown";
       this.environmentSeedRandomButton.UseVisualStyleBackColor = true;
-      this.environmentSeedRandomButton.Click += new System.EventHandler(this.environmentSeedRandomButton_Click);
+      this.environmentSeedRandomButton.Click += new System.EventHandler(this.RandomButton_Click);
       // 
       // attritionCheckBox
       // 

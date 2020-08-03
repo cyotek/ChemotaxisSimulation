@@ -280,7 +280,7 @@ namespace Cyotek.Demo
       _environment.Attrition = attritionCheckBox.Checked;
     }
 
-    private void environmentSeedRandomButton_Click(object sender, EventArgs e)
+    private void RandomButton_Click(object sender, EventArgs e)
     {
       string name;
       NumericUpDown control;
