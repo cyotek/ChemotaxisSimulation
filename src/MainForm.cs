@@ -44,6 +44,9 @@ namespace Cyotek.Demo
         Scale = 2
       };
 
+      attractorCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.ReduceSelf - 1);
+      repellentCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.ReduceOther - 1);
+
       this.InitializeScenario();
 
       base.OnShown(e);
@@ -55,10 +58,14 @@ namespace Cyotek.Demo
 
       _environment.EnvironmentSeed = (int)environmentSeedNumericUpDown.Value;
       _environment.MovementSeed = (int)movementSeedNumericUpDown.Value;
-      _environment.MinimumAttractorSize = (int)minimumAttractorSizeNumericUpDown.Value;
-      _environment.MaximumAttractorSize = (int)maximumAttractorSizeNumericUpDown.Value;
-      _environment.MinimumRepellentSize = (int)minimumRepellentSizeNumericUpDown.Value;
-      _environment.MaximumRepellentSize = (int)maximumRepellentSizeNumericUpDown.Value;
+      _environment.MinimumAttractorStrength = (int)minimumAttractorSizeNumericUpDown.Value;
+      _environment.MaximumAttractorStrength = (int)maximumAttractorSizeNumericUpDown.Value;
+      _environment.MinimumRepellentStrength = (int)minimumRepellentSizeNumericUpDown.Value;
+      _environment.MaximumRepellentStrength = (int)maximumRepellentSizeNumericUpDown.Value;
+      _environment.AttractorCollisionAction = (CollisionAction)(attractorCollisionModeComboBox.SelectedIndex + 1);
+      _environment.RepelleCollisionAction = (CollisionAction)(repellentCollisionModeComboBox.SelectedIndex + 1);
+      _environment.RespawnAttractor = respawnAttractorsCheckBox.Checked;
+      _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
       _environment.Reset();
 
       for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)

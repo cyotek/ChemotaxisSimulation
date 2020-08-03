@@ -18,19 +18,12 @@ namespace Cyotek.Demo.EColiSimulation
       get { return _environment; }
       set { _environment = value; }
     }
-    private double _strength;
+    private int _strength;
 
-    public double Strength
+    public int Strength
     {
       get { return _strength; }
       set { _strength = value; }
-    }
-    private int _size;
-
-    public int Size
-    {
-      get { return _size; }
-      set { _size = value; }
     }
 
     private Point _position;

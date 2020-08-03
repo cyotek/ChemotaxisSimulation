@@ -55,13 +55,25 @@ namespace Cyotek.Demo.EColiSimulation
       _strands = new StrandCollection(this);
       _foodSources = new ChemoeffectorCollection(this);
       _noxiousSources = new ChemoeffectorCollection(this);
-      _minimumAttractorSize = 1;
-      _maximumAttractorSize = 128;
-      _minimumRepellentSize = 1;
-      _maximumRepellentSize = 128;
+      _minimumAttractorStrength = 1;
+      _maximumAttractorStrength = 128;
+      _minimumRepellentStrength = 1;
+      _maximumRepellentStrength = 128;
+      _attractorCollisionAction = CollisionAction.ReduceSelf;
+      _repellentCollisionAction = CollisionAction.ReduceOther;
+      _respawnAttractor = true;
 
       this.Reset();
     }
+
+    private bool _binaryFission;
+
+    public bool BinaryFission
+    {
+      get { return _binaryFission; }
+      set { _binaryFission = value; }
+    }
+
 
     private int _movementSeed;
 
@@ -71,35 +83,35 @@ namespace Cyotek.Demo.EColiSimulation
       set { _movementSeed = value; }
     }
 
-    private int _maximumAttractorSize;
+    private int _maximumAttractorStrength;
 
-    public int MaximumAttractorSize
+    public int MaximumAttractorStrength
     {
-      get { return _maximumAttractorSize; }
-      set { _maximumAttractorSize = value; }
+      get { return _maximumAttractorStrength; }
+      set { _maximumAttractorStrength = value; }
     }
 
-    private int _minimumAttractorSize;
+    private int _minimumAttractorStrength;
 
-    public int MinimumAttractorSize
+    public int MinimumAttractorStrength
     {
-      get { return _minimumAttractorSize; }
-      set { _minimumAttractorSize = value; }
+      get { return _minimumAttractorStrength; }
+      set { _minimumAttractorStrength = value; }
     }
 
-    private int _minimumRepellentSize;
+    private int _minimumRepellentStrength;
 
-    public int MinimumRepellentSize
+    public int MinimumRepellentStrength
     {
-      get { return _minimumRepellentSize; }
-      set { _minimumRepellentSize = value; }
+      get { return _minimumRepellentStrength; }
+      set { _minimumRepellentStrength = value; }
     }
-    private int _maximumRepellentSize;
+    private int _maximumRepellentStrength;
 
-    public int MaximumRepellentSize
+    public int MaximumRepellentStrength
     {
-      get { return _maximumRepellentSize; }
-      set { _maximumRepellentSize = value; }
+      get { return _maximumRepellentStrength; }
+      set { _maximumRepellentStrength = value; }
     }
 
 
@@ -157,10 +169,10 @@ namespace Cyotek.Demo.EColiSimulation
 
         chemoeffector = _foodSources[i];
 
-        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, chemoeffector.Size / 2)
-          && chemoeffector.Size > strength)
+        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, chemoeffector.Strength / 2)
+          && chemoeffector.Strength > strength)
         {
-          strength = chemoeffector.Size;
+          strength = chemoeffector.Strength;
           result = chemoeffector;
         }
       }
@@ -182,10 +194,10 @@ namespace Cyotek.Demo.EColiSimulation
 
         chemoeffector = _noxiousSources[i];
 
-        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, chemoeffector.Size / 2)
-          && chemoeffector.Size > strength)
+        if (Geometry.DoesPointIntersectCircle(strand.Position, chemoeffector.Position, chemoeffector.Strength / 2)
+          && chemoeffector.Strength > strength)
         {
-          strength = chemoeffector.Size;
+          strength = chemoeffector.Strength;
           result = chemoeffector;
         }
       }
@@ -231,6 +243,15 @@ namespace Cyotek.Demo.EColiSimulation
       }
     }
 
+    private bool _respawnAttractor;
+
+    public bool RespawnAttractor
+    {
+      get { return _respawnAttractor; }
+      set { _respawnAttractor = value; }
+    }
+
+
     private void Approach(Strand strand, Chemoeffector food)
     {
       double distance;
@@ -239,9 +260,7 @@ namespace Cyotek.Demo.EColiSimulation
 
       if (distance <= 1)
       {
-        _foodSources.Remove(food);
-
-        this.AddFoodSource();
+        this.ProcessCollision(strand, food, _foodSources, _attractorCollisionAction, () => this.AddFoodSource());
 
         strand.PreviousSensor = 0;
       }
@@ -271,6 +290,31 @@ namespace Cyotek.Demo.EColiSimulation
       }
     }
 
+    private void ProcessCollision(Strand strand, Chemoeffector chemoeffector, ChemoeffectorCollection container, CollisionAction action, Action createNew)
+    {
+      if (action == CollisionAction.ReduceSelf)
+      {
+        chemoeffector.Strength--;
+        strand.Strength++;
+      }
+      else if (action == CollisionAction.ReduceOther)
+      {
+        strand.Strength--;
+      }
+
+      if (chemoeffector.Strength <= 0 || action == CollisionAction.DestroySelf)
+      {
+        container.Remove(chemoeffector);
+
+        createNew();
+      }
+
+      if (strand.Strength <= 0 || action == CollisionAction.DestroyOther)
+      {
+        _strands.Remove(strand);
+      }
+    }
+
     private void Flee(Strand strand, Chemoeffector noxious)
     {
       double distance;
@@ -279,7 +323,7 @@ namespace Cyotek.Demo.EColiSimulation
 
       if (distance <= 1)
       {
-        _strands.Remove(strand);
+        this.ProcessCollision(strand, noxious, _noxiousSources, _repellentCollisionAction, () => this.AddNoxiousSource());
       }
       else
       {
@@ -333,7 +377,7 @@ namespace Cyotek.Demo.EColiSimulation
       _foodSources.Add(new Chemoeffector
       {
         Position = this.GetRandomPoint(),
-        Size = this.GetRandomSize(_minimumAttractorSize, _maximumAttractorSize)
+        Strength = this.GetRandomSize(_minimumAttractorStrength, _maximumAttractorStrength)
       });
     }
 
@@ -342,7 +386,7 @@ namespace Cyotek.Demo.EColiSimulation
       _noxiousSources.Add(new Chemoeffector
       {
         Position = this.GetRandomPoint(),
-        Size = this.GetRandomSize(_minimumRepellentSize, _maximumRepellentSize)
+        Strength = this.GetRandomSize(_minimumRepellentStrength, _maximumRepellentStrength)
       });
     }
 
@@ -403,5 +447,22 @@ namespace Cyotek.Demo.EColiSimulation
 
     private Random _environmentRandom;
     private Random _movementRandom;
+
+    private CollisionAction _attractorCollisionAction;
+
+    public CollisionAction AttractorCollisionAction
+    {
+      get { return _attractorCollisionAction; }
+      set { _attractorCollisionAction = value; }
+    }
+
+    private CollisionAction _repellentCollisionAction;
+
+    public CollisionAction RepelleCollisionAction
+    {
+      get { return _repellentCollisionAction; }
+      set { _repellentCollisionAction = value; }
+    }
+
   }
 }

@@ -131,7 +131,7 @@ namespace Cyotek.Demo.EColiSimulation
       {
         Rectangle bounds;
 
-        bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Size / 2), chemoeffector.Position.Y - (chemoeffector.Size / 2), chemoeffector.Size, chemoeffector.Size);
+        bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Strength / 2), chemoeffector.Position.Y - (chemoeffector.Strength / 2), chemoeffector.Strength, chemoeffector.Strength);
 
         using (GraphicsPath ellipsePath = new GraphicsPath())
         {

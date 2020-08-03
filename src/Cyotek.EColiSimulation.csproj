@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Chemoeffector.cs" />
     <Compile Include="ChemoeffectorCollection.cs" />
+    <Compile Include="CollisionAction.cs" />
     <Compile Include="Compass.cs" />
     <Compile Include="EmptyArray.cs" />
     <Compile Include="EnvironmentRenderer.cs" />

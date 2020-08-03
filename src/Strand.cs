@@ -29,7 +29,18 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _previousPositions = new CircularBuffer<Point>(128);
       _heading = new Point(1, 1);
+      _strength = 1;
+      _generation = 1;
     }
+
+    private int _generation;
+
+    public int Generation
+    {
+      get { return _generation; }
+      set { _generation = value; }
+    }
+
 
     private Point _heading;
 
@@ -93,5 +104,14 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _position = _previousPositions.GetLast();
     }
+
+    private int _strength;
+
+    public int Strength
+    {
+      get { return _strength; }
+      set { _strength = value; }
+    }
+
   }
 }

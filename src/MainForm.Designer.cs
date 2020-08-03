@@ -30,6 +30,7 @@
     {
       Cyotek.Windows.Forms.Line line;
       Cyotek.Windows.Forms.Line line1;
+      Cyotek.Windows.Forms.Line line2;
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +98,10 @@
       this.renderPanel = new Cyotek.Demo.Windows.Forms.BufferedPanel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
       this.setupGroupBox = new System.Windows.Forms.GroupBox();
+      this.repellentCollisionModeComboBox = new System.Windows.Forms.ComboBox();
+      this.label10 = new System.Windows.Forms.Label();
+      this.label11 = new System.Windows.Forms.Label();
+      this.attractorCollisionModeComboBox = new System.Windows.Forms.ComboBox();
       this.maximumRepellentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.minimumRepellentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.label9 = new System.Windows.Forms.Label();
@@ -121,8 +126,11 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.respawnAttractorsCheckBox = new System.Windows.Forms.CheckBox();
+      this.allowBinaryFissionCheckBox = new System.Windows.Forms.CheckBox();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
+      line2 = new Cyotek.Windows.Forms.Line();
       this.menuStrip.SuspendLayout();
       this.toolStrip.SuspendLayout();
       this.statusStrip.SuspendLayout();
@@ -159,10 +167,19 @@
       // 
       line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      line1.Location = new System.Drawing.Point(9, 157);
+      line1.Location = new System.Drawing.Point(6, 170);
       line1.Name = "line1";
       line1.Size = new System.Drawing.Size(277, 2);
       line1.Text = "line1";
+      // 
+      // line2
+      // 
+      line2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      line2.Location = new System.Drawing.Point(9, 243);
+      line2.Name = "line2";
+      line2.Size = new System.Drawing.Size(277, 2);
+      line2.Text = "line2";
       // 
       // menuStrip
       // 
@@ -736,6 +753,13 @@
       // 
       this.setupGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.setupGroupBox.Controls.Add(this.allowBinaryFissionCheckBox);
+      this.setupGroupBox.Controls.Add(this.respawnAttractorsCheckBox);
+      this.setupGroupBox.Controls.Add(this.repellentCollisionModeComboBox);
+      this.setupGroupBox.Controls.Add(this.label10);
+      this.setupGroupBox.Controls.Add(this.label11);
+      this.setupGroupBox.Controls.Add(this.attractorCollisionModeComboBox);
+      this.setupGroupBox.Controls.Add(line2);
       this.setupGroupBox.Controls.Add(this.maximumRepellentSizeNumericUpDown);
       this.setupGroupBox.Controls.Add(this.minimumRepellentSizeNumericUpDown);
       this.setupGroupBox.Controls.Add(this.label9);
@@ -764,9 +788,59 @@
       this.setupGroupBox.TabStop = false;
       this.setupGroupBox.Text = "Scenario Setup";
       // 
+      // repellentCollisionModeComboBox
+      // 
+      this.repellentCollisionModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.repellentCollisionModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.repellentCollisionModeComboBox.FormattingEnabled = true;
+      this.repellentCollisionModeComboBox.Items.AddRange(new object[] {
+            "Destroy Self",
+            "Destroy Other",
+            "Reduce Self",
+            "Reduce Other"});
+      this.repellentCollisionModeComboBox.Location = new System.Drawing.Point(171, 143);
+      this.repellentCollisionModeComboBox.Name = "repellentCollisionModeComboBox";
+      this.repellentCollisionModeComboBox.Size = new System.Drawing.Size(115, 21);
+      this.repellentCollisionModeComboBox.TabIndex = 13;
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(168, 76);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(37, 13);
+      this.label10.TabIndex = 5;
+      this.label10.Text = "Action";
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(102, 76);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(35, 13);
+      this.label11.TabIndex = 4;
+      this.label11.Text = "Count";
+      // 
+      // attractorCollisionModeComboBox
+      // 
+      this.attractorCollisionModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.attractorCollisionModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.attractorCollisionModeComboBox.FormattingEnabled = true;
+      this.attractorCollisionModeComboBox.Items.AddRange(new object[] {
+            "Destroy Self",
+            "Destroy Other",
+            "Reduce Self",
+            "Reduce Other"});
+      this.attractorCollisionModeComboBox.Location = new System.Drawing.Point(171, 117);
+      this.attractorCollisionModeComboBox.Name = "attractorCollisionModeComboBox";
+      this.attractorCollisionModeComboBox.Size = new System.Drawing.Size(115, 21);
+      this.attractorCollisionModeComboBox.TabIndex = 10;
+      // 
       // maximumRepellentSizeNumericUpDown
       // 
-      this.maximumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(156, 204);
+      this.maximumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(171, 217);
       this.maximumRepellentSizeNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -774,7 +848,7 @@
             0});
       this.maximumRepellentSizeNumericUpDown.Name = "maximumRepellentSizeNumericUpDown";
       this.maximumRepellentSizeNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.maximumRepellentSizeNumericUpDown.TabIndex = 17;
+      this.maximumRepellentSizeNumericUpDown.TabIndex = 21;
       this.maximumRepellentSizeNumericUpDown.Value = new decimal(new int[] {
             128,
             0,
@@ -783,7 +857,7 @@
       // 
       // minimumRepellentSizeNumericUpDown
       // 
-      this.minimumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(90, 204);
+      this.minimumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(105, 217);
       this.minimumRepellentSizeNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -791,7 +865,7 @@
             0});
       this.minimumRepellentSizeNumericUpDown.Name = "minimumRepellentSizeNumericUpDown";
       this.minimumRepellentSizeNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.minimumRepellentSizeNumericUpDown.TabIndex = 16;
+      this.minimumRepellentSizeNumericUpDown.TabIndex = 20;
       this.minimumRepellentSizeNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -801,33 +875,33 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(6, 206);
+      this.label9.Location = new System.Drawing.Point(6, 219);
       this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(78, 13);
-      this.label9.TabIndex = 15;
-      this.label9.Text = "Re&pellent Size:";
+      this.label9.Size = new System.Drawing.Size(98, 13);
+      this.label9.TabIndex = 19;
+      this.label9.Text = "Re&pellent Strength:";
       // 
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(153, 162);
+      this.label8.Location = new System.Drawing.Point(168, 175);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(27, 13);
-      this.label8.TabIndex = 11;
+      this.label8.TabIndex = 15;
       this.label8.Text = "Max";
       // 
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(87, 162);
+      this.label7.Location = new System.Drawing.Point(102, 175);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(24, 13);
-      this.label7.TabIndex = 10;
+      this.label7.TabIndex = 14;
       this.label7.Text = "Min";
       // 
       // maximumAttractorSizeNumericUpDown
       // 
-      this.maximumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(156, 178);
+      this.maximumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(171, 191);
       this.maximumAttractorSizeNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -835,7 +909,7 @@
             0});
       this.maximumAttractorSizeNumericUpDown.Name = "maximumAttractorSizeNumericUpDown";
       this.maximumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.maximumAttractorSizeNumericUpDown.TabIndex = 14;
+      this.maximumAttractorSizeNumericUpDown.TabIndex = 18;
       this.maximumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
             128,
             0,
@@ -844,7 +918,7 @@
       // 
       // minimumAttractorSizeNumericUpDown
       // 
-      this.minimumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(90, 178);
+      this.minimumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(105, 191);
       this.minimumAttractorSizeNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -852,7 +926,7 @@
             0});
       this.minimumAttractorSizeNumericUpDown.Name = "minimumAttractorSizeNumericUpDown";
       this.minimumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.minimumAttractorSizeNumericUpDown.TabIndex = 13;
+      this.minimumAttractorSizeNumericUpDown.TabIndex = 17;
       this.minimumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -862,11 +936,11 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(6, 180);
+      this.label6.Location = new System.Drawing.Point(6, 193);
       this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(73, 13);
-      this.label6.TabIndex = 12;
-      this.label6.Text = "Attra&ctor Size:";
+      this.label6.Size = new System.Drawing.Size(93, 13);
+      this.label6.TabIndex = 16;
+      this.label6.Text = "Attra&ctor Strength:";
       // 
       // movementSeedNumericUpDown
       // 
@@ -933,15 +1007,15 @@
       // 
       // repellentsNumericUpDown
       // 
-      this.repellentsNumericUpDown.Location = new System.Drawing.Point(109, 131);
+      this.repellentsNumericUpDown.Location = new System.Drawing.Point(105, 144);
       this.repellentsNumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
       this.repellentsNumericUpDown.Name = "repellentsNumericUpDown";
-      this.repellentsNumericUpDown.Size = new System.Drawing.Size(77, 20);
-      this.repellentsNumericUpDown.TabIndex = 9;
+      this.repellentsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+      this.repellentsNumericUpDown.TabIndex = 12;
       this.repellentsNumericUpDown.Value = new decimal(new int[] {
             5,
             0,
@@ -951,23 +1025,23 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(6, 133);
+      this.label3.Location = new System.Drawing.Point(6, 146);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(60, 13);
-      this.label3.TabIndex = 8;
+      this.label3.TabIndex = 11;
       this.label3.Text = "&Repellents:";
       // 
       // attractorsNumericUpDown
       // 
-      this.attractorsNumericUpDown.Location = new System.Drawing.Point(109, 105);
+      this.attractorsNumericUpDown.Location = new System.Drawing.Point(105, 118);
       this.attractorsNumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
       this.attractorsNumericUpDown.Name = "attractorsNumericUpDown";
-      this.attractorsNumericUpDown.Size = new System.Drawing.Size(77, 20);
-      this.attractorsNumericUpDown.TabIndex = 7;
+      this.attractorsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+      this.attractorsNumericUpDown.TabIndex = 9;
       this.attractorsNumericUpDown.Value = new decimal(new int[] {
             20,
             0,
@@ -977,23 +1051,23 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(6, 107);
+      this.label2.Location = new System.Drawing.Point(6, 120);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(55, 13);
-      this.label2.TabIndex = 6;
+      this.label2.TabIndex = 8;
       this.label2.Text = "&Attractors:";
       // 
       // strandsNumericUpDown
       // 
-      this.strandsNumericUpDown.Location = new System.Drawing.Point(109, 79);
+      this.strandsNumericUpDown.Location = new System.Drawing.Point(105, 92);
       this.strandsNumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
       this.strandsNumericUpDown.Name = "strandsNumericUpDown";
-      this.strandsNumericUpDown.Size = new System.Drawing.Size(77, 20);
-      this.strandsNumericUpDown.TabIndex = 5;
+      this.strandsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+      this.strandsNumericUpDown.TabIndex = 7;
       this.strandsNumericUpDown.Value = new decimal(new int[] {
             1500,
             0,
@@ -1003,10 +1077,10 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(6, 81);
+      this.label1.Location = new System.Drawing.Point(6, 94);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(46, 13);
-      this.label1.TabIndex = 4;
+      this.label1.TabIndex = 6;
       this.label1.Text = "St&rands:";
       // 
       // timer
@@ -1055,6 +1129,28 @@
       // 
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+      // 
+      // respawnAttractorsCheckBox
+      // 
+      this.respawnAttractorsCheckBox.AutoSize = true;
+      this.respawnAttractorsCheckBox.Checked = true;
+      this.respawnAttractorsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.respawnAttractorsCheckBox.Location = new System.Drawing.Point(9, 251);
+      this.respawnAttractorsCheckBox.Name = "respawnAttractorsCheckBox";
+      this.respawnAttractorsCheckBox.Size = new System.Drawing.Size(119, 17);
+      this.respawnAttractorsCheckBox.TabIndex = 22;
+      this.respawnAttractorsCheckBox.Text = "Respa&wn Attractors";
+      this.respawnAttractorsCheckBox.UseVisualStyleBackColor = true;
+      // 
+      // allowBinaryFissionCheckBox
+      // 
+      this.allowBinaryFissionCheckBox.AutoSize = true;
+      this.allowBinaryFissionCheckBox.Location = new System.Drawing.Point(9, 274);
+      this.allowBinaryFissionCheckBox.Name = "allowBinaryFissionCheckBox";
+      this.allowBinaryFissionCheckBox.Size = new System.Drawing.Size(118, 17);
+      this.allowBinaryFissionCheckBox.TabIndex = 23;
+      this.allowBinaryFissionCheckBox.Text = "Allow &Binary Fission";
+      this.allowBinaryFissionCheckBox.UseVisualStyleBackColor = true;
       // 
       // MainForm
       // 
@@ -1198,6 +1294,12 @@
     private System.Windows.Forms.Label label9;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.ComboBox attractorCollisionModeComboBox;
+    private System.Windows.Forms.ComboBox repellentCollisionModeComboBox;
+    private System.Windows.Forms.Label label10;
+    private System.Windows.Forms.Label label11;
+    private System.Windows.Forms.CheckBox allowBinaryFissionCheckBox;
+    private System.Windows.Forms.CheckBox respawnAttractorsCheckBox;
   }
 }
 
