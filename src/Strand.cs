@@ -113,5 +113,14 @@ namespace Cyotek.Demo.EColiSimulation
       set { _strength = value; }
     }
 
+    public Strand Copy()
+    {
+      return new Strand
+      {
+        Position = _position,
+        Strength = _strength,
+        Generation = _generation + 1
+      };
+    }
   }
 }

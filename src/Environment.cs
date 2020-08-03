@@ -151,7 +151,21 @@ namespace Cyotek.Demo.EColiSimulation
     {
       for (int i = 0; i < _strands.Count; i++)
       {
-        this.MoveStrand(_strands[i]);
+        Strand strand;
+
+        strand = _strands[i];
+
+        this.CheckFission(strand);
+        this.MoveStrand(strand);
+      }
+    }
+
+    private void CheckFission(Strand strand)
+    {
+      if (_binaryFission && _environmentRandom.NextDouble() < 0.001 && strand.Strength % 2 == 0)
+      {
+        strand.Strength /= 2;
+        _strands.Add(strand.Copy());
       }
     }
 
@@ -260,7 +274,7 @@ namespace Cyotek.Demo.EColiSimulation
 
       if (distance <= 1)
       {
-        this.ProcessCollision(strand, food, _foodSources, _attractorCollisionAction, () => this.AddFoodSource());
+        this.ProcessCollision(strand, food, _foodSources, _attractorCollisionAction, this.CheckRespawn);
 
         strand.PreviousSensor = 0;
       }
@@ -287,6 +301,14 @@ namespace Cyotek.Demo.EColiSimulation
         }
 
         strand.PreviousSensor = distance;
+      }
+    }
+
+    private void CheckRespawn()
+    {
+      if (_respawnAttractor)
+      {
+        this.AddFoodSource();
       }
     }
 
@@ -357,7 +379,7 @@ namespace Cyotek.Demo.EColiSimulation
       {
         if (Geometry.GetDistance(strand.Position, _noxiousSources[i].Position) <= 1)
         {
-          _strands.Remove(strand);
+          this.ProcessCollision(strand, _noxiousSources[i], _noxiousSources, _repellentCollisionAction, () => this.AddNoxiousSource());
         }
       }
 
@@ -365,8 +387,7 @@ namespace Cyotek.Demo.EColiSimulation
       {
         if (Geometry.GetDistance(strand.Position, _foodSources[i].Position) <= 1)
         {
-          _foodSources.RemoveAt(i);
-          this.AddFoodSource();
+          this.ProcessCollision(strand, _foodSources[i], _foodSources, _attractorCollisionAction, this.CheckRespawn);
           break;
         }
       }
