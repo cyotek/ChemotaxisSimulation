@@ -173,11 +173,13 @@ namespace Cyotek.Demo.EColiSimulation
           strand.Heading = Compass.GetOpposite(strand.Heading);
           this.Tumble(strand);
           strand.PreviousSensor = 0;
+          this.CheckCollisions(strand);
         }
         else
         {
           this.Tumble(strand);
           strand.PreviousSensor = 0;
+          this.CheckCollisions(strand);
         }
       }
     }
@@ -201,6 +203,7 @@ namespace Cyotek.Demo.EColiSimulation
         if (distance > strand.PreviousSensor)
         {
           this.Tumble(strand);
+          this.CheckCollisions(strand);
         }
         else
         {
@@ -236,6 +239,7 @@ namespace Cyotek.Demo.EColiSimulation
         if (distance < strand.PreviousSensor)
         {
           this.Tumble(strand);
+          this.CheckCollisions(strand);
         }
         else
         {
@@ -253,6 +257,27 @@ namespace Cyotek.Demo.EColiSimulation
         }
 
         strand.PreviousSensor = distance;
+      }
+    }
+
+    private void CheckCollisions(Strand strand)
+    {
+      for (int i = 0; i < _noxiousSources.Count; i++)
+      {
+        if (Geometry.GetDistance(strand.Position, _noxiousSources[i].Position) <= 1)
+        {
+          _strands.Remove(strand);
+        }
+      }
+
+      for (int i = 0; i < _foodSources.Count; i++)
+      {
+        if (Geometry.GetDistance(strand.Position, _foodSources[i].Position) <= 1)
+        {
+          _foodSources.RemoveAt(i);
+          this.AddFoodSource();
+          break;
+        }
       }
     }
 
