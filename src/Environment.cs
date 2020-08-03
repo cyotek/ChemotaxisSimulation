@@ -244,6 +244,15 @@ namespace Cyotek.Demo.EColiSimulation
       return result;
     }
 
+    private bool _solidStrands;
+
+    public bool SolidStrands
+    {
+      get { return _solidStrands; }
+      set { _solidStrands = value; }
+    }
+
+
     private Chemoeffector GetClosestRepellor(Strand strand)
     {
       return this.GetClosestChemoeffector(strand, _noxiousSources);
@@ -418,6 +427,23 @@ namespace Cyotek.Demo.EColiSimulation
         {
           this.ProcessCollision(strand, _foodSources[i], _foodSources, _attractorCollisionAction, this.CheckRespawn);
           break;
+        }
+      }
+
+      if (_solidStrands)
+      {
+        for (int i = 0; i < _strands.Count; i++)
+        {
+          Strand other;
+
+          other = _strands[i];
+
+          if(!object.ReferenceEquals(strand,other) && strand.Position == other.Position)
+          {
+            strand.UndoMove();
+            strand.Heading = _movementRandom.NextDouble() >= 0.5 ? Compass.GetNextQuarter(strand.Heading) : Compass.GetPreviousQuarter(strand.Heading);
+            break;
+          }
         }
       }
     }
