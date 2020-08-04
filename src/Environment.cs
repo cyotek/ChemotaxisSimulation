@@ -174,6 +174,14 @@ namespace Cyotek.Demo.EColiSimulation
     {
       _iteration++;
 
+      if (_mobileRepellents)
+      {
+        for (int i = 0; i < _noxiousSources.Count; i++)
+        {
+          _noxiousSources[i].Move();
+        }
+      }
+
       for (int i = 0; i < _strands.Count; i++)
       {
         Strand strand;
@@ -482,6 +490,15 @@ namespace Cyotek.Demo.EColiSimulation
       }
     }
 
+    private bool _mobileRepellents;
+
+    public bool MobileRepellents
+    {
+      get { return _mobileRepellents; }
+      set { _mobileRepellents = value; }
+    }
+
+
     public void AddFoodSource()
     {
       _foodSources.Add(new Chemoeffector
@@ -496,7 +513,8 @@ namespace Cyotek.Demo.EColiSimulation
       _noxiousSources.Add(new Chemoeffector
       {
         Position = this.GetRandomPoint(),
-        Strength = this.GetRandomSize(_minimumRepellentStrength, _maximumRepellentStrength)
+        Strength = this.GetRandomSize(_minimumRepellentStrength, _maximumRepellentStrength),
+        Heading = this.GetRandomHeading()
       });
     }
 

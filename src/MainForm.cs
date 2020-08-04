@@ -89,6 +89,7 @@ namespace Cyotek.Demo
       _environment.Wrap = wrapCheckBox.Checked;
       _environment.SolidStrands = solidStrandsCheckBox.Checked;
       _environment.Attrition = attritionCheckBox.Checked;
+      _environment.MobileRepellents = mobileRepellentsCheckBox.Checked;
       _environment.Reset();
 
       for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)
@@ -411,6 +412,13 @@ namespace Cyotek.Demo
       {
         this.SetUpdateSpeed(count);
       }
+    }
+
+    private void MobileRepellentsCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+      _environment.MobileRepellents = !_environment.MobileRepellents;
+
+      mobileRepellentsCheckBox.Checked = _environment.MobileRepellents;
     }
   }
 }

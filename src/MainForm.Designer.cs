@@ -167,6 +167,7 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.mobileRepellentsCheckBox = new System.Windows.Forms.CheckBox();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -525,7 +526,7 @@
       this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
       this.zoomInToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl++";
       this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-      this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
       this.zoomInToolStripMenuItem.Text = "Zoom &In";
       this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.ZoomInToolStripMenuItem_Click);
       // 
@@ -534,20 +535,20 @@
       this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
       this.zoomOutToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+-";
       this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-      this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
       this.zoomOutToolStripMenuItem.Text = "Zoom &Out";
       this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.ZoomOutToolStripMenuItem_Click);
       // 
       // toolStripMenuItem4
       // 
       this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-      this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+      this.toolStripMenuItem4.Size = new System.Drawing.Size(168, 6);
       // 
       // actualSizeToolStripMenuItem
       // 
       this.actualSizeToolStripMenuItem.Name = "actualSizeToolStripMenuItem";
       this.actualSizeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-      this.actualSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.actualSizeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
       this.actualSizeToolStripMenuItem.Text = "&Actual Size";
       this.actualSizeToolStripMenuItem.Click += new System.EventHandler(this.ActualSizeToolStripMenuItem_Click);
       // 
@@ -570,7 +571,7 @@
       // 
       this.highToolStripMenuItem.Name = "highToolStripMenuItem";
       this.highToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-      this.highToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.highToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
       this.highToolStripMenuItem.Tag = "4";
       this.highToolStripMenuItem.Text = "&High";
       this.highToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
@@ -579,7 +580,7 @@
       // 
       this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
       this.normalToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-      this.normalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.normalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
       this.normalToolStripMenuItem.Tag = "2";
       this.normalToolStripMenuItem.Text = "&Normal";
       this.normalToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
@@ -588,7 +589,7 @@
       // 
       this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
       this.lowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-      this.lowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.lowToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
       this.lowToolStripMenuItem.Tag = "1";
       this.lowToolStripMenuItem.Text = "&Low";
       this.lowToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
@@ -953,6 +954,7 @@
       // 
       this.setupGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.setupGroupBox.Controls.Add(this.mobileRepellentsCheckBox);
       this.setupGroupBox.Controls.Add(this.button10);
       this.setupGroupBox.Controls.Add(this.button9);
       this.setupGroupBox.Controls.Add(this.button8);
@@ -1003,7 +1005,7 @@
       this.setupGroupBox.Controls.Add(this.label1);
       this.setupGroupBox.Location = new System.Drawing.Point(2, 3);
       this.setupGroupBox.Name = "setupGroupBox";
-      this.setupGroupBox.Size = new System.Drawing.Size(292, 441);
+      this.setupGroupBox.Size = new System.Drawing.Size(292, 467);
       this.setupGroupBox.TabIndex = 0;
       this.setupGroupBox.TabStop = false;
       this.setupGroupBox.Text = "Scenario Setup";
@@ -1601,6 +1603,17 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
+      // mobileRepellentsCheckBox
+      // 
+      this.mobileRepellentsCheckBox.AutoSize = true;
+      this.mobileRepellentsCheckBox.Location = new System.Drawing.Point(6, 442);
+      this.mobileRepellentsCheckBox.Name = "mobileRepellentsCheckBox";
+      this.mobileRepellentsCheckBox.Size = new System.Drawing.Size(110, 17);
+      this.mobileRepellentsCheckBox.TabIndex = 40;
+      this.mobileRepellentsCheckBox.Text = "Mobi&le Repellents";
+      this.mobileRepellentsCheckBox.UseVisualStyleBackColor = true;
+      this.mobileRepellentsCheckBox.CheckedChanged += new System.EventHandler(this.MobileRepellentsCheckBox_CheckedChanged);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1788,6 +1801,7 @@
     private System.Windows.Forms.ToolStripMenuItem highToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem lowToolStripMenuItem;
+    private System.Windows.Forms.CheckBox mobileRepellentsCheckBox;
   }
 }
 
