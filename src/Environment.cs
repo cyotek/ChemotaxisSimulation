@@ -506,12 +506,12 @@ namespace Cyotek.Demo.EColiSimulation
       //x = strand.Heading.X;
       //y = strand.Heading.Y;
 
-      if (dir < 0.25)
+      if (dir < 0.33)
       {
         // counter-clockwise
         strand.Heading = Compass.GetPrevious(strand.Heading);
       }
-      else if (dir > 0.75)
+      else if (dir > 0.66)
       {
         // clockwise
         strand.Heading = Compass.GetNext(strand.Heading);
