@@ -184,7 +184,7 @@ namespace Cyotek.Demo
       }
     }
 
-    private void highToolStripMenuItem_Click(object sender, EventArgs e)
+    private void HighToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (sender is ToolStripMenuItem menuItem && menuItem.Tag is string value && int.TryParse(value, out int count))
       {

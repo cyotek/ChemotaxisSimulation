@@ -168,6 +168,7 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.veryHighToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -560,6 +561,7 @@
       // refreshIntervalToolStripMenuItem
       // 
       this.refreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.veryHighToolStripMenuItem,
             this.highToolStripMenuItem,
             this.normalToolStripMenuItem,
             this.lowToolStripMenuItem});
@@ -571,28 +573,28 @@
       // 
       this.highToolStripMenuItem.Name = "highToolStripMenuItem";
       this.highToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-      this.highToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+      this.highToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.highToolStripMenuItem.Tag = "4";
       this.highToolStripMenuItem.Text = "&High";
-      this.highToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
+      this.highToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
       // 
       // normalToolStripMenuItem
       // 
       this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
       this.normalToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-      this.normalToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+      this.normalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.normalToolStripMenuItem.Tag = "2";
       this.normalToolStripMenuItem.Text = "&Normal";
-      this.normalToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
+      this.normalToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
       // 
       // lowToolStripMenuItem
       // 
       this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
       this.lowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-      this.lowToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+      this.lowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.lowToolStripMenuItem.Tag = "1";
       this.lowToolStripMenuItem.Text = "&Low";
-      this.lowToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
+      this.lowToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
       // 
       // simulationToolStripMenuItem
       // 
@@ -1614,6 +1616,15 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
+      // veryHighToolStripMenuItem
+      // 
+      this.veryHighToolStripMenuItem.Name = "veryHighToolStripMenuItem";
+      this.veryHighToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
+      this.veryHighToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.veryHighToolStripMenuItem.Tag = "8";
+      this.veryHighToolStripMenuItem.Text = "&Very High";
+      this.veryHighToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1802,6 +1813,7 @@
     private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem lowToolStripMenuItem;
     private System.Windows.Forms.CheckBox mobileRepellentsCheckBox;
+    private System.Windows.Forms.ToolStripMenuItem veryHighToolStripMenuItem;
   }
 }
 
