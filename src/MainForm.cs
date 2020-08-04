@@ -361,6 +361,15 @@ namespace Cyotek.Demo
       }
     }
 
+    private void ShapesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _environmentRenderer.DrawShapes = !_environmentRenderer.DrawShapes;
+
+      shapesToolStripMenuItem.Checked = _environmentRenderer.DrawShapes;
+
+      renderPanel.Invalidate();
+    }
+
     private void SolidStrandsCheckBox_CheckedChanged(object sender, EventArgs e)
     {
       _environment.SolidStrands = solidStrandsCheckBox.Checked;

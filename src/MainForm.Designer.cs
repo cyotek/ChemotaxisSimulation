@@ -73,6 +73,7 @@
       this.actualSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
       this.refreshIntervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.veryHighToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.normalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -168,7 +169,7 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-      this.veryHighToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.shapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -419,6 +420,7 @@
             this.noxiousSourcesToolStripMenuItem,
             this.noxiousSourceDetectionZonesToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.shapesToolStripMenuItem,
             this.fillShapesToolStripMenuItem,
             this.antiAliasToolStripMenuItem,
             this.toolStripMenuItem3,
@@ -494,7 +496,7 @@
       this.fillShapesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.fillShapesToolStripMenuItem.Name = "fillShapesToolStripMenuItem";
       this.fillShapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.fillShapesToolStripMenuItem.Text = "Fill S&hapes";
+      this.fillShapesToolStripMenuItem.Text = "&Gradients";
       this.fillShapesToolStripMenuItem.Click += new System.EventHandler(this.FillShapesToolStripMenuItem_Click);
       // 
       // antiAliasToolStripMenuItem
@@ -569,11 +571,20 @@
       this.refreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
       this.refreshIntervalToolStripMenuItem.Text = "&Update Speed";
       // 
+      // veryHighToolStripMenuItem
+      // 
+      this.veryHighToolStripMenuItem.Name = "veryHighToolStripMenuItem";
+      this.veryHighToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
+      this.veryHighToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+      this.veryHighToolStripMenuItem.Tag = "8";
+      this.veryHighToolStripMenuItem.Text = "&Very High";
+      this.veryHighToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
+      // 
       // highToolStripMenuItem
       // 
       this.highToolStripMenuItem.Name = "highToolStripMenuItem";
       this.highToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-      this.highToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.highToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
       this.highToolStripMenuItem.Tag = "4";
       this.highToolStripMenuItem.Text = "&High";
       this.highToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
@@ -582,7 +593,7 @@
       // 
       this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
       this.normalToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-      this.normalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.normalToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
       this.normalToolStripMenuItem.Tag = "2";
       this.normalToolStripMenuItem.Text = "&Normal";
       this.normalToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
@@ -591,7 +602,7 @@
       // 
       this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
       this.lowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-      this.lowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.lowToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
       this.lowToolStripMenuItem.Tag = "1";
       this.lowToolStripMenuItem.Text = "&Low";
       this.lowToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
@@ -1616,14 +1627,14 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
-      // veryHighToolStripMenuItem
+      // shapesToolStripMenuItem
       // 
-      this.veryHighToolStripMenuItem.Name = "veryHighToolStripMenuItem";
-      this.veryHighToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
-      this.veryHighToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-      this.veryHighToolStripMenuItem.Tag = "8";
-      this.veryHighToolStripMenuItem.Text = "&Very High";
-      this.veryHighToolStripMenuItem.Click += new System.EventHandler(this.HighToolStripMenuItem_Click);
+      this.shapesToolStripMenuItem.Checked = true;
+      this.shapesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.shapesToolStripMenuItem.Name = "shapesToolStripMenuItem";
+      this.shapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.shapesToolStripMenuItem.Text = "S&hapes";
+      this.shapesToolStripMenuItem.Click += new System.EventHandler(this.ShapesToolStripMenuItem_Click);
       // 
       // MainForm
       // 
@@ -1814,6 +1825,7 @@
     private System.Windows.Forms.ToolStripMenuItem lowToolStripMenuItem;
     private System.Windows.Forms.CheckBox mobileRepellentsCheckBox;
     private System.Windows.Forms.ToolStripMenuItem veryHighToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem shapesToolStripMenuItem;
   }
 }
 
