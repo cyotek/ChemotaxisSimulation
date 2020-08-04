@@ -76,6 +76,9 @@
       this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
       this.nextMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+      this.advanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,6 +106,7 @@
       this.speedToolStripTrackBar = new Cyotek.Windows.Forms.ToolStripControllerHosts.ToolStripTrackBar();
       this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.statusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+      this.iterationToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.standsToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.attractorsToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.repellentsToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -546,7 +550,10 @@
             this.runToolStripMenuItem,
             this.pauseToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.nextMoveToolStripMenuItem});
+            this.nextMoveToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.advanceToolStripMenuItem,
+            this.goToToolStripMenuItem});
       this.simulationToolStripMenuItem.Name = "simulationToolStripMenuItem";
       this.simulationToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
       this.simulationToolStripMenuItem.Text = "&Simulation";
@@ -582,6 +589,26 @@
       this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.nextMoveToolStripMenuItem.Text = "&Next Move";
       this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.NextMoveToolStripButton_Click);
+      // 
+      // toolStripMenuItem5
+      // 
+      this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+      this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+      // 
+      // advanceToolStripMenuItem
+      // 
+      this.advanceToolStripMenuItem.Name = "advanceToolStripMenuItem";
+      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.advanceToolStripMenuItem.Text = "&Advance...";
+      this.advanceToolStripMenuItem.Click += new System.EventHandler(this.AdvanceToolStripMenuItem_Click);
+      // 
+      // goToToolStripMenuItem
+      // 
+      this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
+      this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+      this.goToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.goToToolStripMenuItem.Text = "&Go To...";
+      this.goToToolStripMenuItem.Click += new System.EventHandler(this.GoToToolStripMenuItem_Click);
       // 
       // toolsToolStripMenuItem
       // 
@@ -806,6 +833,7 @@
       // 
       this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusToolStripStatusLabel,
+            this.iterationToolStripStatusLabel,
             this.standsToolStripStatusLabel,
             this.attractorsToolStripStatusLabel,
             this.repellentsToolStripStatusLabel});
@@ -817,9 +845,15 @@
       // statusToolStripStatusLabel
       // 
       this.statusToolStripStatusLabel.Name = "statusToolStripStatusLabel";
-      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(954, 17);
+      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(941, 17);
       this.statusToolStripStatusLabel.Spring = true;
       this.statusToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // iterationToolStripStatusLabel
+      // 
+      this.iterationToolStripStatusLabel.Name = "iterationToolStripStatusLabel";
+      this.iterationToolStripStatusLabel.Size = new System.Drawing.Size(13, 17);
+      this.iterationToolStripStatusLabel.Text = "0";
       // 
       // standsToolStripStatusLabel
       // 
@@ -1696,6 +1730,10 @@
     private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
     private System.Windows.Forms.ToolStripMenuItem actualSizeToolStripMenuItem;
+    private System.Windows.Forms.ToolStripStatusLabel iterationToolStripStatusLabel;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+    private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
   }
 }
 

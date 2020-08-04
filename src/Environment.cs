@@ -130,6 +130,8 @@ namespace Cyotek.Demo.EColiSimulation
       _environmentRandom = new Random(_environmentSeed);
       _movementRandom = new Random(_movementSeed);
 
+      _iteration = 0;
+
       _strands.Clear();
       _foodSources.Clear();
       _noxiousSources.Clear();
@@ -163,8 +165,15 @@ namespace Cyotek.Demo.EColiSimulation
       return new Point(_environmentRandom.Next(1, _size.Width), _environmentRandom.Next(1, _size.Height));
     }
 
+    public ulong Iteration
+    {
+      get { return _iteration; }
+    }
+
     public void NextMove()
     {
+      _iteration++;
+
       for (int i = 0; i < _strands.Count; i++)
       {
         Strand strand;
@@ -495,6 +504,9 @@ namespace Cyotek.Demo.EColiSimulation
     {
       return _environmentRandom.Next(min, max);
     }
+
+    private ulong _iteration;
+
 
     private void Tumble(Strand strand)
     {

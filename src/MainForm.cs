@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Environment = Cyotek.Demo.EColiSimulation.Environment;
 using Cyotek.Demo.EColiSimulation;
 using System.Drawing.Drawing2D;
+using Cyotek.Windows.Forms;
 
 namespace Cyotek.Demo
 {
@@ -105,6 +106,7 @@ namespace Cyotek.Demo
       }
       else
       {
+        this.UpdateIteration();
         standsToolStripStatusLabel.Text = _environment.Strands.Count.ToString();
         attractorsToolStripStatusLabel.Text = _environment.FoodSources.Count.ToString();
         repellentsToolStripStatusLabel.Text = _environment.NoxiousSources.Count.ToString();
@@ -180,8 +182,17 @@ namespace Cyotek.Demo
       {
         this.UpdateStatusBar();
       }
+      else
+      {
+        this.UpdateIteration();
+      }
 
       renderPanel.Invalidate();
+    }
+
+    private void UpdateIteration()
+    {
+      iterationToolStripStatusLabel.Text = _environment.Iteration.ToString();
     }
 
     private void SpeedToolStripTrackBar_ValueChanged(object sender, EventArgs e)
@@ -324,6 +335,48 @@ namespace Cyotek.Demo
     private void ActualSizeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       scaleToolStripTrackBar.Value = 10;
+    }
+
+    private void AdvanceToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      decimal count;
+
+      count = NumericInputDialog.ShowInputDialog(this, "Enter &iterations to advance:", "Advance", 1, 1, int.MaxValue, _ => true);
+
+      if (count > 0)
+      {
+        for (ulong i = 0; i < count; i++)
+        {
+          _environment.NextMove();
+        }
+
+        this.UpdateStatusBar();
+
+        renderPanel.Invalidate();
+      }
+    }
+
+    private void GoToToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      decimal count;
+
+      count = NumericInputDialog.ShowInputDialog(this, "Enter &iteration:", "Go To", 1, 1, int.MaxValue, v => v > _environment.Iteration);
+
+      if (count > 0)
+      {
+        ulong iterations;
+
+        iterations = (ulong)count - _environment.Iteration;
+
+        for (ulong i = 0; i < iterations; i++)
+        {
+          _environment.NextMove();
+        }
+
+        this.UpdateStatusBar();
+
+        renderPanel.Invalidate();
+      }
     }
   }
 }
