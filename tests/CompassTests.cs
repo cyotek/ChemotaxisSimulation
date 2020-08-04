@@ -10,6 +10,22 @@ namespace Cyotek.EColiSimulation.Tests
   {
     #region Public Properties
 
+    public static IEnumerable<TestCaseData> GetAngleTestCaseSource
+    {
+      get
+      {
+        yield return new TestCaseData(Compass.North, 0).SetName(nameof(GetAngleTestCases) + "North");
+        yield return new TestCaseData(Compass.NorthEast, 45).SetName(nameof(GetAngleTestCases) + "NorthEast");
+        yield return new TestCaseData(Compass.East, 90).SetName(nameof(GetAngleTestCases) + "East");
+        yield return new TestCaseData(Compass.SouthEast, 135).SetName(nameof(GetAngleTestCases) + "SouthEast");
+        yield return new TestCaseData(Compass.South, 180).SetName(nameof(GetAngleTestCases) + "South");
+        yield return new TestCaseData(Compass.SouthWest, 225).SetName(nameof(GetAngleTestCases) + "SouthWest");
+        yield return new TestCaseData(Compass.West, 270).SetName(nameof(GetAngleTestCases) + "West");
+        yield return new TestCaseData(Compass.NorthWest, 315).SetName(nameof(GetAngleTestCases) + "NorthWest");
+        yield return new TestCaseData(new Point(20, 21), 0).SetName(nameof(GetAngleTestCases) + "Invalid");
+      }
+    }
+
     public static IEnumerable<TestCaseData> GetNextQuarterTestCaseSource
     {
       get
@@ -93,6 +109,20 @@ namespace Cyotek.EColiSimulation.Tests
     #endregion Public Properties
 
     #region Public Methods
+
+    [Test]
+    [TestCaseSource(nameof(GetAngleTestCaseSource))]
+    public void GetAngleTestCases(Point current, int expected)
+    {
+      // arrange
+      int actual;
+
+      // act
+      actual = Compass.GetAngle(current);
+
+      // assert
+      Assert.AreEqual(expected, actual);
+    }
 
     [Test]
     [TestCaseSource(nameof(GetNextQuarterTestCaseSource))]
