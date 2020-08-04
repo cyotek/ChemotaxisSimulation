@@ -1,6 +1,8 @@
 ﻿using Cyotek.Collections.Generic;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace Cyotek.Demo.EColiSimulation
 {
@@ -35,6 +37,7 @@ namespace Cyotek.Demo.EColiSimulation
       _showFoodSources = true;
       _showNoxiousSources = true;
       _showNoxiousDetectionZone = true;
+      _drawShapes = true;
     }
 
     #endregion Public Constructors
@@ -91,6 +94,15 @@ namespace Cyotek.Demo.EColiSimulation
       set { _outlinesOnly = value; }
     }
 
+    private bool _drawShapes;
+
+    public bool DrawShapes
+    {
+      get { return _drawShapes; }
+      set { _drawShapes = value; }
+    }
+
+
 
     #endregion Public Properties
 
@@ -99,7 +111,6 @@ namespace Cyotek.Demo.EColiSimulation
     public void Draw(Environment environment, Graphics graphics)
     {
       graphics.Clear(SystemColors.Control);
-      //graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
       graphics.ScaleTransform(_scale, _scale);
 
@@ -123,6 +134,11 @@ namespace Cyotek.Demo.EColiSimulation
 
       if (_showStrands)
       {
+        if (_drawShapes)
+        {
+          graphics.ResetTransform();
+        }
+
         for (int i = 0; i < environment.Strands.Count; i++)
         {
           this.DrawStrand(graphics, environment.Strands[i]);
@@ -234,10 +250,40 @@ namespace Cyotek.Demo.EColiSimulation
         //this.DrawTail(graphics, strand, Color.CornflowerBlue);
       }
 
-      //graphics.DrawEllipse(Pens.Black, strand.Position.X - 1, strand.Position.Y - 1, 2, 2);
-      graphics.DrawLine(Pens.SaddleBrown, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
-      graphics.DrawLine(Pens.SaddleBrown, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
+      Pen pen;
+
+      pen = Pens.SaddleBrown;
+
+      if (_drawShapes)
+      {
+        int x;
+        int y;
+
+        x = strand.Position.X;
+        y = strand.Position.Y;
+
+        graphics.ScaleTransform(_scale, _scale);
+        graphics.TranslateTransform(x, y);
+        graphics.RotateTransform(Compass.GetAngle(strand.Heading));
+        graphics.DrawLines(pen, _strandShape);
+        graphics.ResetTransform();
+      }
+      else
+      {
+        graphics.DrawLine(pen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
+        graphics.DrawLine(pen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
+      }
     }
+
+    private static readonly Point[] _strandShape = new[]
+        {
+          new Point(0, 0),
+          new Point(-1, 1),
+          new Point(-1, 3),
+          new Point(1, 3),
+          new Point(1, 1),
+          new Point(0, 0)
+        };
 
     private void DrawTail(Graphics graphics, Strand strand, Color color)
     {
