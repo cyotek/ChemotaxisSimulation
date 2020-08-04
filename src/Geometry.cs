@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Cyotek.Demo.EColiSimulation
+namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal static class Geometry
   {

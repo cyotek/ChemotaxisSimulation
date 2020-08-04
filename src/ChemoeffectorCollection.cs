@@ -1,18 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Cyotek.Demo.EColiSimulation
+namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal class ChemoeffectorCollection : Collection<Chemoeffector>
   {
     #region Private Fields
 
-    private readonly Environment _environment;
+    private readonly Simulation _environment;
 
     #endregion Private Fields
 
     #region Public Constructors
 
-    public ChemoeffectorCollection(Environment environment)
+    public ChemoeffectorCollection(Simulation environment)
     {
       _environment = environment;
     }

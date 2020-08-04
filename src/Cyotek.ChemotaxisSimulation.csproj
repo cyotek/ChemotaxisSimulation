@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE445F69-8648-4D8F-A552-3E8BC552498F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Cyotek.Demo.EColiSimulation</RootNamespace>
-    <AssemblyName>ecolisim</AssemblyName>
+    <RootNamespace>Cyotek.Demo.ChemotaxisSimulation</RootNamespace>
+    <AssemblyName>ctkchmmv</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,16 +37,8 @@
       <HintPath>..\..\..\..\..\packages\Cyotek.CircularBuffer.1.1.0-alpha4\lib\net48\Cyotek.Collections.Generic.CircularBuffer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutDialog.cs">
@@ -67,7 +59,6 @@
     <Compile Include="CollisionAction.cs" />
     <Compile Include="Compass.cs" />
     <Compile Include="EmptyArray.cs" />
-    <Compile Include="EnvironmentRenderer.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="NumericInputDialog.cs">
       <SubType>Form</SubType>
@@ -89,6 +80,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Simulation.cs" />
+    <Compile Include="SimulationRenderer.cs" />
     <Compile Include="StrandCollection.cs" />
     <Compile Include="Timer.cs">
       <SubType>Component</SubType>
@@ -96,7 +89,6 @@
     <Compile Include="ToolStripControllerHosts\ToolStripTrackBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Environment.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

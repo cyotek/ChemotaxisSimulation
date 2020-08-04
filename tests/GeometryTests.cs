@@ -1,9 +1,9 @@
-﻿using Cyotek.Demo.EColiSimulation;
+﻿using Cyotek.Demo.ChemotaxisSimulation;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Cyotek.EColiSimulation.Tests
+namespace Cyotek.ChemotaxisSimulation.Tests
 {
   [TestFixture]
   public class GeometryTests

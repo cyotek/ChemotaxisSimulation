@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Cyotek.Demo.EColiSimulation
+namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal static class Compass
   {
@@ -25,6 +25,50 @@ namespace Cyotek.Demo.EColiSimulation
     #endregion Public Fields
 
     #region Public Methods
+
+    public static int GetAngle(Point current)
+    {
+      int result;
+
+      if (current == Compass.North)
+      {
+        result = 0;
+      }
+      else if (current == Compass.NorthEast)
+      {
+        result = 45;
+      }
+      else if (current == Compass.East)
+      {
+        result = 90;
+      }
+      else if (current == Compass.SouthEast)
+      {
+        result = 135;
+      }
+      else if (current == Compass.South)
+      {
+        result = 180;
+      }
+      else if (current == Compass.SouthWest)
+      {
+        result = 225;
+      }
+      else if (current == Compass.West)
+      {
+        result = 270;
+      }
+      else if (current == Compass.NorthWest)
+      {
+        result = 315;
+      }
+      else
+      {
+        result = 0;
+      }
+
+      return result;
+    }
 
     public static Point GetNext(Point current)
     {
@@ -65,49 +109,6 @@ namespace Cyotek.Demo.EColiSimulation
       else
       {
         result = Point.Empty;
-      }
-
-      return result;
-    }
-    public static int GetAngle(Point current)
-    {
-      int result;
-
-      if (current == Compass.North)
-      {
-        result = 0;
-      }
-      else if (current == Compass.NorthEast)
-      {
-        result = 45;
-      }
-      else if (current == Compass.East)
-      {
-        result = 90;
-      }
-      else if (current == Compass.SouthEast)
-      {
-        result = 135;
-      }
-      else if (current == Compass.South)
-      {
-        result = 180;
-      }
-      else if (current == Compass.SouthWest)
-      {
-        result = 225;
-      }
-      else if (current == Compass.West)
-      {
-        result = 270;
-      }
-      else if (current == Compass.NorthWest)
-      {
-        result = 315;
-      }
-      else
-      {
-        result = 0;
       }
 
       return result;

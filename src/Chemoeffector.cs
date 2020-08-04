@@ -1,12 +1,12 @@
 ﻿using System.Drawing;
 
-namespace Cyotek.Demo.EColiSimulation
+namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal class Chemoeffector
   {
     #region Private Fields
 
-    private Environment _environment;
+    private Simulation _environment;
 
     private Point _heading;
 
@@ -40,7 +40,7 @@ namespace Cyotek.Demo.EColiSimulation
 
     #region Internal Properties
 
-    internal Environment Environment
+    internal Simulation Environment
     {
       get { return _environment; }
       set { _environment = value; }

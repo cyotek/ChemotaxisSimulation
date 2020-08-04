@@ -1,29 +1,29 @@
 ﻿using Cyotek.Collections.Generic;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Cyotek.Demo.EColiSimulation
+namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal class Strand
   {
-    private Point _position;
+    #region Private Fields
 
-    public Point Position
-    {
-      get { return _position; }
-      set { _position = value; }
-    }
+    private Simulation _environment;
+
+    private int _generation;
+
+    private Point _heading;
+
+    private Point _position;
 
     private CircularBuffer<Point> _previousPositions;
 
-    public CircularBuffer<Point> PreviousPositions
-    {
-      get { return _previousPositions; }
-    }
+    private double _previousSensor;
+
+    private int _strength;
+
+    #endregion Private Fields
+
+    #region Public Constructors
 
     public Strand()
     {
@@ -33,7 +33,9 @@ namespace Cyotek.Demo.EColiSimulation
       _generation = 1;
     }
 
-    private int _generation;
+    #endregion Public Constructors
+
+    #region Public Properties
 
     public int Generation
     {
@@ -41,16 +43,22 @@ namespace Cyotek.Demo.EColiSimulation
       set { _generation = value; }
     }
 
-
-    private Point _heading;
-
     public Point Heading
     {
       get { return _heading; }
       set { _heading = value; }
     }
 
-    private double _previousSensor;
+    public Point Position
+    {
+      get { return _position; }
+      set { _position = value; }
+    }
+
+    public CircularBuffer<Point> PreviousPositions
+    {
+      get { return _previousPositions; }
+    }
 
     public double PreviousSensor
     {
@@ -58,12 +66,34 @@ namespace Cyotek.Demo.EColiSimulation
       set { _previousSensor = value; }
     }
 
-    private Environment _environment;
+    public int Strength
+    {
+      get { return _strength; }
+      set { _strength = value; }
+    }
 
-    internal Environment Environment
+    #endregion Public Properties
+
+    #region Internal Properties
+
+    internal Simulation Environment
     {
       get { return _environment; }
       set { _environment = value; }
+    }
+
+    #endregion Internal Properties
+
+    #region Public Methods
+
+    public Strand Copy()
+    {
+      return new Strand
+      {
+        Position = _position,
+        Strength = _strength,
+        Generation = _generation + 1
+      };
     }
 
     public void Move()
@@ -114,27 +144,15 @@ namespace Cyotek.Demo.EColiSimulation
       }
     }
 
+    #endregion Public Methods
+
+    #region Internal Methods
+
     internal void UndoMove()
     {
       _position = _previousPositions.GetLast();
     }
 
-    private int _strength;
-
-    public int Strength
-    {
-      get { return _strength; }
-      set { _strength = value; }
-    }
-
-    public Strand Copy()
-    {
-      return new Strand
-      {
-        Position = _position,
-        Strength = _strength,
-        Generation = _generation + 1
-      };
-    }
+    #endregion Internal Methods
   }
 }

@@ -118,6 +118,7 @@
       this.renderPanel = new Cyotek.Demo.Windows.Forms.BufferedPanel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
       this.setupGroupBox = new System.Windows.Forms.GroupBox();
+      this.mobileRepellentsCheckBox = new System.Windows.Forms.CheckBox();
       this.button10 = new System.Windows.Forms.Button();
       this.button9 = new System.Windows.Forms.Button();
       this.button8 = new System.Windows.Forms.Button();
@@ -167,7 +168,6 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-      this.mobileRepellentsCheckBox = new System.Windows.Forms.CheckBox();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -610,7 +610,7 @@
       // 
       // runToolStripMenuItem
       // 
-      this.runToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Play;
+      this.runToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Play;
       this.runToolStripMenuItem.Name = "runToolStripMenuItem";
       this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
       this.runToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
@@ -619,7 +619,7 @@
       // 
       // pauseToolStripMenuItem
       // 
-      this.pauseToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Pause;
+      this.pauseToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Pause;
       this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
       this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
       this.pauseToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
@@ -633,7 +633,7 @@
       // 
       // nextMoveToolStripMenuItem
       // 
-      this.nextMoveToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Next;
+      this.nextMoveToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Next;
       this.nextMoveToolStripMenuItem.Name = "nextMoveToolStripMenuItem";
       this.nextMoveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
       this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
@@ -840,7 +840,7 @@
       // nextMoveToolStripButton
       // 
       this.nextMoveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.nextMoveToolStripButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Next;
+      this.nextMoveToolStripButton.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Next;
       this.nextMoveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.nextMoveToolStripButton.Name = "nextMoveToolStripButton";
       this.nextMoveToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -850,7 +850,7 @@
       // playToolStripButton
       // 
       this.playToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.playToolStripButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Play;
+      this.playToolStripButton.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Play;
       this.playToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.playToolStripButton.Name = "playToolStripButton";
       this.playToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -860,7 +860,7 @@
       // pauseToolStripButton
       // 
       this.pauseToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.pauseToolStripButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Pause;
+      this.pauseToolStripButton.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Pause;
       this.pauseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.pauseToolStripButton.Name = "pauseToolStripButton";
       this.pauseToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -1010,9 +1010,20 @@
       this.setupGroupBox.TabStop = false;
       this.setupGroupBox.Text = "Scenario Setup";
       // 
+      // mobileRepellentsCheckBox
+      // 
+      this.mobileRepellentsCheckBox.AutoSize = true;
+      this.mobileRepellentsCheckBox.Location = new System.Drawing.Point(6, 442);
+      this.mobileRepellentsCheckBox.Name = "mobileRepellentsCheckBox";
+      this.mobileRepellentsCheckBox.Size = new System.Drawing.Size(110, 17);
+      this.mobileRepellentsCheckBox.TabIndex = 40;
+      this.mobileRepellentsCheckBox.Text = "Mobi&le Repellents";
+      this.mobileRepellentsCheckBox.UseVisualStyleBackColor = true;
+      this.mobileRepellentsCheckBox.CheckedChanged += new System.EventHandler(this.MobileRepellentsCheckBox_CheckedChanged);
+      // 
       // button10
       // 
-      this.button10.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button10.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button10.Location = new System.Drawing.Point(156, 84);
       this.button10.Name = "button10";
       this.button10.Size = new System.Drawing.Size(20, 20);
@@ -1023,7 +1034,7 @@
       // 
       // button9
       // 
-      this.button9.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button9.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button9.Location = new System.Drawing.Point(229, 84);
       this.button9.Name = "button9";
       this.button9.Size = new System.Drawing.Size(20, 20);
@@ -1034,7 +1045,7 @@
       // 
       // button8
       // 
-      this.button8.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button8.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button8.Location = new System.Drawing.Point(152, 256);
       this.button8.Name = "button8";
       this.button8.Size = new System.Drawing.Size(20, 20);
@@ -1045,7 +1056,7 @@
       // 
       // button7
       // 
-      this.button7.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button7.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button7.Location = new System.Drawing.Point(152, 230);
       this.button7.Name = "button7";
       this.button7.Size = new System.Drawing.Size(20, 20);
@@ -1056,7 +1067,7 @@
       // 
       // button6
       // 
-      this.button6.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button6.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button6.Location = new System.Drawing.Point(225, 256);
       this.button6.Name = "button6";
       this.button6.Size = new System.Drawing.Size(20, 20);
@@ -1067,7 +1078,7 @@
       // 
       // button5
       // 
-      this.button5.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button5.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button5.Location = new System.Drawing.Point(225, 230);
       this.button5.Name = "button5";
       this.button5.Size = new System.Drawing.Size(20, 20);
@@ -1078,7 +1089,7 @@
       // 
       // button4
       // 
-      this.button4.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button4.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button4.Location = new System.Drawing.Point(132, 183);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(20, 20);
@@ -1089,7 +1100,7 @@
       // 
       // button3
       // 
-      this.button3.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button3.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button3.Location = new System.Drawing.Point(132, 157);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(20, 20);
@@ -1100,7 +1111,7 @@
       // 
       // button2
       // 
-      this.button2.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button2.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button2.Location = new System.Drawing.Point(132, 131);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(20, 20);
@@ -1111,7 +1122,7 @@
       // 
       // button1
       // 
-      this.button1.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.button1.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.button1.Location = new System.Drawing.Point(186, 45);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(20, 20);
@@ -1122,7 +1133,7 @@
       // 
       // environmentSeedRandomButton
       // 
-      this.environmentSeedRandomButton.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Random;
+      this.environmentSeedRandomButton.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
       this.environmentSeedRandomButton.Location = new System.Drawing.Point(186, 19);
       this.environmentSeedRandomButton.Name = "environmentSeedRandomButton";
       this.environmentSeedRandomButton.Size = new System.Drawing.Size(20, 20);
@@ -1603,17 +1614,6 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
-      // mobileRepellentsCheckBox
-      // 
-      this.mobileRepellentsCheckBox.AutoSize = true;
-      this.mobileRepellentsCheckBox.Location = new System.Drawing.Point(6, 442);
-      this.mobileRepellentsCheckBox.Name = "mobileRepellentsCheckBox";
-      this.mobileRepellentsCheckBox.Size = new System.Drawing.Size(110, 17);
-      this.mobileRepellentsCheckBox.TabIndex = 40;
-      this.mobileRepellentsCheckBox.Text = "Mobi&le Repellents";
-      this.mobileRepellentsCheckBox.UseVisualStyleBackColor = true;
-      this.mobileRepellentsCheckBox.CheckedChanged += new System.EventHandler(this.MobileRepellentsCheckBox_CheckedChanged);
-      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1630,7 +1630,7 @@
       this.Name = "MainForm";
       this.ShowIcon = true;
       this.ShowInTaskbar = true;
-      this.Text = "Form1";
+      this.Text = "Cyotek Chemotaxis Simulation";
       this.menuStrip.ResumeLayout(false);
       this.menuStrip.PerformLayout();
       this.toolStrip.ResumeLayout(false);

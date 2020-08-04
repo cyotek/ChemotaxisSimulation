@@ -1,14 +1,25 @@
-﻿using Cyotek.Collections.Generic;
-using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
-namespace Cyotek.Demo.EColiSimulation
+namespace Cyotek.Demo.ChemotaxisSimulation
 {
-  internal class EnvironmentRenderer
+  internal class SimulationRenderer
   {
     #region Private Fields
+
+    private static readonly Point[] _strandShape = new[]
+    {
+      new Point(0, 0),
+      new Point(-1, 1),
+      new Point(-1, 3),
+      new Point(1, 3),
+      new Point(1, 1),
+      new Point(0, 0)
+    };
+
+    private bool _drawShapes;
+
+    private bool _outlinesOnly;
 
     private float _scale;
 
@@ -28,7 +39,7 @@ namespace Cyotek.Demo.EColiSimulation
 
     #region Public Constructors
 
-    public EnvironmentRenderer()
+    public SimulationRenderer()
     {
       _scale = 1;
       _showFoodDetectionZone = true;
@@ -43,6 +54,18 @@ namespace Cyotek.Demo.EColiSimulation
     #endregion Public Constructors
 
     #region Public Properties
+
+    public bool DrawShapes
+    {
+      get { return _drawShapes; }
+      set { _drawShapes = value; }
+    }
+
+    public bool OutlinesOnly
+    {
+      get { return _outlinesOnly; }
+      set { _outlinesOnly = value; }
+    }
 
     public float Scale
     {
@@ -86,29 +109,11 @@ namespace Cyotek.Demo.EColiSimulation
       set { _showTails = value; }
     }
 
-    private bool _outlinesOnly;
-
-    public bool OutlinesOnly
-    {
-      get { return _outlinesOnly; }
-      set { _outlinesOnly = value; }
-    }
-
-    private bool _drawShapes;
-
-    public bool DrawShapes
-    {
-      get { return _drawShapes; }
-      set { _drawShapes = value; }
-    }
-
-
-
     #endregion Public Properties
 
     #region Public Methods
 
-    public void Draw(Environment environment, Graphics graphics)
+    public void Draw(Simulation environment, Graphics graphics)
     {
       graphics.Clear(SystemColors.Control);
 
@@ -187,7 +192,6 @@ namespace Cyotek.Demo.EColiSimulation
       {
         graphics.DrawLine(pen, new Point(chemoeffector.Position.X - 1, chemoeffector.Position.Y), new Point(chemoeffector.Position.X + 1, chemoeffector.Position.Y));
         graphics.DrawLine(pen, new Point(chemoeffector.Position.X, chemoeffector.Position.Y - 1), new Point(chemoeffector.Position.X, chemoeffector.Position.Y + 1));
-        //graphics.DrawEllipse(pen, chemoeffector.Position.X - 1, chemoeffector.Position.Y - 1, 2, 2);
       }
     }
 
@@ -203,53 +207,6 @@ namespace Cyotek.Demo.EColiSimulation
 
     private void DrawStrand(Graphics graphics, Strand strand)
     {
-      if (strand.PreviousPositions.Size > 1 && _showTails)
-      {
-        //int start;
-        //start = 0;
-        //for (int i = 1; i < strand.PreviousPositions.Size; i++)
-        //{
-        //  Point previous;
-        //  Point current;
-
-        //  previous = strand.PreviousPositions.PeekAt(i - 1);
-        //  current = strand.PreviousPositions.PeekAt(i);
-
-        //  if (!new Rectangle(current.X - 1, current.Y - 1, 3, 3).Contains(previous) && i - start > 1)
-        //  {
-        //    Point[] buffer;
-
-        //    buffer = ArrayPool<Point>.Shared.Allocate(i - start);
-
-        //    strand.PreviousPositions.CopyTo(start, buffer, 0, i - start);
-        //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        //    start = i;
-        //  }
-        //}
-
-        //if (start < strand.PreviousPositions.Size && strand.PreviousPositions.Size - start > 1)
-        //{
-        //  Point[] buffer;
-
-        //  buffer = ArrayPool<Point>.Shared.Allocate(strand.PreviousPositions.Size - start);
-
-        //  strand.PreviousPositions.CopyTo(start, buffer, 0, strand.PreviousPositions.Size - start);
-        //  graphics.DrawLines(Pens.CornflowerBlue, buffer);
-        //}
-        //Point[] buffer;
-
-        //buffer = ArrayPool<Point>.Shared.Allocate(strand.PreviousPositions.Size + 1);
-
-        //strand.PreviousPositions.CopyTo(buffer);
-        //buffer[buffer.Length - 1] = strand.Position;
-
-        //graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        //ArrayPool<Point>.Shared.Free(buffer);
-        //this.DrawTail(graphics, strand, Color.CornflowerBlue);
-      }
-
       Pen pen;
 
       pen = Pens.SaddleBrown;
@@ -272,86 +229,6 @@ namespace Cyotek.Demo.EColiSimulation
       {
         graphics.DrawLine(pen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
         graphics.DrawLine(pen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
-      }
-    }
-
-    private static readonly Point[] _strandShape = new[]
-        {
-          new Point(0, 0),
-          new Point(-1, 1),
-          new Point(-1, 3),
-          new Point(1, 3),
-          new Point(1, 1),
-          new Point(0, 0)
-        };
-
-    private void DrawTail(Graphics graphics, Strand strand, Color color)
-    {
-      CircularBuffer<Point> positions;
-      GraphicsPath path;
-      int start;
-
-      positions = strand.PreviousPositions;
-      path = new GraphicsPath();
-      start = 0;
-
-      for (int i = 0; i < positions.Size; i++)
-      {
-        Point current;
-        Point next;
-
-        current = strand.PreviousPositions.PeekAt(i);
-
-        if (i == positions.Size - 1)
-        {
-          this.DrawTail(graphics, positions, color, start, positions.Size - start);
-        }
-        else
-        {
-          next = positions.PeekAt(i + 1);
-          if (Geometry.GetDistance(next, current) > 1)
-          {
-            this.DrawTail(graphics, positions, color, start, i - start);
-            start = i;
-          }
-        }
-
-        //if (draw)
-        //{
-        //  int length;
-
-        //  length = i - start;
-
-        //  if (length > 1)
-        //  {
-        //    Point[] buffer;
-
-        //    buffer = ArrayPool<Point>.Shared.Allocate(length);
-
-        //    positions.CopyTo(start,buffer,0,length);
-
-        //    graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        //    ArrayPool<Point>.Shared.Free(buffer);
-        //  start = i;
-        //  }
-        //}
-      }
-    }
-
-    private void DrawTail(Graphics graphics, CircularBuffer<Point> positions, Color color, int start, int length)
-    {
-      if (length > 1)
-      {
-        Point[] buffer;
-
-        buffer = ArrayPool<Point>.Shared.Allocate(length);
-
-        positions.CopyTo(start, buffer, 0, length);
-
-        graphics.DrawLines(Pens.CornflowerBlue, buffer);
-
-        ArrayPool<Point>.Shared.Free(buffer);
       }
     }
 

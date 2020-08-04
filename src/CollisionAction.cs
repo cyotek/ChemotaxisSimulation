@@ -1,4 +1,4 @@
-﻿namespace Cyotek.Demo.EColiSimulation
+﻿namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal enum CollisionAction
   {

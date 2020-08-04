@@ -8,8 +8,8 @@
     <ProjectGuid>{F081E6A6-4F12-4AF8-BF41-0AAEE20BAB6C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cyotek.EColiSimulation.Tests</RootNamespace>
-    <AssemblyName>Cyotek.EColiSimulation.Tests</AssemblyName>
+    <RootNamespace>Cyotek.ChemotaxisSimulation.Tests</RootNamespace>
+    <AssemblyName>Cyotek.ChemotaxisSimulation.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -49,9 +49,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Cyotek.EColiSimulation.csproj">
+    <ProjectReference Include="..\src\Cyotek.ChemotaxisSimulation.csproj">
       <Project>{ae445f69-8648-4d8f-a552-3e8bc552498f}</Project>
-      <Name>Cyotek.EColiSimulation</Name>
+      <Name>Cyotek.ChemotaxisSimulation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

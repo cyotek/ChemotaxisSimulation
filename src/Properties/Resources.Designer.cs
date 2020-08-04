@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cyotek.Demo.EColiSimulation.Properties {
+namespace Cyotek.Demo.ChemotaxisSimulation.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Cyotek.Demo.EColiSimulation.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cyotek.Demo.EColiSimulation.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cyotek.Demo.ChemotaxisSimulation.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
