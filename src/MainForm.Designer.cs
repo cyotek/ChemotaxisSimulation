@@ -71,6 +71,11 @@
       this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
       this.actualSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+      this.refreshIntervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.normalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -415,7 +420,9 @@
             this.fillShapesToolStripMenuItem,
             this.antiAliasToolStripMenuItem,
             this.toolStripMenuItem3,
-            this.zoomToolStripMenuItem});
+            this.zoomToolStripMenuItem,
+            this.toolStripMenuItem6,
+            this.refreshIntervalToolStripMenuItem});
       this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
       this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
       this.viewToolStripMenuItem.Text = "&View";
@@ -518,7 +525,7 @@
       this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
       this.zoomInToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl++";
       this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-      this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+      this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.zoomInToolStripMenuItem.Text = "Zoom &In";
       this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.ZoomInToolStripMenuItem_Click);
       // 
@@ -527,22 +534,64 @@
       this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
       this.zoomOutToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+-";
       this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-      this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+      this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.zoomOutToolStripMenuItem.Text = "Zoom &Out";
       this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.ZoomOutToolStripMenuItem_Click);
       // 
       // toolStripMenuItem4
       // 
       this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-      this.toolStripMenuItem4.Size = new System.Drawing.Size(168, 6);
+      this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
       // 
       // actualSizeToolStripMenuItem
       // 
       this.actualSizeToolStripMenuItem.Name = "actualSizeToolStripMenuItem";
       this.actualSizeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-      this.actualSizeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+      this.actualSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.actualSizeToolStripMenuItem.Text = "&Actual Size";
       this.actualSizeToolStripMenuItem.Click += new System.EventHandler(this.ActualSizeToolStripMenuItem_Click);
+      // 
+      // toolStripMenuItem6
+      // 
+      this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+      this.toolStripMenuItem6.Size = new System.Drawing.Size(243, 6);
+      // 
+      // refreshIntervalToolStripMenuItem
+      // 
+      this.refreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.highToolStripMenuItem,
+            this.normalToolStripMenuItem,
+            this.lowToolStripMenuItem});
+      this.refreshIntervalToolStripMenuItem.Name = "refreshIntervalToolStripMenuItem";
+      this.refreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.refreshIntervalToolStripMenuItem.Text = "&Update Speed";
+      // 
+      // highToolStripMenuItem
+      // 
+      this.highToolStripMenuItem.Name = "highToolStripMenuItem";
+      this.highToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
+      this.highToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.highToolStripMenuItem.Tag = "4";
+      this.highToolStripMenuItem.Text = "&High";
+      this.highToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
+      // 
+      // normalToolStripMenuItem
+      // 
+      this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
+      this.normalToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
+      this.normalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.normalToolStripMenuItem.Tag = "2";
+      this.normalToolStripMenuItem.Text = "&Normal";
+      this.normalToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
+      // 
+      // lowToolStripMenuItem
+      // 
+      this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
+      this.lowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
+      this.lowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.lowToolStripMenuItem.Tag = "1";
+      this.lowToolStripMenuItem.Text = "&Low";
+      this.lowToolStripMenuItem.Click += new System.EventHandler(this.highToolStripMenuItem_Click);
       // 
       // simulationToolStripMenuItem
       // 
@@ -563,7 +612,7 @@
       this.runToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Play;
       this.runToolStripMenuItem.Name = "runToolStripMenuItem";
       this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-      this.runToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.runToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.runToolStripMenuItem.Text = "&Run";
       this.runToolStripMenuItem.Click += new System.EventHandler(this.PlayToolStripButton_Click);
       // 
@@ -572,33 +621,33 @@
       this.pauseToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Pause;
       this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
       this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.pauseToolStripMenuItem.Text = "&Pause";
       this.pauseToolStripMenuItem.Click += new System.EventHandler(this.PauseToolStripButton_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 6);
       // 
       // nextMoveToolStripMenuItem
       // 
       this.nextMoveToolStripMenuItem.Image = global::Cyotek.Demo.EColiSimulation.Properties.Resources.Next;
       this.nextMoveToolStripMenuItem.Name = "nextMoveToolStripMenuItem";
       this.nextMoveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.nextMoveToolStripMenuItem.Text = "&Next Move";
       this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.NextMoveToolStripButton_Click);
       // 
       // toolStripMenuItem5
       // 
       this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-      this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+      this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 6);
       // 
       // advanceToolStripMenuItem
       // 
       this.advanceToolStripMenuItem.Name = "advanceToolStripMenuItem";
-      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.advanceToolStripMenuItem.Text = "&Advance...";
       this.advanceToolStripMenuItem.Click += new System.EventHandler(this.AdvanceToolStripMenuItem_Click);
       // 
@@ -606,7 +655,7 @@
       // 
       this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
       this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-      this.goToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.goToToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.goToToolStripMenuItem.Text = "&Go To...";
       this.goToToolStripMenuItem.Click += new System.EventHandler(this.GoToToolStripMenuItem_Click);
       // 
@@ -1734,6 +1783,11 @@
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
     private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+    private System.Windows.Forms.ToolStripMenuItem refreshIntervalToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem highToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem lowToolStripMenuItem;
   }
 }
 

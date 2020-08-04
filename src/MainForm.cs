@@ -52,9 +52,23 @@ namespace Cyotek.Demo
       attractorCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.ReduceSelf - 1);
       repellentCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.DestroyOther - 1);
 
+      this.SetUpdateSpeed(2);
       this.InitializeScenario();
 
       base.OnShown(e);
+    }
+
+    private void SetUpdateSpeed(int iterations)
+    {
+      _updateIterations = iterations;
+
+      foreach (ToolStripItem item in refreshIntervalToolStripMenuItem.DropDownItems)
+      {
+        if (item is ToolStripMenuItem menuItem && item.Tag is string value && int.TryParse(value, out int count))
+        {
+          menuItem.Checked = iterations == count;
+        }
+      }
     }
 
     private void InitializeScenario()
@@ -127,7 +141,7 @@ namespace Cyotek.Demo
 
     private void NextMoveToolStripButton_Click(object sender, EventArgs e)
     {
-      this.NextMove();
+      this.NextMove(true);
     }
 
     private void ScaleToolStripTrackBar_ValueChanged(object sender, EventArgs e)
@@ -167,16 +181,26 @@ namespace Cyotek.Demo
 
     private void Timer_Tick(object sender, EventArgs e)
     {
-      this.NextMove();
+      this.NextMove(false);
     }
 
-    private void NextMove()
+    private void NextMove(bool single)
     {
       int sum;
 
       sum = _environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count;
 
-      _environment.NextMove();
+      if (single)
+      {
+        _environment.NextMove();
+      }
+      else
+      {
+        for (int i = 0; i < _updateIterations; i++)
+        {
+          _environment.NextMove();
+        }
+      }
 
       if ((_environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count) != sum)
       {
@@ -376,6 +400,16 @@ namespace Cyotek.Demo
         this.UpdateStatusBar();
 
         renderPanel.Invalidate();
+      }
+    }
+
+    private int _updateIterations;
+
+    private void highToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (sender is ToolStripMenuItem menuItem && menuItem.Tag is string value && int.TryParse(value, out int count))
+      {
+        this.SetUpdateSpeed(count);
       }
     }
   }
