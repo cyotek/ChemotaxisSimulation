@@ -7,15 +7,41 @@ namespace Cyotek.Demo.ChemotaxisSimulation
   {
     #region Private Fields
 
-    private static readonly Point[] _strandShape = new[]
+    private static readonly Point[] _attractorShape = new[]
     {
+      new Point(-2, -1),
+      new Point(-2, 1),
+      new Point(-1, 2),
+      new Point(1, 2),
+      new Point(2, 1),
+      new Point(2, -1),
+      new Point(1, -2),
+      new Point(-1, -2),
+    };
+
+    private static readonly Point[] _repellentShape = new[]
+    {
+      new Point(0, -2),
+      new Point(-2, 0),
+      new Point(0, 2),
+      new Point(2, 0),
+    };
+
+    private static readonly Point[] _strandShape = new[]
+            {
       new Point(0, 0),
       new Point(-1, 1),
-      new Point(-1, 3),
-      new Point(1, 3),
-      new Point(1, 1),
-      new Point(0, 0)
+      new Point(-1, 2),
+      new Point(0, 3),
+      new Point(1, 2),
+      new Point(1, 1)
     };
+
+    private readonly Pen _attractorPen;
+
+    private readonly Pen _repellentPen;
+
+    private readonly Pen _strandPen;
 
     private bool _drawShapes;
 
@@ -49,6 +75,22 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       _showNoxiousSources = true;
       _showNoxiousDetectionZone = true;
       _drawShapes = true;
+
+      _strandPen = new Pen(Color.DarkGoldenrod)
+      {
+        EndCap = LineCap.Round,
+        LineJoin = LineJoin.Round,
+        StartCap = LineCap.Round
+      };
+
+      _attractorPen = new Pen(Color.SeaGreen)
+      {
+        EndCap = LineCap.Round,
+        LineJoin = LineJoin.Round,
+        StartCap = LineCap.Round
+      };
+
+      _repellentPen = new Pen(Color.Firebrick);
     }
 
     #endregion Public Constructors
@@ -139,11 +181,6 @@ namespace Cyotek.Demo.ChemotaxisSimulation
 
       if (_showStrands)
       {
-        if (_drawShapes)
-        {
-          graphics.ResetTransform();
-        }
-
         for (int i = 0; i < environment.Strands.Count; i++)
         {
           this.DrawStrand(graphics, environment.Strands[i]);
@@ -155,7 +192,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
 
     #region Private Methods
 
-    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Color color, bool showDetectionZone)
+    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Pen pen, Point[] shape, bool showDetectionZone)
     {
       if (showDetectionZone)
       {
@@ -165,10 +202,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
 
         if (_outlinesOnly)
         {
-          using (Pen pen = new Pen(color))
-          {
-            graphics.DrawEllipse(pen, bounds);
-          }
+          graphics.DrawEllipse(pen, bounds);
         }
         else
         {
@@ -179,7 +213,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
             using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
             {
               brush.CenterPoint = chemoeffector.Position;
-              brush.CenterColor = Color.FromArgb(128, color);
+              brush.CenterColor = Color.FromArgb(128, pen.Color);
               brush.SurroundColors = new[] { Color.Transparent };
 
               graphics.FillEllipse(brush, bounds);
@@ -188,7 +222,23 @@ namespace Cyotek.Demo.ChemotaxisSimulation
         }
       }
 
-      using (Pen pen = new Pen(color))
+      if (_drawShapes)
+      {
+        int x;
+        int y;
+        GraphicsState state;
+
+        x = chemoeffector.Position.X;
+        y = chemoeffector.Position.Y;
+        state = graphics.Save();
+
+        graphics.TranslateTransform(x, y);
+        graphics.RotateTransform(Compass.GetAngle(chemoeffector.Heading));
+        graphics.DrawPolygon(pen, shape);
+
+        graphics.Restore(state);
+      }
+      else
       {
         graphics.DrawLine(pen, new Point(chemoeffector.Position.X - 1, chemoeffector.Position.Y), new Point(chemoeffector.Position.X + 1, chemoeffector.Position.Y));
         graphics.DrawLine(pen, new Point(chemoeffector.Position.X, chemoeffector.Position.Y - 1), new Point(chemoeffector.Position.X, chemoeffector.Position.Y + 1));
@@ -197,38 +247,36 @@ namespace Cyotek.Demo.ChemotaxisSimulation
 
     private void DrawFood(Graphics graphics, Chemoeffector food)
     {
-      this.DrawChemoeffector(graphics, food, Color.SeaGreen, _showFoodDetectionZone);
+      this.DrawChemoeffector(graphics, food, _attractorPen, _attractorShape, _showFoodDetectionZone);
     }
 
     private void DrawNoxious(Graphics graphics, Chemoeffector noxious)
     {
-      this.DrawChemoeffector(graphics, noxious, Color.Firebrick, _showNoxiousDetectionZone);
+      this.DrawChemoeffector(graphics, noxious, _repellentPen, _repellentShape, _showNoxiousDetectionZone);
     }
 
     private void DrawStrand(Graphics graphics, Strand strand)
     {
-      Pen pen;
-
-      pen = Pens.SaddleBrown;
-
       if (_drawShapes)
       {
         int x;
         int y;
+        GraphicsState state;
 
         x = strand.Position.X;
         y = strand.Position.Y;
+        state = graphics.Save();
 
-        graphics.ScaleTransform(_scale, _scale);
         graphics.TranslateTransform(x, y);
         graphics.RotateTransform(Compass.GetAngle(strand.Heading));
-        graphics.DrawLines(pen, _strandShape);
-        graphics.ResetTransform();
+        graphics.DrawPolygon(_strandPen, _strandShape);
+
+        graphics.Restore(state);
       }
       else
       {
-        graphics.DrawLine(pen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
-        graphics.DrawLine(pen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
+        graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
+        graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
       }
     }
 
