@@ -295,7 +295,7 @@ namespace Cyotek.Demo
       name = (string)((Control)sender).Tag;
       control = (NumericUpDown)setupGroupBox.Controls[name];
 
-      control.Value = _random.Next((int)control.Minimum,(int) control.Maximum + 1);
+      control.Value = _random.Next((int)control.Minimum, (int)control.Maximum + 1);
 
       this.InitializeScenario();
     }
@@ -309,6 +309,21 @@ namespace Cyotek.Demo
       antiAliasToolStripMenuItem.Checked = _antiAlias;
 
       renderPanel.Invalidate();
+    }
+
+    private void ZoomInToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      scaleToolStripTrackBar.Value = Math.Min(scaleToolStripTrackBar.Maximum, scaleToolStripTrackBar.Value + 1);
+    }
+
+    private void ZoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      scaleToolStripTrackBar.Value = Math.Max(scaleToolStripTrackBar.Minimum, scaleToolStripTrackBar.Value - 1);
+    }
+
+    private void ActualSizeToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      scaleToolStripTrackBar.Value = 10;
     }
   }
 }
