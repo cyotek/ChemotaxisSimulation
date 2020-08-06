@@ -4,10 +4,13 @@ using Cyotek.ChemotaxisSimulation.Serialization;
 using Cyotek.Demo.ChemotaxisSimulation;
 using Cyotek.Demo.Windows.Forms;
 using Cyotek.Windows.Forms;
+using Jint;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Media;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Cyotek.Demo
@@ -391,7 +394,7 @@ namespace Cyotek.Demo
       NumericUpDown control;
 
       name = (string)((Control)sender).Tag;
-      control = (NumericUpDown)setupGroupBox.Controls[name];
+      control = (NumericUpDown)setupTabPage.Controls[name];
 
       control.Value = _random.Next((int)control.Minimum, (int)control.Maximum + 1);
 
@@ -571,5 +574,31 @@ namespace Cyotek.Demo
     }
 
     #endregion Private Methods
+
+    private void RunButton_Click(object sender, EventArgs e)
+    {
+      string script;
+
+      script = scriptTextBox.Text;
+
+      if (!string.IsNullOrWhiteSpace(script))
+      {
+        ScriptEnvironment engine;
+
+        engine = new ScriptEnvironment();
+        engine.AddVariable("simulation", _simulation);
+
+        engine.WrappedExecute(script);
+
+        logTextBox.Text = engine.GetOutput();
+
+        this.LoadFields();
+        renderPanel.Invalidate();
+      }
+      else
+      {
+        SystemSounds.Beep.Play();
+      }
+    }
   }
 }

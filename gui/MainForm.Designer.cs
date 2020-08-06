@@ -109,57 +109,62 @@
       this.repellentsToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.renderPanel = new Cyotek.Demo.Windows.Forms.BufferedPanel();
       this.splitContainer = new System.Windows.Forms.SplitContainer();
-      this.setupGroupBox = new System.Windows.Forms.GroupBox();
+      this.tabControl = new System.Windows.Forms.TabControl();
+      this.setupTabPage = new System.Windows.Forms.TabPage();
       this.mobileRepellentsCheckBox = new System.Windows.Forms.CheckBox();
       this.button10 = new System.Windows.Forms.Button();
+      this.label4 = new System.Windows.Forms.Label();
       this.button9 = new System.Windows.Forms.Button();
+      this.label1 = new System.Windows.Forms.Label();
       this.button8 = new System.Windows.Forms.Button();
+      this.strandsNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.button7 = new System.Windows.Forms.Button();
+      this.label2 = new System.Windows.Forms.Label();
       this.button6 = new System.Windows.Forms.Button();
+      this.attractorsNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.button5 = new System.Windows.Forms.Button();
+      this.label3 = new System.Windows.Forms.Label();
       this.button4 = new System.Windows.Forms.Button();
+      this.repellentsNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.button3 = new System.Windows.Forms.Button();
+      this.environmentSeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
+      this.label5 = new System.Windows.Forms.Label();
       this.environmentSeedRandomButton = new System.Windows.Forms.Button();
+      this.movementSeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.attritionCheckBox = new System.Windows.Forms.CheckBox();
+      this.label6 = new System.Windows.Forms.Label();
       this.solidStrandsCheckBox = new System.Windows.Forms.CheckBox();
+      this.minimumAttractorSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.wrapCheckBox = new System.Windows.Forms.CheckBox();
+      this.maximumAttractorSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.label12 = new System.Windows.Forms.Label();
+      this.label7 = new System.Windows.Forms.Label();
       this.label13 = new System.Windows.Forms.Label();
+      this.label8 = new System.Windows.Forms.Label();
       this.heightNumericUpDown = new System.Windows.Forms.NumericUpDown();
+      this.label9 = new System.Windows.Forms.Label();
       this.widthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+      this.minimumRepellentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.label14 = new System.Windows.Forms.Label();
+      this.maximumRepellentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.allowBinaryFissionCheckBox = new System.Windows.Forms.CheckBox();
       this.respawnAttractorsCheckBox = new System.Windows.Forms.CheckBox();
-      this.repellentCollisionModeComboBox = new System.Windows.Forms.ComboBox();
-      this.label10 = new System.Windows.Forms.Label();
-      this.label11 = new System.Windows.Forms.Label();
       this.attractorCollisionModeComboBox = new System.Windows.Forms.ComboBox();
-      this.maximumRepellentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.minimumRepellentSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label9 = new System.Windows.Forms.Label();
-      this.label8 = new System.Windows.Forms.Label();
-      this.label7 = new System.Windows.Forms.Label();
-      this.maximumAttractorSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.minimumAttractorSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label6 = new System.Windows.Forms.Label();
-      this.movementSeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label5 = new System.Windows.Forms.Label();
-      this.initializeButton = new System.Windows.Forms.Button();
-      this.environmentSeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label4 = new System.Windows.Forms.Label();
-      this.repellentsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label3 = new System.Windows.Forms.Label();
-      this.attractorsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label2 = new System.Windows.Forms.Label();
-      this.strandsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-      this.label1 = new System.Windows.Forms.Label();
+      this.repellentCollisionModeComboBox = new System.Windows.Forms.ComboBox();
+      this.label11 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
+      this.scriptTabPage = new System.Windows.Forms.TabPage();
+      this.runButton = new System.Windows.Forms.Button();
+      this.scriptTextBox = new System.Windows.Forms.TextBox();
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.scriptSplitContainer = new System.Windows.Forms.SplitContainer();
+      this.logTextBox = new System.Windows.Forms.TextBox();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -171,58 +176,64 @@
       this.splitContainer.Panel1.SuspendLayout();
       this.splitContainer.Panel2.SuspendLayout();
       this.splitContainer.SuspendLayout();
-      this.setupGroupBox.SuspendLayout();
+      this.tabControl.SuspendLayout();
+      this.setupTabPage.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.strandsNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.attractorsNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.repellentsNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.environmentSeedNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.movementSeedNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.minimumAttractorSizeNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.maximumAttractorSizeNumericUpDown)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.heightNumericUpDown)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.widthNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.maximumRepellentSizeNumericUpDown)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.minimumRepellentSizeNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.maximumAttractorSizeNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.minimumAttractorSizeNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.movementSeedNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.environmentSeedNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.repellentsNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.attractorsNumericUpDown)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.strandsNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.maximumRepellentSizeNumericUpDown)).BeginInit();
+      this.scriptTabPage.SuspendLayout();
       this.toolStripContainer.ContentPanel.SuspendLayout();
       this.toolStripContainer.TopToolStripPanel.SuspendLayout();
       this.toolStripContainer.SuspendLayout();
       this.simulationToolStrip.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.scriptSplitContainer)).BeginInit();
+      this.scriptSplitContainer.Panel1.SuspendLayout();
+      this.scriptSplitContainer.Panel2.SuspendLayout();
+      this.scriptSplitContainer.SuspendLayout();
       this.SuspendLayout();
       // 
       // line
       // 
       line.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      line.Location = new System.Drawing.Point(9, 110);
+      line.Location = new System.Drawing.Point(9, 97);
       line.Name = "line";
-      line.Size = new System.Drawing.Size(280, 2);
+      line.Size = new System.Drawing.Size(276, 2);
       line.Text = "line1";
       // 
       // line1
       // 
       line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      line1.Location = new System.Drawing.Point(6, 209);
+      line1.Location = new System.Drawing.Point(6, 196);
       line1.Name = "line1";
-      line1.Size = new System.Drawing.Size(280, 2);
+      line1.Size = new System.Drawing.Size(276, 2);
       line1.Text = "line1";
       // 
       // line2
       // 
       line2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      line2.Location = new System.Drawing.Point(6, 282);
+      line2.Location = new System.Drawing.Point(6, 269);
       line2.Name = "line2";
-      line2.Size = new System.Drawing.Size(280, 2);
+      line2.Size = new System.Drawing.Size(276, 2);
       line2.Text = "line2";
       // 
       // line3
       // 
       line3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      line3.Location = new System.Drawing.Point(6, 319);
+      line3.Location = new System.Drawing.Point(6, 306);
       line3.Name = "line3";
-      line3.Size = new System.Drawing.Size(280, 2);
+      line3.Size = new System.Drawing.Size(276, 2);
       line3.Text = "line3";
       // 
       // menuStrip
@@ -236,7 +247,7 @@
             this.helpToolStripMenuItem});
       this.menuStrip.Location = new System.Drawing.Point(0, 0);
       this.menuStrip.Name = "menuStrip";
-      this.menuStrip.Size = new System.Drawing.Size(1008, 24);
+      this.menuStrip.Size = new System.Drawing.Size(784, 24);
       this.menuStrip.TabIndex = 0;
       // 
       // fileToolStripMenuItem
@@ -678,7 +689,7 @@
       // aboutToolStripMenuItem
       // 
       this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-      this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
       this.aboutToolStripMenuItem.Text = "&About...";
       this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
       // 
@@ -829,15 +840,15 @@
             this.standsToolStripStatusLabel,
             this.attractorsToolStripStatusLabel,
             this.repellentsToolStripStatusLabel});
-      this.statusStrip.Location = new System.Drawing.Point(0, 639);
+      this.statusStrip.Location = new System.Drawing.Point(0, 539);
       this.statusStrip.Name = "statusStrip";
-      this.statusStrip.Size = new System.Drawing.Size(1008, 22);
+      this.statusStrip.Size = new System.Drawing.Size(784, 22);
       this.statusStrip.TabIndex = 2;
       // 
       // statusToolStripStatusLabel
       // 
       this.statusToolStripStatusLabel.Name = "statusToolStripStatusLabel";
-      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(941, 17);
+      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(717, 17);
       this.statusToolStripStatusLabel.Spring = true;
       this.statusToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
@@ -870,7 +881,7 @@
       this.renderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.renderPanel.Location = new System.Drawing.Point(0, 0);
       this.renderPanel.Name = "renderPanel";
-      this.renderPanel.Size = new System.Drawing.Size(706, 565);
+      this.renderPanel.Size = new System.Drawing.Size(430, 465);
       this.renderPanel.TabIndex = 0;
       this.renderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.RenderPanel_Paint);
       // 
@@ -887,75 +898,85 @@
       // 
       // splitContainer.Panel2
       // 
-      this.splitContainer.Panel2.Controls.Add(this.setupGroupBox);
-      this.splitContainer.Size = new System.Drawing.Size(1008, 565);
-      this.splitContainer.SplitterDistance = 706;
+      this.splitContainer.Panel2.Controls.Add(this.tabControl);
+      this.splitContainer.Size = new System.Drawing.Size(784, 465);
+      this.splitContainer.SplitterDistance = 430;
       this.splitContainer.TabIndex = 0;
       // 
-      // setupGroupBox
+      // tabControl
       // 
-      this.setupGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.setupGroupBox.Controls.Add(this.mobileRepellentsCheckBox);
-      this.setupGroupBox.Controls.Add(this.button10);
-      this.setupGroupBox.Controls.Add(this.button9);
-      this.setupGroupBox.Controls.Add(this.button8);
-      this.setupGroupBox.Controls.Add(this.button7);
-      this.setupGroupBox.Controls.Add(this.button6);
-      this.setupGroupBox.Controls.Add(this.button5);
-      this.setupGroupBox.Controls.Add(this.button4);
-      this.setupGroupBox.Controls.Add(this.button3);
-      this.setupGroupBox.Controls.Add(this.button2);
-      this.setupGroupBox.Controls.Add(this.button1);
-      this.setupGroupBox.Controls.Add(this.environmentSeedRandomButton);
-      this.setupGroupBox.Controls.Add(this.attritionCheckBox);
-      this.setupGroupBox.Controls.Add(line3);
-      this.setupGroupBox.Controls.Add(this.solidStrandsCheckBox);
-      this.setupGroupBox.Controls.Add(this.wrapCheckBox);
-      this.setupGroupBox.Controls.Add(this.label12);
-      this.setupGroupBox.Controls.Add(this.label13);
-      this.setupGroupBox.Controls.Add(this.heightNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.widthNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label14);
-      this.setupGroupBox.Controls.Add(this.allowBinaryFissionCheckBox);
-      this.setupGroupBox.Controls.Add(this.respawnAttractorsCheckBox);
-      this.setupGroupBox.Controls.Add(this.repellentCollisionModeComboBox);
-      this.setupGroupBox.Controls.Add(this.label10);
-      this.setupGroupBox.Controls.Add(this.label11);
-      this.setupGroupBox.Controls.Add(this.attractorCollisionModeComboBox);
-      this.setupGroupBox.Controls.Add(line2);
-      this.setupGroupBox.Controls.Add(this.maximumRepellentSizeNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.minimumRepellentSizeNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label9);
-      this.setupGroupBox.Controls.Add(this.label8);
-      this.setupGroupBox.Controls.Add(this.label7);
-      this.setupGroupBox.Controls.Add(this.maximumAttractorSizeNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.minimumAttractorSizeNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label6);
-      this.setupGroupBox.Controls.Add(line1);
-      this.setupGroupBox.Controls.Add(this.movementSeedNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label5);
-      this.setupGroupBox.Controls.Add(line);
-      this.setupGroupBox.Controls.Add(this.initializeButton);
-      this.setupGroupBox.Controls.Add(this.environmentSeedNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label4);
-      this.setupGroupBox.Controls.Add(this.repellentsNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label3);
-      this.setupGroupBox.Controls.Add(this.attractorsNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label2);
-      this.setupGroupBox.Controls.Add(this.strandsNumericUpDown);
-      this.setupGroupBox.Controls.Add(this.label1);
-      this.setupGroupBox.Location = new System.Drawing.Point(2, 3);
-      this.setupGroupBox.Name = "setupGroupBox";
-      this.setupGroupBox.Size = new System.Drawing.Size(292, 467);
-      this.setupGroupBox.TabIndex = 0;
-      this.setupGroupBox.TabStop = false;
-      this.setupGroupBox.Text = "Scenario Setup";
+      this.tabControl.Controls.Add(this.setupTabPage);
+      this.tabControl.Controls.Add(this.scriptTabPage);
+      this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.tabControl.Location = new System.Drawing.Point(0, 0);
+      this.tabControl.Name = "tabControl";
+      this.tabControl.SelectedIndex = 0;
+      this.tabControl.Size = new System.Drawing.Size(350, 465);
+      this.tabControl.TabIndex = 1;
+      // 
+      // setupTabPage
+      // 
+      this.setupTabPage.AutoScroll = true;
+      this.setupTabPage.Controls.Add(this.mobileRepellentsCheckBox);
+      this.setupTabPage.Controls.Add(this.button10);
+      this.setupTabPage.Controls.Add(this.label4);
+      this.setupTabPage.Controls.Add(this.button9);
+      this.setupTabPage.Controls.Add(this.label1);
+      this.setupTabPage.Controls.Add(this.button8);
+      this.setupTabPage.Controls.Add(this.strandsNumericUpDown);
+      this.setupTabPage.Controls.Add(this.button7);
+      this.setupTabPage.Controls.Add(this.label2);
+      this.setupTabPage.Controls.Add(this.button6);
+      this.setupTabPage.Controls.Add(this.attractorsNumericUpDown);
+      this.setupTabPage.Controls.Add(this.button5);
+      this.setupTabPage.Controls.Add(this.label3);
+      this.setupTabPage.Controls.Add(this.button4);
+      this.setupTabPage.Controls.Add(this.repellentsNumericUpDown);
+      this.setupTabPage.Controls.Add(this.button3);
+      this.setupTabPage.Controls.Add(this.environmentSeedNumericUpDown);
+      this.setupTabPage.Controls.Add(this.button2);
+      this.setupTabPage.Controls.Add(line);
+      this.setupTabPage.Controls.Add(this.button1);
+      this.setupTabPage.Controls.Add(this.label5);
+      this.setupTabPage.Controls.Add(this.environmentSeedRandomButton);
+      this.setupTabPage.Controls.Add(this.movementSeedNumericUpDown);
+      this.setupTabPage.Controls.Add(this.attritionCheckBox);
+      this.setupTabPage.Controls.Add(line1);
+      this.setupTabPage.Controls.Add(line3);
+      this.setupTabPage.Controls.Add(this.label6);
+      this.setupTabPage.Controls.Add(this.solidStrandsCheckBox);
+      this.setupTabPage.Controls.Add(this.minimumAttractorSizeNumericUpDown);
+      this.setupTabPage.Controls.Add(this.wrapCheckBox);
+      this.setupTabPage.Controls.Add(this.maximumAttractorSizeNumericUpDown);
+      this.setupTabPage.Controls.Add(this.label12);
+      this.setupTabPage.Controls.Add(this.label7);
+      this.setupTabPage.Controls.Add(this.label13);
+      this.setupTabPage.Controls.Add(this.label8);
+      this.setupTabPage.Controls.Add(this.heightNumericUpDown);
+      this.setupTabPage.Controls.Add(this.label9);
+      this.setupTabPage.Controls.Add(this.widthNumericUpDown);
+      this.setupTabPage.Controls.Add(this.minimumRepellentSizeNumericUpDown);
+      this.setupTabPage.Controls.Add(this.label14);
+      this.setupTabPage.Controls.Add(this.maximumRepellentSizeNumericUpDown);
+      this.setupTabPage.Controls.Add(this.allowBinaryFissionCheckBox);
+      this.setupTabPage.Controls.Add(line2);
+      this.setupTabPage.Controls.Add(this.respawnAttractorsCheckBox);
+      this.setupTabPage.Controls.Add(this.attractorCollisionModeComboBox);
+      this.setupTabPage.Controls.Add(this.repellentCollisionModeComboBox);
+      this.setupTabPage.Controls.Add(this.label11);
+      this.setupTabPage.Controls.Add(this.label10);
+      this.setupTabPage.Location = new System.Drawing.Point(4, 22);
+      this.setupTabPage.Name = "setupTabPage";
+      this.setupTabPage.Padding = new System.Windows.Forms.Padding(3);
+      this.setupTabPage.Size = new System.Drawing.Size(342, 439);
+      this.setupTabPage.TabIndex = 0;
+      this.setupTabPage.Text = "Setup";
+      this.setupTabPage.UseVisualStyleBackColor = true;
       // 
       // mobileRepellentsCheckBox
       // 
       this.mobileRepellentsCheckBox.AutoSize = true;
-      this.mobileRepellentsCheckBox.Location = new System.Drawing.Point(6, 442);
+      this.mobileRepellentsCheckBox.Location = new System.Drawing.Point(6, 429);
       this.mobileRepellentsCheckBox.Name = "mobileRepellentsCheckBox";
       this.mobileRepellentsCheckBox.Size = new System.Drawing.Size(110, 17);
       this.mobileRepellentsCheckBox.TabIndex = 40;
@@ -966,7 +987,7 @@
       // button10
       // 
       this.button10.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button10.Location = new System.Drawing.Point(156, 84);
+      this.button10.Location = new System.Drawing.Point(156, 71);
       this.button10.Name = "button10";
       this.button10.Size = new System.Drawing.Size(20, 20);
       this.button10.TabIndex = 10;
@@ -974,10 +995,19 @@
       this.button10.UseVisualStyleBackColor = true;
       this.button10.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(6, 8);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(97, 13);
+      this.label4.TabIndex = 0;
+      this.label4.Text = "E&nvironment Seed:";
+      // 
       // button9
       // 
       this.button9.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button9.Location = new System.Drawing.Point(229, 84);
+      this.button9.Location = new System.Drawing.Point(232, 71);
       this.button9.Name = "button9";
       this.button9.Size = new System.Drawing.Size(20, 20);
       this.button9.TabIndex = 11;
@@ -985,10 +1015,19 @@
       this.button9.UseVisualStyleBackColor = true;
       this.button9.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(6, 120);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(46, 13);
+      this.label1.TabIndex = 13;
+      this.label1.Text = "Stran&ds:";
+      // 
       // button8
       // 
       this.button8.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button8.Location = new System.Drawing.Point(152, 256);
+      this.button8.Location = new System.Drawing.Point(152, 243);
       this.button8.Name = "button8";
       this.button8.Size = new System.Drawing.Size(20, 20);
       this.button8.TabIndex = 32;
@@ -996,10 +1035,27 @@
       this.button8.UseVisualStyleBackColor = true;
       this.button8.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // strandsNumericUpDown
+      // 
+      this.strandsNumericUpDown.Location = new System.Drawing.Point(72, 118);
+      this.strandsNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+      this.strandsNumericUpDown.Name = "strandsNumericUpDown";
+      this.strandsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+      this.strandsNumericUpDown.TabIndex = 14;
+      this.strandsNumericUpDown.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+      // 
       // button7
       // 
       this.button7.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button7.Location = new System.Drawing.Point(152, 230);
+      this.button7.Location = new System.Drawing.Point(152, 217);
       this.button7.Name = "button7";
       this.button7.Size = new System.Drawing.Size(20, 20);
       this.button7.TabIndex = 28;
@@ -1007,10 +1063,19 @@
       this.button7.UseVisualStyleBackColor = true;
       this.button7.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(6, 146);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(55, 13);
+      this.label2.TabIndex = 16;
+      this.label2.Text = "Attract&ors:";
+      // 
       // button6
       // 
       this.button6.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button6.Location = new System.Drawing.Point(225, 256);
+      this.button6.Location = new System.Drawing.Point(228, 243);
       this.button6.Name = "button6";
       this.button6.Size = new System.Drawing.Size(20, 20);
       this.button6.TabIndex = 33;
@@ -1018,10 +1083,27 @@
       this.button6.UseVisualStyleBackColor = true;
       this.button6.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // attractorsNumericUpDown
+      // 
+      this.attractorsNumericUpDown.Location = new System.Drawing.Point(72, 144);
+      this.attractorsNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+      this.attractorsNumericUpDown.Name = "attractorsNumericUpDown";
+      this.attractorsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+      this.attractorsNumericUpDown.TabIndex = 17;
+      this.attractorsNumericUpDown.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+      // 
       // button5
       // 
       this.button5.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button5.Location = new System.Drawing.Point(225, 230);
+      this.button5.Location = new System.Drawing.Point(228, 217);
       this.button5.Name = "button5";
       this.button5.Size = new System.Drawing.Size(20, 20);
       this.button5.TabIndex = 29;
@@ -1029,10 +1111,19 @@
       this.button5.UseVisualStyleBackColor = true;
       this.button5.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(6, 172);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(60, 13);
+      this.label3.TabIndex = 20;
+      this.label3.Text = "&Repellents:";
+      // 
       // button4
       // 
       this.button4.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button4.Location = new System.Drawing.Point(132, 183);
+      this.button4.Location = new System.Drawing.Point(132, 170);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(20, 20);
       this.button4.TabIndex = 22;
@@ -1040,10 +1131,27 @@
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // repellentsNumericUpDown
+      // 
+      this.repellentsNumericUpDown.Location = new System.Drawing.Point(72, 170);
+      this.repellentsNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+      this.repellentsNumericUpDown.Name = "repellentsNumericUpDown";
+      this.repellentsNumericUpDown.Size = new System.Drawing.Size(60, 20);
+      this.repellentsNumericUpDown.TabIndex = 21;
+      this.repellentsNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+      // 
       // button3
       // 
       this.button3.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button3.Location = new System.Drawing.Point(132, 157);
+      this.button3.Location = new System.Drawing.Point(132, 144);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(20, 20);
       this.button3.TabIndex = 18;
@@ -1051,10 +1159,27 @@
       this.button3.UseVisualStyleBackColor = true;
       this.button3.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // environmentSeedNumericUpDown
+      // 
+      this.environmentSeedNumericUpDown.Location = new System.Drawing.Point(109, 6);
+      this.environmentSeedNumericUpDown.Maximum = new decimal(new int[] {
+            2147483646,
+            0,
+            0,
+            0});
+      this.environmentSeedNumericUpDown.Name = "environmentSeedNumericUpDown";
+      this.environmentSeedNumericUpDown.Size = new System.Drawing.Size(77, 20);
+      this.environmentSeedNumericUpDown.TabIndex = 1;
+      this.environmentSeedNumericUpDown.Value = new decimal(new int[] {
+            20200803,
+            0,
+            0,
+            0});
+      // 
       // button2
       // 
       this.button2.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button2.Location = new System.Drawing.Point(132, 131);
+      this.button2.Location = new System.Drawing.Point(132, 118);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(20, 20);
       this.button2.TabIndex = 15;
@@ -1065,7 +1190,7 @@
       // button1
       // 
       this.button1.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.button1.Location = new System.Drawing.Point(186, 45);
+      this.button1.Location = new System.Drawing.Point(186, 32);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(20, 20);
       this.button1.TabIndex = 5;
@@ -1073,10 +1198,19 @@
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(6, 34);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(88, 13);
+      this.label5.TabIndex = 3;
+      this.label5.Text = "&Movement Seed:";
+      // 
       // environmentSeedRandomButton
       // 
       this.environmentSeedRandomButton.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Random;
-      this.environmentSeedRandomButton.Location = new System.Drawing.Point(186, 19);
+      this.environmentSeedRandomButton.Location = new System.Drawing.Point(186, 6);
       this.environmentSeedRandomButton.Name = "environmentSeedRandomButton";
       this.environmentSeedRandomButton.Size = new System.Drawing.Size(20, 20);
       this.environmentSeedRandomButton.TabIndex = 2;
@@ -1084,10 +1218,27 @@
       this.environmentSeedRandomButton.UseVisualStyleBackColor = true;
       this.environmentSeedRandomButton.Click += new System.EventHandler(this.RandomButton_Click);
       // 
+      // movementSeedNumericUpDown
+      // 
+      this.movementSeedNumericUpDown.Location = new System.Drawing.Point(109, 32);
+      this.movementSeedNumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+      this.movementSeedNumericUpDown.Name = "movementSeedNumericUpDown";
+      this.movementSeedNumericUpDown.Size = new System.Drawing.Size(77, 20);
+      this.movementSeedNumericUpDown.TabIndex = 4;
+      this.movementSeedNumericUpDown.Value = new decimal(new int[] {
+            1622,
+            0,
+            0,
+            0});
+      // 
       // attritionCheckBox
       // 
       this.attritionCheckBox.AutoSize = true;
-      this.attritionCheckBox.Location = new System.Drawing.Point(6, 419);
+      this.attritionCheckBox.Location = new System.Drawing.Point(6, 406);
       this.attritionCheckBox.Name = "attritionCheckBox";
       this.attritionCheckBox.Size = new System.Drawing.Size(61, 17);
       this.attritionCheckBox.TabIndex = 39;
@@ -1095,10 +1246,19 @@
       this.attritionCheckBox.UseVisualStyleBackColor = true;
       this.attritionCheckBox.CheckedChanged += new System.EventHandler(this.AttritionCheckBox_CheckedChanged);
       // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(6, 219);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(93, 13);
+      this.label6.TabIndex = 26;
+      this.label6.Text = "Attractor Stren&gth:";
+      // 
       // solidStrandsCheckBox
       // 
       this.solidStrandsCheckBox.AutoSize = true;
-      this.solidStrandsCheckBox.Location = new System.Drawing.Point(6, 396);
+      this.solidStrandsCheckBox.Location = new System.Drawing.Point(6, 383);
       this.solidStrandsCheckBox.Name = "solidStrandsCheckBox";
       this.solidStrandsCheckBox.Size = new System.Drawing.Size(131, 17);
       this.solidStrandsCheckBox.TabIndex = 38;
@@ -1106,12 +1266,29 @@
       this.solidStrandsCheckBox.UseVisualStyleBackColor = true;
       this.solidStrandsCheckBox.CheckedChanged += new System.EventHandler(this.SolidStrandsCheckBox_CheckedChanged);
       // 
+      // minimumAttractorSizeNumericUpDown
+      // 
+      this.minimumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(105, 217);
+      this.minimumAttractorSizeNumericUpDown.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+      this.minimumAttractorSizeNumericUpDown.Name = "minimumAttractorSizeNumericUpDown";
+      this.minimumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
+      this.minimumAttractorSizeNumericUpDown.TabIndex = 27;
+      this.minimumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      // 
       // wrapCheckBox
       // 
       this.wrapCheckBox.AutoSize = true;
       this.wrapCheckBox.Checked = true;
       this.wrapCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.wrapCheckBox.Location = new System.Drawing.Point(6, 327);
+      this.wrapCheckBox.Location = new System.Drawing.Point(6, 314);
       this.wrapCheckBox.Name = "wrapCheckBox";
       this.wrapCheckBox.Size = new System.Drawing.Size(108, 17);
       this.wrapCheckBox.TabIndex = 35;
@@ -1119,27 +1296,62 @@
       this.wrapCheckBox.UseVisualStyleBackColor = true;
       this.wrapCheckBox.CheckedChanged += new System.EventHandler(this.WrapCheckBox_CheckedChanged);
       // 
+      // maximumAttractorSizeNumericUpDown
+      // 
+      this.maximumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(178, 217);
+      this.maximumAttractorSizeNumericUpDown.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+      this.maximumAttractorSizeNumericUpDown.Name = "maximumAttractorSizeNumericUpDown";
+      this.maximumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
+      this.maximumAttractorSizeNumericUpDown.TabIndex = 23;
+      this.maximumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+      // 
       // label12
       // 
       this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(179, 68);
+      this.label12.Location = new System.Drawing.Point(179, 55);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(38, 13);
       this.label12.TabIndex = 7;
       this.label12.Text = "Height";
       // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Location = new System.Drawing.Point(102, 201);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(24, 13);
+      this.label7.TabIndex = 24;
+      this.label7.Text = "Min";
+      // 
       // label13
       // 
       this.label13.AutoSize = true;
-      this.label13.Location = new System.Drawing.Point(106, 68);
+      this.label13.Location = new System.Drawing.Point(106, 55);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(35, 13);
       this.label13.TabIndex = 6;
       this.label13.Text = "Width";
       // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(175, 201);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(27, 13);
+      this.label8.TabIndex = 25;
+      this.label8.Text = "Max";
+      // 
       // heightNumericUpDown
       // 
-      this.heightNumericUpDown.Location = new System.Drawing.Point(182, 84);
+      this.heightNumericUpDown.Location = new System.Drawing.Point(182, 71);
       this.heightNumericUpDown.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -1159,9 +1371,18 @@
             0,
             0});
       // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(6, 245);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(98, 13);
+      this.label9.TabIndex = 30;
+      this.label9.Text = "Re&pellent Strength:";
+      // 
       // widthNumericUpDown
       // 
-      this.widthNumericUpDown.Location = new System.Drawing.Point(109, 84);
+      this.widthNumericUpDown.Location = new System.Drawing.Point(109, 71);
       this.widthNumericUpDown.Maximum = new decimal(new int[] {
             256,
             0,
@@ -1181,109 +1402,9 @@
             0,
             0});
       // 
-      // label14
-      // 
-      this.label14.AutoSize = true;
-      this.label14.Location = new System.Drawing.Point(6, 86);
-      this.label14.Name = "label14";
-      this.label14.Size = new System.Drawing.Size(30, 13);
-      this.label14.TabIndex = 8;
-      this.label14.Text = "Si&ze:";
-      // 
-      // allowBinaryFissionCheckBox
-      // 
-      this.allowBinaryFissionCheckBox.AutoSize = true;
-      this.allowBinaryFissionCheckBox.Location = new System.Drawing.Point(6, 373);
-      this.allowBinaryFissionCheckBox.Name = "allowBinaryFissionCheckBox";
-      this.allowBinaryFissionCheckBox.Size = new System.Drawing.Size(118, 17);
-      this.allowBinaryFissionCheckBox.TabIndex = 37;
-      this.allowBinaryFissionCheckBox.Text = "Allow &Binary Fission";
-      this.allowBinaryFissionCheckBox.UseVisualStyleBackColor = true;
-      this.allowBinaryFissionCheckBox.CheckedChanged += new System.EventHandler(this.AllowBinaryFissionCheckBox_CheckedChanged);
-      // 
-      // respawnAttractorsCheckBox
-      // 
-      this.respawnAttractorsCheckBox.AutoSize = true;
-      this.respawnAttractorsCheckBox.Checked = true;
-      this.respawnAttractorsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.respawnAttractorsCheckBox.Location = new System.Drawing.Point(6, 350);
-      this.respawnAttractorsCheckBox.Name = "respawnAttractorsCheckBox";
-      this.respawnAttractorsCheckBox.Size = new System.Drawing.Size(119, 17);
-      this.respawnAttractorsCheckBox.TabIndex = 36;
-      this.respawnAttractorsCheckBox.Text = "Respa&wn Attractors";
-      this.respawnAttractorsCheckBox.UseVisualStyleBackColor = true;
-      this.respawnAttractorsCheckBox.CheckedChanged += new System.EventHandler(this.RespawnAttractorsCheckBox_CheckedChanged);
-      // 
-      // repellentCollisionModeComboBox
-      // 
-      this.repellentCollisionModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.repellentCollisionModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.repellentCollisionModeComboBox.FormattingEnabled = true;
-      this.repellentCollisionModeComboBox.Items.AddRange(new object[] {
-            "Destroy Self",
-            "Destroy Other",
-            "Reduce Self",
-            "Reduce Other"});
-      this.repellentCollisionModeComboBox.Location = new System.Drawing.Point(158, 182);
-      this.repellentCollisionModeComboBox.Name = "repellentCollisionModeComboBox";
-      this.repellentCollisionModeComboBox.Size = new System.Drawing.Size(128, 21);
-      this.repellentCollisionModeComboBox.TabIndex = 23;
-      // 
-      // label10
-      // 
-      this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(155, 115);
-      this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(37, 13);
-      this.label10.TabIndex = 12;
-      this.label10.Text = "Action";
-      // 
-      // label11
-      // 
-      this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(69, 115);
-      this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(35, 13);
-      this.label11.TabIndex = 11;
-      this.label11.Text = "Count";
-      // 
-      // attractorCollisionModeComboBox
-      // 
-      this.attractorCollisionModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.attractorCollisionModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.attractorCollisionModeComboBox.FormattingEnabled = true;
-      this.attractorCollisionModeComboBox.Items.AddRange(new object[] {
-            "Destroy Self",
-            "Destroy Other",
-            "Reduce Self",
-            "Reduce Other"});
-      this.attractorCollisionModeComboBox.Location = new System.Drawing.Point(158, 156);
-      this.attractorCollisionModeComboBox.Name = "attractorCollisionModeComboBox";
-      this.attractorCollisionModeComboBox.Size = new System.Drawing.Size(128, 21);
-      this.attractorCollisionModeComboBox.TabIndex = 19;
-      // 
-      // maximumRepellentSizeNumericUpDown
-      // 
-      this.maximumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(178, 256);
-      this.maximumRepellentSizeNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-      this.maximumRepellentSizeNumericUpDown.Name = "maximumRepellentSizeNumericUpDown";
-      this.maximumRepellentSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
-      this.maximumRepellentSizeNumericUpDown.TabIndex = 26;
-      this.maximumRepellentSizeNumericUpDown.Value = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-      // 
       // minimumRepellentSizeNumericUpDown
       // 
-      this.minimumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(105, 256);
+      this.minimumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(105, 243);
       this.minimumRepellentSizeNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1298,216 +1419,142 @@
             0,
             0});
       // 
-      // label9
+      // label14
       // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(6, 258);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(98, 13);
-      this.label9.TabIndex = 30;
-      this.label9.Text = "Re&pellent Strength:";
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(9, 73);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(30, 13);
+      this.label14.TabIndex = 8;
+      this.label14.Text = "Si&ze:";
       // 
-      // label8
+      // maximumRepellentSizeNumericUpDown
       // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(175, 214);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(27, 13);
-      this.label8.TabIndex = 25;
-      this.label8.Text = "Max";
-      // 
-      // label7
-      // 
-      this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(102, 214);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(24, 13);
-      this.label7.TabIndex = 24;
-      this.label7.Text = "Min";
-      // 
-      // maximumAttractorSizeNumericUpDown
-      // 
-      this.maximumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(178, 230);
-      this.maximumAttractorSizeNumericUpDown.Maximum = new decimal(new int[] {
+      this.maximumRepellentSizeNumericUpDown.Location = new System.Drawing.Point(178, 243);
+      this.maximumRepellentSizeNumericUpDown.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-      this.maximumAttractorSizeNumericUpDown.Name = "maximumAttractorSizeNumericUpDown";
-      this.maximumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
-      this.maximumAttractorSizeNumericUpDown.TabIndex = 23;
-      this.maximumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
+      this.maximumRepellentSizeNumericUpDown.Name = "maximumRepellentSizeNumericUpDown";
+      this.maximumRepellentSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
+      this.maximumRepellentSizeNumericUpDown.TabIndex = 26;
+      this.maximumRepellentSizeNumericUpDown.Value = new decimal(new int[] {
             128,
             0,
             0,
             0});
       // 
-      // minimumAttractorSizeNumericUpDown
+      // allowBinaryFissionCheckBox
       // 
-      this.minimumAttractorSizeNumericUpDown.Location = new System.Drawing.Point(105, 230);
-      this.minimumAttractorSizeNumericUpDown.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-      this.minimumAttractorSizeNumericUpDown.Name = "minimumAttractorSizeNumericUpDown";
-      this.minimumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
-      this.minimumAttractorSizeNumericUpDown.TabIndex = 27;
-      this.minimumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+      this.allowBinaryFissionCheckBox.AutoSize = true;
+      this.allowBinaryFissionCheckBox.Location = new System.Drawing.Point(6, 360);
+      this.allowBinaryFissionCheckBox.Name = "allowBinaryFissionCheckBox";
+      this.allowBinaryFissionCheckBox.Size = new System.Drawing.Size(118, 17);
+      this.allowBinaryFissionCheckBox.TabIndex = 37;
+      this.allowBinaryFissionCheckBox.Text = "Allow &Binary Fission";
+      this.allowBinaryFissionCheckBox.UseVisualStyleBackColor = true;
+      this.allowBinaryFissionCheckBox.CheckedChanged += new System.EventHandler(this.AllowBinaryFissionCheckBox_CheckedChanged);
       // 
-      // label6
+      // respawnAttractorsCheckBox
       // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(6, 232);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(93, 13);
-      this.label6.TabIndex = 26;
-      this.label6.Text = "Attractor Stren&gth:";
+      this.respawnAttractorsCheckBox.AutoSize = true;
+      this.respawnAttractorsCheckBox.Checked = true;
+      this.respawnAttractorsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.respawnAttractorsCheckBox.Location = new System.Drawing.Point(6, 337);
+      this.respawnAttractorsCheckBox.Name = "respawnAttractorsCheckBox";
+      this.respawnAttractorsCheckBox.Size = new System.Drawing.Size(119, 17);
+      this.respawnAttractorsCheckBox.TabIndex = 36;
+      this.respawnAttractorsCheckBox.Text = "Respa&wn Attractors";
+      this.respawnAttractorsCheckBox.UseVisualStyleBackColor = true;
+      this.respawnAttractorsCheckBox.CheckedChanged += new System.EventHandler(this.RespawnAttractorsCheckBox_CheckedChanged);
       // 
-      // movementSeedNumericUpDown
+      // attractorCollisionModeComboBox
       // 
-      this.movementSeedNumericUpDown.Location = new System.Drawing.Point(109, 45);
-      this.movementSeedNumericUpDown.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-      this.movementSeedNumericUpDown.Name = "movementSeedNumericUpDown";
-      this.movementSeedNumericUpDown.Size = new System.Drawing.Size(77, 20);
-      this.movementSeedNumericUpDown.TabIndex = 4;
-      this.movementSeedNumericUpDown.Value = new decimal(new int[] {
-            1622,
-            0,
-            0,
-            0});
+      this.attractorCollisionModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.attractorCollisionModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.attractorCollisionModeComboBox.FormattingEnabled = true;
+      this.attractorCollisionModeComboBox.Items.AddRange(new object[] {
+            "Destroy Self",
+            "Destroy Other",
+            "Reduce Self",
+            "Reduce Other"});
+      this.attractorCollisionModeComboBox.Location = new System.Drawing.Point(158, 143);
+      this.attractorCollisionModeComboBox.Name = "attractorCollisionModeComboBox";
+      this.attractorCollisionModeComboBox.Size = new System.Drawing.Size(124, 21);
+      this.attractorCollisionModeComboBox.TabIndex = 19;
       // 
-      // label5
+      // repellentCollisionModeComboBox
       // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(6, 47);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(88, 13);
-      this.label5.TabIndex = 3;
-      this.label5.Text = "&Movement Seed:";
+      this.repellentCollisionModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.repellentCollisionModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.repellentCollisionModeComboBox.FormattingEnabled = true;
+      this.repellentCollisionModeComboBox.Items.AddRange(new object[] {
+            "Destroy Self",
+            "Destroy Other",
+            "Reduce Self",
+            "Reduce Other"});
+      this.repellentCollisionModeComboBox.Location = new System.Drawing.Point(158, 169);
+      this.repellentCollisionModeComboBox.Name = "repellentCollisionModeComboBox";
+      this.repellentCollisionModeComboBox.Size = new System.Drawing.Size(124, 21);
+      this.repellentCollisionModeComboBox.TabIndex = 23;
       // 
-      // initializeButton
+      // label11
       // 
-      this.initializeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.initializeButton.Location = new System.Drawing.Point(211, 290);
-      this.initializeButton.Name = "initializeButton";
-      this.initializeButton.Size = new System.Drawing.Size(75, 23);
-      this.initializeButton.TabIndex = 34;
-      this.initializeButton.Text = "&Initialise";
-      this.initializeButton.UseVisualStyleBackColor = true;
-      this.initializeButton.Click += new System.EventHandler(this.InitializeButton_Click);
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(69, 102);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(35, 13);
+      this.label11.TabIndex = 11;
+      this.label11.Text = "Count";
       // 
-      // environmentSeedNumericUpDown
+      // label10
       // 
-      this.environmentSeedNumericUpDown.Location = new System.Drawing.Point(109, 19);
-      this.environmentSeedNumericUpDown.Maximum = new decimal(new int[] {
-            2147483646,
-            0,
-            0,
-            0});
-      this.environmentSeedNumericUpDown.Name = "environmentSeedNumericUpDown";
-      this.environmentSeedNumericUpDown.Size = new System.Drawing.Size(77, 20);
-      this.environmentSeedNumericUpDown.TabIndex = 1;
-      this.environmentSeedNumericUpDown.Value = new decimal(new int[] {
-            20200803,
-            0,
-            0,
-            0});
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(155, 102);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(37, 13);
+      this.label10.TabIndex = 12;
+      this.label10.Text = "Action";
       // 
-      // label4
+      // scriptTabPage
       // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(6, 21);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(97, 13);
-      this.label4.TabIndex = 0;
-      this.label4.Text = "E&nvironment Seed:";
+      this.scriptTabPage.Controls.Add(this.scriptSplitContainer);
+      this.scriptTabPage.Location = new System.Drawing.Point(4, 22);
+      this.scriptTabPage.Name = "scriptTabPage";
+      this.scriptTabPage.Padding = new System.Windows.Forms.Padding(3);
+      this.scriptTabPage.Size = new System.Drawing.Size(342, 439);
+      this.scriptTabPage.TabIndex = 1;
+      this.scriptTabPage.Text = "Script";
+      this.scriptTabPage.UseVisualStyleBackColor = true;
       // 
-      // repellentsNumericUpDown
+      // runButton
       // 
-      this.repellentsNumericUpDown.Location = new System.Drawing.Point(72, 183);
-      this.repellentsNumericUpDown.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-      this.repellentsNumericUpDown.Name = "repellentsNumericUpDown";
-      this.repellentsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.repellentsNumericUpDown.TabIndex = 21;
-      this.repellentsNumericUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+      this.runButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.runButton.Location = new System.Drawing.Point(258, 205);
+      this.runButton.Name = "runButton";
+      this.runButton.Size = new System.Drawing.Size(75, 23);
+      this.runButton.TabIndex = 1;
+      this.runButton.Text = "&Run";
+      this.runButton.UseVisualStyleBackColor = true;
+      this.runButton.Click += new System.EventHandler(this.RunButton_Click);
       // 
-      // label3
+      // scriptTextBox
       // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(6, 185);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(60, 13);
-      this.label3.TabIndex = 20;
-      this.label3.Text = "&Repellents:";
-      // 
-      // attractorsNumericUpDown
-      // 
-      this.attractorsNumericUpDown.Location = new System.Drawing.Point(72, 157);
-      this.attractorsNumericUpDown.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-      this.attractorsNumericUpDown.Name = "attractorsNumericUpDown";
-      this.attractorsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.attractorsNumericUpDown.TabIndex = 17;
-      this.attractorsNumericUpDown.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-      // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(6, 159);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(55, 13);
-      this.label2.TabIndex = 16;
-      this.label2.Text = "Attract&ors:";
-      // 
-      // strandsNumericUpDown
-      // 
-      this.strandsNumericUpDown.Location = new System.Drawing.Point(72, 131);
-      this.strandsNumericUpDown.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-      this.strandsNumericUpDown.Name = "strandsNumericUpDown";
-      this.strandsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.strandsNumericUpDown.TabIndex = 14;
-      this.strandsNumericUpDown.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(6, 133);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(46, 13);
-      this.label1.TabIndex = 13;
-      this.label1.Text = "Stran&ds:";
+      this.scriptTextBox.AcceptsReturn = true;
+      this.scriptTextBox.AcceptsTab = true;
+      this.scriptTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.scriptTextBox.Location = new System.Drawing.Point(3, 3);
+      this.scriptTextBox.Multiline = true;
+      this.scriptTextBox.Name = "scriptTextBox";
+      this.scriptTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+      this.scriptTextBox.Size = new System.Drawing.Size(330, 196);
+      this.scriptTextBox.TabIndex = 0;
+      this.scriptTextBox.WordWrap = false;
       // 
       // timer
       // 
@@ -1519,11 +1566,11 @@
       // toolStripContainer.ContentPanel
       // 
       this.toolStripContainer.ContentPanel.Controls.Add(this.splitContainer);
-      this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(1008, 565);
+      this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(784, 465);
       this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
       this.toolStripContainer.Location = new System.Drawing.Point(0, 24);
       this.toolStripContainer.Name = "toolStripContainer";
-      this.toolStripContainer.Size = new System.Drawing.Size(1008, 615);
+      this.toolStripContainer.Size = new System.Drawing.Size(784, 515);
       this.toolStripContainer.TabIndex = 1;
       // 
       // toolStripContainer.TopToolStripPanel
@@ -1556,11 +1603,46 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
+      // scriptSplitContainer
+      // 
+      this.scriptSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.scriptSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+      this.scriptSplitContainer.Location = new System.Drawing.Point(3, 3);
+      this.scriptSplitContainer.Name = "scriptSplitContainer";
+      this.scriptSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // scriptSplitContainer.Panel1
+      // 
+      this.scriptSplitContainer.Panel1.Controls.Add(this.scriptTextBox);
+      this.scriptSplitContainer.Panel1.Controls.Add(this.runButton);
+      // 
+      // scriptSplitContainer.Panel2
+      // 
+      this.scriptSplitContainer.Panel2.Controls.Add(this.logTextBox);
+      this.scriptSplitContainer.Size = new System.Drawing.Size(336, 433);
+      this.scriptSplitContainer.SplitterDistance = 231;
+      this.scriptSplitContainer.TabIndex = 2;
+      // 
+      // logTextBox
+      // 
+      this.logTextBox.AcceptsReturn = true;
+      this.logTextBox.AcceptsTab = true;
+      this.logTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.logTextBox.Location = new System.Drawing.Point(3, 3);
+      this.logTextBox.Multiline = true;
+      this.logTextBox.Name = "logTextBox";
+      this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+      this.logTextBox.Size = new System.Drawing.Size(330, 192);
+      this.logTextBox.TabIndex = 1;
+      this.logTextBox.WordWrap = false;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1008, 661);
+      this.ClientSize = new System.Drawing.Size(784, 561);
       this.Controls.Add(this.toolStripContainer);
       this.Controls.Add(this.statusStrip);
       this.Controls.Add(this.menuStrip);
@@ -1583,19 +1665,21 @@
       this.splitContainer.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
       this.splitContainer.ResumeLayout(false);
-      this.setupGroupBox.ResumeLayout(false);
-      this.setupGroupBox.PerformLayout();
+      this.tabControl.ResumeLayout(false);
+      this.setupTabPage.ResumeLayout(false);
+      this.setupTabPage.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.strandsNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.attractorsNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.repellentsNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.environmentSeedNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.movementSeedNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.minimumAttractorSizeNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.maximumAttractorSizeNumericUpDown)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.heightNumericUpDown)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.widthNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.maximumRepellentSizeNumericUpDown)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.minimumRepellentSizeNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.maximumAttractorSizeNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.minimumAttractorSizeNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.movementSeedNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.environmentSeedNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.repellentsNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.attractorsNumericUpDown)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.strandsNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.maximumRepellentSizeNumericUpDown)).EndInit();
+      this.scriptTabPage.ResumeLayout(false);
       this.toolStripContainer.ContentPanel.ResumeLayout(false);
       this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
       this.toolStripContainer.TopToolStripPanel.PerformLayout();
@@ -1603,6 +1687,12 @@
       this.toolStripContainer.PerformLayout();
       this.simulationToolStrip.ResumeLayout(false);
       this.simulationToolStrip.PerformLayout();
+      this.scriptSplitContainer.Panel1.ResumeLayout(false);
+      this.scriptSplitContainer.Panel1.PerformLayout();
+      this.scriptSplitContainer.Panel2.ResumeLayout(false);
+      this.scriptSplitContainer.Panel2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.scriptSplitContainer)).EndInit();
+      this.scriptSplitContainer.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -1670,7 +1760,6 @@
     private System.Windows.Forms.ToolStripStatusLabel standsToolStripStatusLabel;
     private System.Windows.Forms.ToolStripStatusLabel attractorsToolStripStatusLabel;
     private System.Windows.Forms.ToolStripStatusLabel repellentsToolStripStatusLabel;
-    private System.Windows.Forms.GroupBox setupGroupBox;
     private System.Windows.Forms.NumericUpDown environmentSeedNumericUpDown;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.NumericUpDown repellentsNumericUpDown;
@@ -1679,7 +1768,6 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.NumericUpDown strandsNumericUpDown;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Button initializeButton;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.NumericUpDown maximumAttractorSizeNumericUpDown;
     private System.Windows.Forms.NumericUpDown minimumAttractorSizeNumericUpDown;
@@ -1736,6 +1824,13 @@
     private System.Windows.Forms.CheckBox mobileRepellentsCheckBox;
     private System.Windows.Forms.ToolStripMenuItem veryHighToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem shapesToolStripMenuItem;
+    private System.Windows.Forms.TabControl tabControl;
+    private System.Windows.Forms.TabPage setupTabPage;
+    private System.Windows.Forms.TabPage scriptTabPage;
+    private System.Windows.Forms.Button runButton;
+    private System.Windows.Forms.TextBox scriptTextBox;
+    private System.Windows.Forms.SplitContainer scriptSplitContainer;
+    private System.Windows.Forms.TextBox logTextBox;
   }
 }
 
