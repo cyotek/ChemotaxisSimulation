@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
-  internal class ChemoeffectorCollection : Collection<Chemoeffector>
+  public class ChemoeffectorCollection : Collection<Chemoeffector>
   {
     #region Private Fields
 

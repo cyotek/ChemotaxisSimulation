@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
-  internal class Strand
+  public class Strand
   {
     #region Private Fields
 

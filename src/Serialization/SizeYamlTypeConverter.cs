@@ -7,7 +7,7 @@ using YamlDotNet.Serialization;
 // Using custom type converters with C# and YamlDotNet, part 1
 // https://www.cyotek.com/blog/using-custom-type-converters-with-csharp-and-yamldotnet-part-1
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation.Serialization
 {
   internal sealed class SizeYamlTypeConverter : IYamlTypeConverter
   {

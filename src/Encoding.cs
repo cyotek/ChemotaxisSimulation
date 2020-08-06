@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using Enc = System.Text.Encoding;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
-  public static class Encoding
+  internal static class Encoding
   {
     #region Private Fields
 

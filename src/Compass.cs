@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
   internal static class Compass
   {

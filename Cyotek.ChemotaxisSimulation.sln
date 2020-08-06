@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.ChemotaxisSimulation.Gui", "gui\Cyotek.ChemotaxisSimulation.Gui.csproj", "{484BFB98-9DD5-462E-9753-EC1CFB3A4177}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.ChemotaxisSimulation", "src\Cyotek.ChemotaxisSimulation.csproj", "{AE445F69-8648-4D8F-A552-3E8BC552498F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.ChemotaxisSimulation.Tests", "tests\Cyotek.ChemotaxisSimulation.Tests.csproj", "{F081E6A6-4F12-4AF8-BF41-0AAEE20BAB6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.ChemotaxisSimulation.Renderer", "renderer\Cyotek.ChemotaxisSimulation.Renderer.csproj", "{6544B319-A630-4B1C-82CA-BE12A6F92B0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{484BFB98-9DD5-462E-9753-EC1CFB3A4177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484BFB98-9DD5-462E-9753-EC1CFB3A4177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484BFB98-9DD5-462E-9753-EC1CFB3A4177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484BFB98-9DD5-462E-9753-EC1CFB3A4177}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE445F69-8648-4D8F-A552-3E8BC552498F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE445F69-8648-4D8F-A552-3E8BC552498F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE445F69-8648-4D8F-A552-3E8BC552498F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -21,6 +29,10 @@ Global
 		{F081E6A6-4F12-4AF8-BF41-0AAEE20BAB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F081E6A6-4F12-4AF8-BF41-0AAEE20BAB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F081E6A6-4F12-4AF8-BF41-0AAEE20BAB6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6544B319-A630-4B1C-82CA-BE12A6F92B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6544B319-A630-4B1C-82CA-BE12A6F92B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6544B319-A630-4B1C-82CA-BE12A6F92B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6544B319-A630-4B1C-82CA-BE12A6F92B0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

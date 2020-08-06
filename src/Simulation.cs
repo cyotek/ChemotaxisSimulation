@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
-  internal class Simulation
+  public class Simulation
   {
     #region Private Fields
 

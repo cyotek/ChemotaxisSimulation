@@ -1,6 +1,6 @@
-﻿namespace Cyotek.Demo.ChemotaxisSimulation
+﻿namespace Cyotek.ChemotaxisSimulation
 {
-  internal enum CollisionAction
+  public enum CollisionAction
   {
     None,
 

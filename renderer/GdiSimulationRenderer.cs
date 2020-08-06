@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation.Renderer
 {
-  internal class SimulationRenderer
+  public class GdiSimulationRenderer
   {
     #region Private Fields
 
@@ -65,7 +65,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
 
     #region Public Constructors
 
-    public SimulationRenderer()
+    public GdiSimulationRenderer()
     {
       _scale = 1;
       _showFoodDetectionZone = true;

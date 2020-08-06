@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE445F69-8648-4D8F-A552-3E8BC552498F}</ProjectGuid>
+    <ProjectGuid>{6544B319-A630-4B1C-82CA-BE12A6F92B0F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Cyotek.ChemotaxisSimulation</RootNamespace>
-    <AssemblyName>Cyotek.ChemotaxisSimulation</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cyotek.ChemotaxisSimulation.Renderer</RootNamespace>
+    <AssemblyName>Cyotek.ChemotaxisSimulation.Renderer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,35 +30,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cyotek.Collections.Generic.CircularBuffer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\Cyotek.CircularBuffer.1.1.0-alpha5\lib\net48\Cyotek.Collections.Generic.CircularBuffer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="YamlDotNet, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\YamlDotNet.8.1.2\lib\net45\YamlDotNet.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chemoeffector.cs" />
-    <Compile Include="ChemoeffectorCollection.cs" />
-    <Compile Include="CollisionAction.cs" />
-    <Compile Include="Compass.cs" />
-    <Compile Include="Encoding.cs" />
-    <Compile Include="Geometry.cs" />
-    <Compile Include="PointBuffer.cs" />
-    <Compile Include="Serialization\PointYamlTypeConverter.cs" />
-    <Compile Include="Serialization\SimulationSerializer.cs" />
-    <Compile Include="Serialization\SizeYamlTypeConverter.cs" />
-    <Compile Include="Simulation.cs" />
-    <Compile Include="StrandCollection.cs" />
+    <Compile Include="GdiSimulationRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\Cyotek.ChemotaxisSimulation.csproj">
+      <Project>{ae445f69-8648-4d8f-a552-3e8bc552498f}</Project>
+      <Name>Cyotek.ChemotaxisSimulation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

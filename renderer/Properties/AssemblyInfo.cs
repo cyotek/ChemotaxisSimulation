@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Cyotek Chemotaxis Simulation")]
+[assembly: AssemblyTitle("Cyotek Chemotaxis Simulation Renderers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Cyotek Ltd")]
@@ -13,9 +12,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
-[assembly: Guid("ae445f69-8648-4d8f-a552-3e8bc552498f")]
+[assembly: Guid("6544b319-a630-4b1c-82ca-be12a6f92b0f")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: InternalsVisibleTo("Cyotek.ChemotaxisSimulation.Tests")]
-[assembly: InternalsVisibleTo("Cyotek.ChemotaxisSimulation.Renderer")]

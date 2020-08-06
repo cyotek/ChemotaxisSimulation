@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
-  internal class StrandCollection : Collection<Strand>
+  public class StrandCollection : Collection<Strand>
   {
     #region Private Fields
 

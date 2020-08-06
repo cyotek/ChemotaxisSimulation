@@ -1,4 +1,5 @@
-﻿using Cyotek.Demo.ChemotaxisSimulation;
+﻿using Cyotek.ChemotaxisSimulation;
+using Cyotek.ChemotaxisSimulation.Renderer;
 using Cyotek.Demo.Windows.Forms;
 using Cyotek.Windows.Forms;
 using System;
@@ -16,7 +17,7 @@ namespace Cyotek.Demo
 
     private Simulation _environment;
 
-    private SimulationRenderer _environmentRenderer;
+    private GdiSimulationRenderer _environmentRenderer;
 
     private Random _random;
 
@@ -45,7 +46,7 @@ namespace Cyotek.Demo
         Size = new Size(256, 256)
       };
 
-      _environmentRenderer = new SimulationRenderer
+      _environmentRenderer = new GdiSimulationRenderer
       {
         Scale = 2
       };

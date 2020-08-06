@@ -1,9 +1,9 @@
 ﻿using Cyotek.Collections.Generic;
 using System.Drawing;
 
-namespace Cyotek.Demo.ChemotaxisSimulation
+namespace Cyotek.ChemotaxisSimulation
 {
-  internal class PointBuffer : CircularBuffer<Point>
+  public class PointBuffer : CircularBuffer<Point>
   {
     #region Public Constructors
 

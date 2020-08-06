@@ -1,4 +1,4 @@
-﻿using Cyotek.Demo.ChemotaxisSimulation;
+﻿using Cyotek.ChemotaxisSimulation.Serialization;
 using NUnit.Framework;
 using System;
 using System.Drawing;

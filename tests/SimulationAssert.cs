@@ -1,5 +1,4 @@
-﻿using Cyotek.Demo.ChemotaxisSimulation;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Cyotek.ChemotaxisSimulation.Tests
 {
