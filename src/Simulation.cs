@@ -110,6 +110,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
     public ulong Iteration
     {
       get { return _iteration; }
+      set { _iteration = value; }
     }
 
     public int MaximumAttractorStrength
@@ -148,13 +149,29 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       set { _movementSeed = value; }
     }
 
+    public void Run(ulong iterations)
+    {
+      for (ulong i = 0; i < iterations; i++)
+      {
+        this.NextMove();
+      }
+    }
+
+    public void Run(int iterations)
+    {
+      for (int i = 0; i < iterations; i++)
+      {
+        this.NextMove();
+      }
+    }
+
     public ChemoeffectorCollection NoxiousSources
     {
       get { return _noxiousSources; }
       set { _noxiousSources = value; }
     }
 
-    public CollisionAction RepelleCollisionAction
+    public CollisionAction RepellentCollisionAction
     {
       get { return _repellentCollisionAction; }
       set { _repellentCollisionAction = value; }

@@ -81,10 +81,7 @@ namespace Cyotek.Demo
 
       if (count > 0)
       {
-        for (ulong i = 0; i < count; i++)
-        {
-          _environment.NextMove();
-        }
+        _environment.Run((int)count);
 
         this.UpdateStatusBar();
 
@@ -173,10 +170,7 @@ namespace Cyotek.Demo
 
         iterations = (ulong)count - _environment.Iteration;
 
-        for (ulong i = 0; i < iterations; i++)
-        {
-          _environment.NextMove();
-        }
+        _environment.Run(iterations);
 
         this.UpdateStatusBar();
 
@@ -208,7 +202,7 @@ namespace Cyotek.Demo
       _environment.MinimumRepellentStrength = (int)minimumRepellentSizeNumericUpDown.Value;
       _environment.MaximumRepellentStrength = (int)maximumRepellentSizeNumericUpDown.Value;
       _environment.AttractorCollisionAction = (CollisionAction)(attractorCollisionModeComboBox.SelectedIndex + 1);
-      _environment.RepelleCollisionAction = (CollisionAction)(repellentCollisionModeComboBox.SelectedIndex + 1);
+      _environment.RepellentCollisionAction = (CollisionAction)(repellentCollisionModeComboBox.SelectedIndex + 1);
       _environment.RespawnAttractor = respawnAttractorsCheckBox.Checked;
       _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
       _environment.Size = new Size((int)widthNumericUpDown.Value, (int)heightNumericUpDown.Value);
@@ -258,10 +252,7 @@ namespace Cyotek.Demo
       }
       else
       {
-        for (int i = 0; i < _updateIterations; i++)
-        {
-          _environment.NextMove();
-        }
+        _environment.Run(_updateIterations);
       }
 
       if ((_environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count) != sum)
