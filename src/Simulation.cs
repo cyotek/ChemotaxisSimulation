@@ -264,6 +264,11 @@ namespace Cyotek.ChemotaxisSimulation
         for (int i = 0; i < _noxiousSources.Count; i++)
         {
           _noxiousSources[i].Move();
+
+          for (int j = 0; j < _strands.Count; j++)
+          {
+            this.CheckCollisions(_strands[j]);
+          }
         }
       }
 
