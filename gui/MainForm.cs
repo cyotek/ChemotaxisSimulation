@@ -167,9 +167,9 @@ namespace Cyotek.Demo
 
       if (count > 0)
       {
-        ulong iterations;
+        long iterations;
 
-        iterations = (ulong)count - _environment.Iteration;
+        iterations = (long)count - _environment.Iteration;
 
         _environment.Run(iterations);
 

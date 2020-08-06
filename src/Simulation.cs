@@ -19,7 +19,7 @@ namespace Cyotek.ChemotaxisSimulation
 
     private ChemoeffectorCollection _foodSources;
 
-    private ulong _iteration;
+    private long _iteration;
 
     private int _maximumAttractorStrength;
 
@@ -123,7 +123,7 @@ namespace Cyotek.ChemotaxisSimulation
       }
     }
 
-    public ulong Iteration
+    public long Iteration
     {
       get { return _iteration; }
       set { _iteration = value; }
@@ -298,15 +298,7 @@ namespace Cyotek.ChemotaxisSimulation
       _noxiousSources.Clear();
     }
 
-    public void Run(ulong iterations)
-    {
-      for (ulong i = 0; i < iterations; i++)
-      {
-        this.NextMove();
-      }
-    }
-
-    public void Run(int iterations)
+    public void Run(long iterations)
     {
       for (int i = 0; i < iterations; i++)
       {
