@@ -1,16 +1,21 @@
-attractorcollisionaction = 3
-attrition = no
-binaryfission = no
-environmentseed = 20200803
-iteration = 0
-maximumattractorstrength = 128
-maximumrepellentstrength = 128
-minimumattractorstrength = 1
-minimumrepellentstrength = 1
-mobilerepellents = no
-movementseed = 1622
-repellentcollisionaction = 4
-respawnattractor = yes
-size = 256, 256
-solidstrands = no
-wrap = yes
+AttractorCollisionAction: ReduceSelf
+Attrition: false
+BinaryFission: false
+EnvironmentSeed: 20200803
+FoodSources: []
+Iteration: 0
+MaximumAttractorStrength: 128
+MaximumRepellentStrength: 128
+MinimumAttractorStrength: 1
+MinimumRepellentStrength: 1
+MobileRepellents: false
+MovementSeed: 1622
+NoxiousSources: []
+RepellentCollisionAction: ReduceOther
+RespawnAttractor: true
+Size:
+  Width: 256
+  Height: 256
+SolidStrands: false
+Strands: []
+Wrap: true

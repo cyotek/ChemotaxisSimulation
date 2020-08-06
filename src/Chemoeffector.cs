@@ -6,9 +6,9 @@ namespace Cyotek.Demo.ChemotaxisSimulation
   {
     #region Private Fields
 
-    private Simulation _environment;
-
     private Point _heading;
+
+    private Simulation _owner;
 
     private Point _position;
 
@@ -40,10 +40,10 @@ namespace Cyotek.Demo.ChemotaxisSimulation
 
     #region Internal Properties
 
-    internal Simulation Environment
+    internal Simulation Owner
     {
-      get { return _environment; }
-      set { _environment = value; }
+      get { return _owner; }
+      set { _owner = value; }
     }
 
     #endregion Internal Properties
@@ -60,24 +60,24 @@ namespace Cyotek.Demo.ChemotaxisSimulation
         x = _position.X + _heading.X;
         y = _position.Y + _heading.Y;
 
-        if (x < 0 || y < 0 || x > _environment.Size.Width - 1 || y > _environment.Size.Height)
+        if (x < 0 || y < 0 || x > _owner.Size.Width - 1 || y > _owner.Size.Height)
         {
-          if (_environment.Wrap)
+          if (_owner.Wrap)
           {
             if (x < 0)
             {
-              x = _environment.Size.Width - 1;
+              x = _owner.Size.Width - 1;
             }
-            else if (x > _environment.Size.Width - 1)
+            else if (x > _owner.Size.Width - 1)
             {
               x = 1;
             }
 
             if (y < 0)
             {
-              y = _environment.Size.Height - 1;
+              y = _owner.Size.Height - 1;
             }
-            else if (y > _environment.Size.Height - 1)
+            else if (y > _owner.Size.Height - 1)
             {
               y = 1;
             }

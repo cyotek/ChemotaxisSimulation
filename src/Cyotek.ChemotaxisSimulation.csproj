@@ -34,11 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cyotek.Collections.Generic.CircularBuffer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Cyotek.CircularBuffer.1.1.0-alpha4\lib\net48\Cyotek.Collections.Generic.CircularBuffer.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Cyotek.CircularBuffer.1.1.0-alpha5\lib\net48\Cyotek.Collections.Generic.CircularBuffer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="YamlDotNet, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\YamlDotNet.8.1.2\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutDialog.cs">
@@ -76,6 +79,9 @@
     <Compile Include="Line.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PointBuffer.cs" />
+    <Compile Include="SizeYamlTypeConverter.cs" />
+    <Compile Include="PointYamlTypeConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

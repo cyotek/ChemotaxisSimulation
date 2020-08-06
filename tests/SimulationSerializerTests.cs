@@ -21,6 +21,44 @@ namespace Cyotek.ChemotaxisSimulation.Tests
     #region Public Methods
 
     [Test]
+    public void LoadAdvancedTest()
+    {
+      // arrange
+      SimulationSerializer target;
+      Simulation expected;
+      Simulation actual;
+
+      expected = this.CreateDemonstrationSimulation();
+
+      target = new SimulationSerializer();
+
+      // act
+      actual = target.Load(this.GetDataFileName("advanced.sim"));
+
+      // assert
+      SimulationAssert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    public void LoadTest()
+    {
+      // arrange
+      SimulationSerializer target;
+      Simulation expected;
+      Simulation actual;
+
+      expected = new Simulation();
+
+      target = new SimulationSerializer();
+
+      // act
+      actual = target.Load(this.GetDataFileName("default.sim"));
+
+      // assert
+      SimulationAssert.AreEqual(expected, actual);
+    }
+
+    [Test]
     public void SaveAdvancedTest()
     {
       // arrange
@@ -57,9 +95,7 @@ namespace Cyotek.ChemotaxisSimulation.Tests
       string actual;
       StringWriter writer;
 
-      simulation = new Simulation
-      {
-      };
+      simulation = new Simulation();
 
       expected = File.ReadAllText(this.GetDataFileName("default.sim"));
 
@@ -72,7 +108,7 @@ namespace Cyotek.ChemotaxisSimulation.Tests
 
       // assert
       actual = writer.ToString();
-      //File.WriteAllText(@"D:\Checkout\trunk\cyotek\source\demo\ChemotaxisSimulation\tests\data\default.sim", actual);
+      // File.WriteAllText(@"D:\Checkout\trunk\cyotek\source\demo\ChemotaxisSimulation\tests\data\default.sim", actual);
       Assert.AreEqual(expected, actual);
     }
 

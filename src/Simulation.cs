@@ -58,9 +58,18 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       _environmentSeed = 20200803;
       _movementSeed = 1622;
       _size = new Size(256, 256);
-      _strands = new StrandCollection(this);
-      _foodSources = new ChemoeffectorCollection(this);
-      _noxiousSources = new ChemoeffectorCollection(this);
+      _strands = new StrandCollection
+      {
+        Owner = this
+      };
+      _foodSources = new ChemoeffectorCollection
+      {
+        Owner = this
+      };
+      _noxiousSources = new ChemoeffectorCollection
+      {
+        Owner = this
+      };
       _minimumAttractorStrength = 1;
       _maximumAttractorStrength = 128;
       _minimumRepellentStrength = 1;
@@ -104,7 +113,14 @@ namespace Cyotek.Demo.ChemotaxisSimulation
     public ChemoeffectorCollection FoodSources
     {
       get { return _foodSources; }
-      set { _foodSources = value; }
+      set
+      {
+        _foodSources = value;
+        if (value != null)
+        {
+          value.Owner = this;
+        }
+      }
     }
 
     public ulong Iteration
@@ -149,26 +165,17 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       set { _movementSeed = value; }
     }
 
-    public void Run(ulong iterations)
-    {
-      for (ulong i = 0; i < iterations; i++)
-      {
-        this.NextMove();
-      }
-    }
-
-    public void Run(int iterations)
-    {
-      for (int i = 0; i < iterations; i++)
-      {
-        this.NextMove();
-      }
-    }
-
     public ChemoeffectorCollection NoxiousSources
     {
       get { return _noxiousSources; }
-      set { _noxiousSources = value; }
+      set
+      {
+        _noxiousSources = value;
+        if (value != null)
+        {
+          value.Owner = this;
+        }
+      }
     }
 
     public CollisionAction RepellentCollisionAction
@@ -198,7 +205,14 @@ namespace Cyotek.Demo.ChemotaxisSimulation
     public StrandCollection Strands
     {
       get { return _strands; }
-      set { _strands = value; }
+      set
+      {
+        _strands = value;
+        if (value != null)
+        {
+          value.Owner = this;
+        }
+      }
     }
 
     public bool Wrap
@@ -282,6 +296,22 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       _strands.Clear();
       _foodSources.Clear();
       _noxiousSources.Clear();
+    }
+
+    public void Run(ulong iterations)
+    {
+      for (ulong i = 0; i < iterations; i++)
+      {
+        this.NextMove();
+      }
+    }
+
+    public void Run(int iterations)
+    {
+      for (int i = 0; i < iterations; i++)
+      {
+        this.NextMove();
+      }
     }
 
     #endregion Public Methods

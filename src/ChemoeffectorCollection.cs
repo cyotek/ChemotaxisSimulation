@@ -6,24 +6,25 @@ namespace Cyotek.Demo.ChemotaxisSimulation
   {
     #region Private Fields
 
-    private readonly Simulation _environment;
+    private Simulation _owner;
 
     #endregion Private Fields
 
-    #region Public Constructors
+    #region Internal Properties
 
-    public ChemoeffectorCollection(Simulation environment)
+    internal Simulation Owner
     {
-      _environment = environment;
+      get { return _owner; }
+      set { _owner = value; }
     }
 
-    #endregion Public Constructors
+    #endregion Internal Properties
 
     #region Protected Methods
 
     protected override void InsertItem(int index, Chemoeffector item)
     {
-      item.Environment = _environment;
+      item.Owner = _owner;
 
       base.InsertItem(index, item);
     }
