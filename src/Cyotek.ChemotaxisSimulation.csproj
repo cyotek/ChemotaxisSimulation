@@ -59,6 +59,7 @@
     <Compile Include="CollisionAction.cs" />
     <Compile Include="Compass.cs" />
     <Compile Include="EmptyArray.cs" />
+    <Compile Include="Encoding.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="NumericInputDialog.cs">
       <SubType>Form</SubType>
@@ -82,6 +83,7 @@
     </Compile>
     <Compile Include="Simulation.cs" />
     <Compile Include="SimulationRenderer.cs" />
+    <Compile Include="SimulationSerializer.cs" />
     <Compile Include="StrandCollection.cs" />
     <Compile Include="Timer.cs">
       <SubType>Component</SubType>

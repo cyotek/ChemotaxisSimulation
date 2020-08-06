@@ -1,0 +1,16 @@
+attractorcollisionaction = 3
+attrition = no
+binaryfission = no
+environmentseed = 20200803
+iteration = 0
+maximumattractorstrength = 128
+maximumrepellentstrength = 128
+minimumattractorstrength = 1
+minimumrepellentstrength = 1
+mobilerepellents = no
+movementseed = 1622
+repellentcollisionaction = 4
+respawnattractor = yes
+size = 256, 256
+solidstrands = no
+wrap = yes
