@@ -192,6 +192,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       this.SetValue("rectangle", TypeReference.CreateTypeReference(this.Engine, typeof(Rectangle)));
       this.SetValue("strand", TypeReference.CreateTypeReference(this.Engine, typeof(Strand)));
       this.SetValue("chemoeffector", TypeReference.CreateTypeReference(this.Engine, typeof(Chemoeffector)));
+      this.SetValue("CollisionAction", TypeReference.CreateTypeReference(this.Engine, typeof(CollisionAction)));
     }
     protected void SetValue(string name, object value)
     {

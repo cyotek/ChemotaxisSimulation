@@ -43,9 +43,6 @@
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,15 +153,16 @@
       this.label11 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
       this.scriptTabPage = new System.Windows.Forms.TabPage();
-      this.runButton = new System.Windows.Forms.Button();
+      this.scriptSplitContainer = new System.Windows.Forms.SplitContainer();
       this.scriptTextBox = new System.Windows.Forms.TextBox();
+      this.runButton = new System.Windows.Forms.Button();
+      this.logTextBox = new System.Windows.Forms.TextBox();
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-      this.scriptSplitContainer = new System.Windows.Forms.SplitContainer();
-      this.logTextBox = new System.Windows.Forms.TextBox();
+      this.initializeButton = new System.Windows.Forms.Button();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -190,14 +188,14 @@
       ((System.ComponentModel.ISupportInitialize)(this.minimumRepellentSizeNumericUpDown)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.maximumRepellentSizeNumericUpDown)).BeginInit();
       this.scriptTabPage.SuspendLayout();
-      this.toolStripContainer.ContentPanel.SuspendLayout();
-      this.toolStripContainer.TopToolStripPanel.SuspendLayout();
-      this.toolStripContainer.SuspendLayout();
-      this.simulationToolStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.scriptSplitContainer)).BeginInit();
       this.scriptSplitContainer.Panel1.SuspendLayout();
       this.scriptSplitContainer.Panel2.SuspendLayout();
       this.scriptSplitContainer.SuspendLayout();
+      this.toolStripContainer.ContentPanel.SuspendLayout();
+      this.toolStripContainer.TopToolStripPanel.SuspendLayout();
+      this.toolStripContainer.SuspendLayout();
+      this.simulationToolStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // line
@@ -206,7 +204,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       line.Location = new System.Drawing.Point(9, 97);
       line.Name = "line";
-      line.Size = new System.Drawing.Size(276, 2);
+      line.Size = new System.Drawing.Size(327, 2);
       line.Text = "line1";
       // 
       // line1
@@ -215,7 +213,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       line1.Location = new System.Drawing.Point(6, 196);
       line1.Name = "line1";
-      line1.Size = new System.Drawing.Size(276, 2);
+      line1.Size = new System.Drawing.Size(327, 2);
       line1.Text = "line1";
       // 
       // line2
@@ -224,7 +222,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       line2.Location = new System.Drawing.Point(6, 269);
       line2.Name = "line2";
-      line2.Size = new System.Drawing.Size(276, 2);
+      line2.Size = new System.Drawing.Size(327, 2);
       line2.Text = "line2";
       // 
       // line3
@@ -233,7 +231,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       line3.Location = new System.Drawing.Point(6, 306);
       line3.Name = "line3";
-      line3.Size = new System.Drawing.Size(276, 2);
+      line3.Size = new System.Drawing.Size(327, 2);
       line3.Text = "line3";
       // 
       // menuStrip
@@ -247,7 +245,7 @@
             this.helpToolStripMenuItem});
       this.menuStrip.Location = new System.Drawing.Point(0, 0);
       this.menuStrip.Name = "menuStrip";
-      this.menuStrip.Size = new System.Drawing.Size(784, 24);
+      this.menuStrip.Size = new System.Drawing.Size(884, 24);
       this.menuStrip.TabIndex = 0;
       // 
       // fileToolStripMenuItem
@@ -316,9 +314,6 @@
       // editToolStripMenuItem
       // 
       this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.undoToolStripMenuItem,
-            this.redoToolStripMenuItem,
-            this.toolStripSeparator3,
             this.cutToolStripMenuItem,
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem,
@@ -328,25 +323,6 @@
       this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
       this.editToolStripMenuItem.Text = "&Edit";
       // 
-      // undoToolStripMenuItem
-      // 
-      this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-      this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-      this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-      this.undoToolStripMenuItem.Text = "&Undo";
-      // 
-      // redoToolStripMenuItem
-      // 
-      this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-      this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-      this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-      this.redoToolStripMenuItem.Text = "&Redo";
-      // 
-      // toolStripSeparator3
-      // 
-      this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
-      // 
       // cutToolStripMenuItem
       // 
       this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
@@ -355,6 +331,7 @@
       this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
       this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.cutToolStripMenuItem.Text = "Cu&t";
+      this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
       // 
       // copyToolStripMenuItem
       // 
@@ -364,6 +341,7 @@
       this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
       this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.copyToolStripMenuItem.Text = "&Copy";
+      this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
       // 
       // pasteToolStripMenuItem
       // 
@@ -373,6 +351,7 @@
       this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
       this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.pasteToolStripMenuItem.Text = "&Paste";
+      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
       // 
       // toolStripSeparator4
       // 
@@ -384,6 +363,7 @@
       this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
       this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.selectAllToolStripMenuItem.Text = "Select &All";
+      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
       // 
       // viewToolStripMenuItem
       // 
@@ -754,6 +734,7 @@
       this.cutToolStripButton.Name = "cutToolStripButton";
       this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
       this.cutToolStripButton.Text = "C&ut";
+      this.cutToolStripButton.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
       // 
       // copyToolStripButton
       // 
@@ -763,6 +744,7 @@
       this.copyToolStripButton.Name = "copyToolStripButton";
       this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
       this.copyToolStripButton.Text = "&Copy";
+      this.copyToolStripButton.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
       // 
       // pasteToolStripButton
       // 
@@ -772,6 +754,7 @@
       this.pasteToolStripButton.Name = "pasteToolStripButton";
       this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
       this.pasteToolStripButton.Text = "&Paste";
+      this.pasteToolStripButton.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
       // 
       // toolStripSeparator7
       // 
@@ -840,15 +823,15 @@
             this.standsToolStripStatusLabel,
             this.attractorsToolStripStatusLabel,
             this.repellentsToolStripStatusLabel});
-      this.statusStrip.Location = new System.Drawing.Point(0, 539);
+      this.statusStrip.Location = new System.Drawing.Point(0, 639);
       this.statusStrip.Name = "statusStrip";
-      this.statusStrip.Size = new System.Drawing.Size(784, 22);
+      this.statusStrip.Size = new System.Drawing.Size(884, 22);
       this.statusStrip.TabIndex = 2;
       // 
       // statusToolStripStatusLabel
       // 
       this.statusToolStripStatusLabel.Name = "statusToolStripStatusLabel";
-      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(717, 17);
+      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(817, 17);
       this.statusToolStripStatusLabel.Spring = true;
       this.statusToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
@@ -881,7 +864,7 @@
       this.renderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       this.renderPanel.Location = new System.Drawing.Point(0, 0);
       this.renderPanel.Name = "renderPanel";
-      this.renderPanel.Size = new System.Drawing.Size(430, 465);
+      this.renderPanel.Size = new System.Drawing.Size(530, 565);
       this.renderPanel.TabIndex = 0;
       this.renderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.RenderPanel_Paint);
       // 
@@ -899,8 +882,8 @@
       // splitContainer.Panel2
       // 
       this.splitContainer.Panel2.Controls.Add(this.tabControl);
-      this.splitContainer.Size = new System.Drawing.Size(784, 465);
-      this.splitContainer.SplitterDistance = 430;
+      this.splitContainer.Size = new System.Drawing.Size(884, 565);
+      this.splitContainer.SplitterDistance = 530;
       this.splitContainer.TabIndex = 0;
       // 
       // tabControl
@@ -911,12 +894,13 @@
       this.tabControl.Location = new System.Drawing.Point(0, 0);
       this.tabControl.Name = "tabControl";
       this.tabControl.SelectedIndex = 0;
-      this.tabControl.Size = new System.Drawing.Size(350, 465);
-      this.tabControl.TabIndex = 1;
+      this.tabControl.Size = new System.Drawing.Size(350, 565);
+      this.tabControl.TabIndex = 0;
       // 
       // setupTabPage
       // 
       this.setupTabPage.AutoScroll = true;
+      this.setupTabPage.Controls.Add(this.initializeButton);
       this.setupTabPage.Controls.Add(this.mobileRepellentsCheckBox);
       this.setupTabPage.Controls.Add(this.button10);
       this.setupTabPage.Controls.Add(this.label4);
@@ -968,7 +952,7 @@
       this.setupTabPage.Location = new System.Drawing.Point(4, 22);
       this.setupTabPage.Name = "setupTabPage";
       this.setupTabPage.Padding = new System.Windows.Forms.Padding(3);
-      this.setupTabPage.Size = new System.Drawing.Size(342, 439);
+      this.setupTabPage.Size = new System.Drawing.Size(342, 539);
       this.setupTabPage.TabIndex = 0;
       this.setupTabPage.Text = "Setup";
       this.setupTabPage.UseVisualStyleBackColor = true;
@@ -979,7 +963,7 @@
       this.mobileRepellentsCheckBox.Location = new System.Drawing.Point(6, 429);
       this.mobileRepellentsCheckBox.Name = "mobileRepellentsCheckBox";
       this.mobileRepellentsCheckBox.Size = new System.Drawing.Size(110, 17);
-      this.mobileRepellentsCheckBox.TabIndex = 40;
+      this.mobileRepellentsCheckBox.TabIndex = 41;
       this.mobileRepellentsCheckBox.Text = "Mobi&le Repellents";
       this.mobileRepellentsCheckBox.UseVisualStyleBackColor = true;
       this.mobileRepellentsCheckBox.CheckedChanged += new System.EventHandler(this.MobileRepellentsCheckBox_CheckedChanged);
@@ -1021,7 +1005,7 @@
       this.label1.Location = new System.Drawing.Point(6, 120);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(46, 13);
-      this.label1.TabIndex = 13;
+      this.label1.TabIndex = 14;
       this.label1.Text = "Stran&ds:";
       // 
       // button8
@@ -1030,7 +1014,7 @@
       this.button8.Location = new System.Drawing.Point(152, 243);
       this.button8.Name = "button8";
       this.button8.Size = new System.Drawing.Size(20, 20);
-      this.button8.TabIndex = 32;
+      this.button8.TabIndex = 33;
       this.button8.Tag = "minimumRepellentSizeNumericUpDown";
       this.button8.UseVisualStyleBackColor = true;
       this.button8.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1045,7 +1029,7 @@
             0});
       this.strandsNumericUpDown.Name = "strandsNumericUpDown";
       this.strandsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.strandsNumericUpDown.TabIndex = 14;
+      this.strandsNumericUpDown.TabIndex = 15;
       this.strandsNumericUpDown.Value = new decimal(new int[] {
             500,
             0,
@@ -1058,7 +1042,7 @@
       this.button7.Location = new System.Drawing.Point(152, 217);
       this.button7.Name = "button7";
       this.button7.Size = new System.Drawing.Size(20, 20);
-      this.button7.TabIndex = 28;
+      this.button7.TabIndex = 29;
       this.button7.Tag = "minimumAttractorSizeNumericUpDown";
       this.button7.UseVisualStyleBackColor = true;
       this.button7.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1069,7 +1053,7 @@
       this.label2.Location = new System.Drawing.Point(6, 146);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(55, 13);
-      this.label2.TabIndex = 16;
+      this.label2.TabIndex = 17;
       this.label2.Text = "Attract&ors:";
       // 
       // button6
@@ -1078,7 +1062,7 @@
       this.button6.Location = new System.Drawing.Point(228, 243);
       this.button6.Name = "button6";
       this.button6.Size = new System.Drawing.Size(20, 20);
-      this.button6.TabIndex = 33;
+      this.button6.TabIndex = 34;
       this.button6.Tag = "maximumRepellentSizeNumericUpDown";
       this.button6.UseVisualStyleBackColor = true;
       this.button6.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1093,7 +1077,7 @@
             0});
       this.attractorsNumericUpDown.Name = "attractorsNumericUpDown";
       this.attractorsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.attractorsNumericUpDown.TabIndex = 17;
+      this.attractorsNumericUpDown.TabIndex = 18;
       this.attractorsNumericUpDown.Value = new decimal(new int[] {
             20,
             0,
@@ -1106,7 +1090,7 @@
       this.button5.Location = new System.Drawing.Point(228, 217);
       this.button5.Name = "button5";
       this.button5.Size = new System.Drawing.Size(20, 20);
-      this.button5.TabIndex = 29;
+      this.button5.TabIndex = 30;
       this.button5.Tag = "maximumAttractorSizeNumericUpDown";
       this.button5.UseVisualStyleBackColor = true;
       this.button5.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1117,7 +1101,7 @@
       this.label3.Location = new System.Drawing.Point(6, 172);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(60, 13);
-      this.label3.TabIndex = 20;
+      this.label3.TabIndex = 21;
       this.label3.Text = "&Repellents:";
       // 
       // button4
@@ -1126,7 +1110,7 @@
       this.button4.Location = new System.Drawing.Point(132, 170);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(20, 20);
-      this.button4.TabIndex = 22;
+      this.button4.TabIndex = 23;
       this.button4.Tag = "repellentsNumericUpDown";
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1141,7 +1125,7 @@
             0});
       this.repellentsNumericUpDown.Name = "repellentsNumericUpDown";
       this.repellentsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-      this.repellentsNumericUpDown.TabIndex = 21;
+      this.repellentsNumericUpDown.TabIndex = 22;
       this.repellentsNumericUpDown.Value = new decimal(new int[] {
             5,
             0,
@@ -1154,7 +1138,7 @@
       this.button3.Location = new System.Drawing.Point(132, 144);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(20, 20);
-      this.button3.TabIndex = 18;
+      this.button3.TabIndex = 19;
       this.button3.Tag = "attractorsNumericUpDown";
       this.button3.UseVisualStyleBackColor = true;
       this.button3.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1182,7 +1166,7 @@
       this.button2.Location = new System.Drawing.Point(132, 118);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(20, 20);
-      this.button2.TabIndex = 15;
+      this.button2.TabIndex = 16;
       this.button2.Tag = "strandsNumericUpDown";
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.RandomButton_Click);
@@ -1241,7 +1225,7 @@
       this.attritionCheckBox.Location = new System.Drawing.Point(6, 406);
       this.attritionCheckBox.Name = "attritionCheckBox";
       this.attritionCheckBox.Size = new System.Drawing.Size(61, 17);
-      this.attritionCheckBox.TabIndex = 39;
+      this.attritionCheckBox.TabIndex = 40;
       this.attritionCheckBox.Text = "&Attrition";
       this.attritionCheckBox.UseVisualStyleBackColor = true;
       this.attritionCheckBox.CheckedChanged += new System.EventHandler(this.AttritionCheckBox_CheckedChanged);
@@ -1252,7 +1236,7 @@
       this.label6.Location = new System.Drawing.Point(6, 219);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(93, 13);
-      this.label6.TabIndex = 26;
+      this.label6.TabIndex = 27;
       this.label6.Text = "Attractor Stren&gth:";
       // 
       // solidStrandsCheckBox
@@ -1261,7 +1245,7 @@
       this.solidStrandsCheckBox.Location = new System.Drawing.Point(6, 383);
       this.solidStrandsCheckBox.Name = "solidStrandsCheckBox";
       this.solidStrandsCheckBox.Size = new System.Drawing.Size(131, 17);
-      this.solidStrandsCheckBox.TabIndex = 38;
+      this.solidStrandsCheckBox.TabIndex = 39;
       this.solidStrandsCheckBox.Text = "Allow Strand &Collisions";
       this.solidStrandsCheckBox.UseVisualStyleBackColor = true;
       this.solidStrandsCheckBox.CheckedChanged += new System.EventHandler(this.SolidStrandsCheckBox_CheckedChanged);
@@ -1276,7 +1260,7 @@
             0});
       this.minimumAttractorSizeNumericUpDown.Name = "minimumAttractorSizeNumericUpDown";
       this.minimumAttractorSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
-      this.minimumAttractorSizeNumericUpDown.TabIndex = 27;
+      this.minimumAttractorSizeNumericUpDown.TabIndex = 28;
       this.minimumAttractorSizeNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -1291,7 +1275,7 @@
       this.wrapCheckBox.Location = new System.Drawing.Point(6, 314);
       this.wrapCheckBox.Name = "wrapCheckBox";
       this.wrapCheckBox.Size = new System.Drawing.Size(108, 17);
-      this.wrapCheckBox.TabIndex = 35;
+      this.wrapCheckBox.TabIndex = 36;
       this.wrapCheckBox.Text = "Wrap Bo&undaries";
       this.wrapCheckBox.UseVisualStyleBackColor = true;
       this.wrapCheckBox.CheckedChanged += new System.EventHandler(this.WrapCheckBox_CheckedChanged);
@@ -1328,7 +1312,7 @@
       this.label7.Location = new System.Drawing.Point(102, 201);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(24, 13);
-      this.label7.TabIndex = 24;
+      this.label7.TabIndex = 25;
       this.label7.Text = "Min";
       // 
       // label13
@@ -1346,7 +1330,7 @@
       this.label8.Location = new System.Drawing.Point(175, 201);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(27, 13);
-      this.label8.TabIndex = 25;
+      this.label8.TabIndex = 26;
       this.label8.Text = "Max";
       // 
       // heightNumericUpDown
@@ -1377,14 +1361,14 @@
       this.label9.Location = new System.Drawing.Point(6, 245);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(98, 13);
-      this.label9.TabIndex = 30;
+      this.label9.TabIndex = 31;
       this.label9.Text = "Re&pellent Strength:";
       // 
       // widthNumericUpDown
       // 
       this.widthNumericUpDown.Location = new System.Drawing.Point(109, 71);
       this.widthNumericUpDown.Maximum = new decimal(new int[] {
-            256,
+            9999,
             0,
             0,
             0});
@@ -1412,7 +1396,7 @@
             0});
       this.minimumRepellentSizeNumericUpDown.Name = "minimumRepellentSizeNumericUpDown";
       this.minimumRepellentSizeNumericUpDown.Size = new System.Drawing.Size(47, 20);
-      this.minimumRepellentSizeNumericUpDown.TabIndex = 31;
+      this.minimumRepellentSizeNumericUpDown.TabIndex = 32;
       this.minimumRepellentSizeNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -1451,7 +1435,7 @@
       this.allowBinaryFissionCheckBox.Location = new System.Drawing.Point(6, 360);
       this.allowBinaryFissionCheckBox.Name = "allowBinaryFissionCheckBox";
       this.allowBinaryFissionCheckBox.Size = new System.Drawing.Size(118, 17);
-      this.allowBinaryFissionCheckBox.TabIndex = 37;
+      this.allowBinaryFissionCheckBox.TabIndex = 38;
       this.allowBinaryFissionCheckBox.Text = "Allow &Binary Fission";
       this.allowBinaryFissionCheckBox.UseVisualStyleBackColor = true;
       this.allowBinaryFissionCheckBox.CheckedChanged += new System.EventHandler(this.AllowBinaryFissionCheckBox_CheckedChanged);
@@ -1464,7 +1448,7 @@
       this.respawnAttractorsCheckBox.Location = new System.Drawing.Point(6, 337);
       this.respawnAttractorsCheckBox.Name = "respawnAttractorsCheckBox";
       this.respawnAttractorsCheckBox.Size = new System.Drawing.Size(119, 17);
-      this.respawnAttractorsCheckBox.TabIndex = 36;
+      this.respawnAttractorsCheckBox.TabIndex = 37;
       this.respawnAttractorsCheckBox.Text = "Respa&wn Attractors";
       this.respawnAttractorsCheckBox.UseVisualStyleBackColor = true;
       this.respawnAttractorsCheckBox.CheckedChanged += new System.EventHandler(this.RespawnAttractorsCheckBox_CheckedChanged);
@@ -1482,8 +1466,8 @@
             "Reduce Other"});
       this.attractorCollisionModeComboBox.Location = new System.Drawing.Point(158, 143);
       this.attractorCollisionModeComboBox.Name = "attractorCollisionModeComboBox";
-      this.attractorCollisionModeComboBox.Size = new System.Drawing.Size(124, 21);
-      this.attractorCollisionModeComboBox.TabIndex = 19;
+      this.attractorCollisionModeComboBox.Size = new System.Drawing.Size(175, 21);
+      this.attractorCollisionModeComboBox.TabIndex = 20;
       // 
       // repellentCollisionModeComboBox
       // 
@@ -1498,8 +1482,8 @@
             "Reduce Other"});
       this.repellentCollisionModeComboBox.Location = new System.Drawing.Point(158, 169);
       this.repellentCollisionModeComboBox.Name = "repellentCollisionModeComboBox";
-      this.repellentCollisionModeComboBox.Size = new System.Drawing.Size(124, 21);
-      this.repellentCollisionModeComboBox.TabIndex = 23;
+      this.repellentCollisionModeComboBox.Size = new System.Drawing.Size(175, 21);
+      this.repellentCollisionModeComboBox.TabIndex = 24;
       // 
       // label11
       // 
@@ -1507,7 +1491,7 @@
       this.label11.Location = new System.Drawing.Point(69, 102);
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(35, 13);
-      this.label11.TabIndex = 11;
+      this.label11.TabIndex = 12;
       this.label11.Text = "Count";
       // 
       // label10
@@ -1516,7 +1500,7 @@
       this.label10.Location = new System.Drawing.Point(155, 102);
       this.label10.Name = "label10";
       this.label10.Size = new System.Drawing.Size(37, 13);
-      this.label10.TabIndex = 12;
+      this.label10.TabIndex = 13;
       this.label10.Text = "Action";
       // 
       // scriptTabPage
@@ -1530,16 +1514,25 @@
       this.scriptTabPage.Text = "Script";
       this.scriptTabPage.UseVisualStyleBackColor = true;
       // 
-      // runButton
+      // scriptSplitContainer
       // 
-      this.runButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.runButton.Location = new System.Drawing.Point(258, 205);
-      this.runButton.Name = "runButton";
-      this.runButton.Size = new System.Drawing.Size(75, 23);
-      this.runButton.TabIndex = 1;
-      this.runButton.Text = "&Run";
-      this.runButton.UseVisualStyleBackColor = true;
-      this.runButton.Click += new System.EventHandler(this.RunButton_Click);
+      this.scriptSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.scriptSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+      this.scriptSplitContainer.Location = new System.Drawing.Point(3, 3);
+      this.scriptSplitContainer.Name = "scriptSplitContainer";
+      this.scriptSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // scriptSplitContainer.Panel1
+      // 
+      this.scriptSplitContainer.Panel1.Controls.Add(this.scriptTextBox);
+      this.scriptSplitContainer.Panel1.Controls.Add(this.runButton);
+      // 
+      // scriptSplitContainer.Panel2
+      // 
+      this.scriptSplitContainer.Panel2.Controls.Add(this.logTextBox);
+      this.scriptSplitContainer.Size = new System.Drawing.Size(336, 433);
+      this.scriptSplitContainer.SplitterDistance = 231;
+      this.scriptSplitContainer.TabIndex = 2;
       // 
       // scriptTextBox
       // 
@@ -1556,6 +1549,32 @@
       this.scriptTextBox.TabIndex = 0;
       this.scriptTextBox.WordWrap = false;
       // 
+      // runButton
+      // 
+      this.runButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.runButton.Location = new System.Drawing.Point(258, 205);
+      this.runButton.Name = "runButton";
+      this.runButton.Size = new System.Drawing.Size(75, 23);
+      this.runButton.TabIndex = 1;
+      this.runButton.Text = "&Run";
+      this.runButton.UseVisualStyleBackColor = true;
+      this.runButton.Click += new System.EventHandler(this.RunButton_Click);
+      // 
+      // logTextBox
+      // 
+      this.logTextBox.AcceptsReturn = true;
+      this.logTextBox.AcceptsTab = true;
+      this.logTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.logTextBox.Location = new System.Drawing.Point(3, 3);
+      this.logTextBox.Multiline = true;
+      this.logTextBox.Name = "logTextBox";
+      this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+      this.logTextBox.Size = new System.Drawing.Size(330, 192);
+      this.logTextBox.TabIndex = 1;
+      this.logTextBox.WordWrap = false;
+      // 
       // timer
       // 
       this.timer.Tick += new System.EventHandler(this.Timer_Tick);
@@ -1566,11 +1585,11 @@
       // toolStripContainer.ContentPanel
       // 
       this.toolStripContainer.ContentPanel.Controls.Add(this.splitContainer);
-      this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(784, 465);
+      this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(884, 565);
       this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
       this.toolStripContainer.Location = new System.Drawing.Point(0, 24);
       this.toolStripContainer.Name = "toolStripContainer";
-      this.toolStripContainer.Size = new System.Drawing.Size(784, 515);
+      this.toolStripContainer.Size = new System.Drawing.Size(884, 615);
       this.toolStripContainer.TabIndex = 1;
       // 
       // toolStripContainer.TopToolStripPanel
@@ -1603,46 +1622,22 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
-      // scriptSplitContainer
+      // initializeButton
       // 
-      this.scriptSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.scriptSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-      this.scriptSplitContainer.Location = new System.Drawing.Point(3, 3);
-      this.scriptSplitContainer.Name = "scriptSplitContainer";
-      this.scriptSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-      // 
-      // scriptSplitContainer.Panel1
-      // 
-      this.scriptSplitContainer.Panel1.Controls.Add(this.scriptTextBox);
-      this.scriptSplitContainer.Panel1.Controls.Add(this.runButton);
-      // 
-      // scriptSplitContainer.Panel2
-      // 
-      this.scriptSplitContainer.Panel2.Controls.Add(this.logTextBox);
-      this.scriptSplitContainer.Size = new System.Drawing.Size(336, 433);
-      this.scriptSplitContainer.SplitterDistance = 231;
-      this.scriptSplitContainer.TabIndex = 2;
-      // 
-      // logTextBox
-      // 
-      this.logTextBox.AcceptsReturn = true;
-      this.logTextBox.AcceptsTab = true;
-      this.logTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.logTextBox.Location = new System.Drawing.Point(3, 3);
-      this.logTextBox.Multiline = true;
-      this.logTextBox.Name = "logTextBox";
-      this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.logTextBox.Size = new System.Drawing.Size(330, 192);
-      this.logTextBox.TabIndex = 1;
-      this.logTextBox.WordWrap = false;
+      this.initializeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.initializeButton.Location = new System.Drawing.Point(258, 277);
+      this.initializeButton.Name = "initializeButton";
+      this.initializeButton.Size = new System.Drawing.Size(75, 23);
+      this.initializeButton.TabIndex = 35;
+      this.initializeButton.Text = "&Initialise";
+      this.initializeButton.UseVisualStyleBackColor = true;
+      this.initializeButton.Click += new System.EventHandler(this.InitializeButton_Click);
       // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(784, 561);
+      this.ClientSize = new System.Drawing.Size(884, 661);
       this.Controls.Add(this.toolStripContainer);
       this.Controls.Add(this.statusStrip);
       this.Controls.Add(this.menuStrip);
@@ -1680,6 +1675,12 @@
       ((System.ComponentModel.ISupportInitialize)(this.minimumRepellentSizeNumericUpDown)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.maximumRepellentSizeNumericUpDown)).EndInit();
       this.scriptTabPage.ResumeLayout(false);
+      this.scriptSplitContainer.Panel1.ResumeLayout(false);
+      this.scriptSplitContainer.Panel1.PerformLayout();
+      this.scriptSplitContainer.Panel2.ResumeLayout(false);
+      this.scriptSplitContainer.Panel2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.scriptSplitContainer)).EndInit();
+      this.scriptSplitContainer.ResumeLayout(false);
       this.toolStripContainer.ContentPanel.ResumeLayout(false);
       this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
       this.toolStripContainer.TopToolStripPanel.PerformLayout();
@@ -1687,12 +1688,6 @@
       this.toolStripContainer.PerformLayout();
       this.simulationToolStrip.ResumeLayout(false);
       this.simulationToolStrip.PerformLayout();
-      this.scriptSplitContainer.Panel1.ResumeLayout(false);
-      this.scriptSplitContainer.Panel1.PerformLayout();
-      this.scriptSplitContainer.Panel2.ResumeLayout(false);
-      this.scriptSplitContainer.Panel2.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.scriptSplitContainer)).EndInit();
-      this.scriptSplitContainer.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -1709,9 +1704,6 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
-    private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
@@ -1831,6 +1823,7 @@
     private System.Windows.Forms.TextBox scriptTextBox;
     private System.Windows.Forms.SplitContainer scriptSplitContainer;
     private System.Windows.Forms.TextBox logTextBox;
+    private System.Windows.Forms.Button initializeButton;
   }
 }
 

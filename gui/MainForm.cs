@@ -75,6 +75,8 @@ namespace Cyotek.Demo
       {
         this.OpenFile(args[1]);
       }
+
+      scriptTextBox.Text = File.ReadAllText(@"D:\Checkout\trunk\cyotek\source\demo\ChemotaxisSimulation\samples\allgoodthings.js");
     }
 
     #endregion Protected Methods
@@ -273,9 +275,7 @@ namespace Cyotek.Demo
 
     private void MobileRepellentsCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _simulation.MobileRepellents = !_simulation.MobileRepellents;
-
-      mobileRepellentsCheckBox.Checked = _simulation.MobileRepellents;
+      _simulation.MobileRepellents = mobileRepellentsCheckBox.Checked;
     }
 
     private void NewFile()
@@ -599,6 +599,67 @@ namespace Cyotek.Demo
       {
         SystemSounds.Beep.Play();
       }
+    }
+
+    private void CutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.Cut());
+    }
+
+    private Control GetActiveControl(Control control)
+    {
+      Control activeControl;
+      ContainerControl containerControl;
+      TabControl tabControl;
+
+      containerControl = control as ContainerControl;
+      tabControl = control as TabControl;
+
+      if (containerControl != null)
+      {
+        activeControl = this.GetActiveControl(containerControl.ActiveControl);
+      }
+      else if (tabControl?.SelectedTab?.Controls.Count == 1)
+      {
+        activeControl = tabControl.SelectedTab.Controls[0];
+      }
+      else
+      {
+        activeControl = control;
+      }
+
+      return activeControl;
+    }
+
+    private void PerformClipboardAction(Action<TextBoxBase> action)
+    {
+      Control control;
+
+      control = this.GetActiveControl(this);
+
+      if(control is TextBoxBase textBox)
+      {
+        action(textBox);
+      }
+      else
+      {
+        SystemSounds.Beep.Play();
+      }
+    }
+
+    private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.Copy());
+    }
+
+    private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.Paste());
+    }
+
+    private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.SelectAll());
     }
   }
 }
