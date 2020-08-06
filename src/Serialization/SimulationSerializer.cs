@@ -3,42 +3,42 @@ using YamlDotNet.Serialization;
 
 namespace Cyotek.ChemotaxisSimulation.Serialization
 {
-  internal class SimulationSerializer
+  public static class SimulationSerializer
   {
     #region Public Methods
 
-    public Simulation Load(string fileName)
+    public static Simulation LoadFrom(string fileName)
     {
       using (Stream stream = File.OpenRead(fileName))
       {
-        return this.Load(stream);
+        return SimulationSerializer.LoadFrom(stream);
       }
     }
 
-    public Simulation Load(Stream stream)
+    public static Simulation LoadFrom(Stream stream)
     {
       using (TextReader reader = new StreamReader(stream, Encoding.UTF8NoIdentifier))
       {
-        return this.Load(reader);
+        return SimulationSerializer.LoadFrom(reader);
       }
     }
 
-    public Simulation Load(TextReader reader)
+    public static Simulation LoadFrom(TextReader reader)
     {
       return new DeserializerBuilder()
         .Build()
         .Deserialize<Simulation>(reader);
     }
 
-    public void Save(Stream stream, Simulation simulation)
+    public static void Save(Stream stream, Simulation simulation)
     {
       using (TextWriter writer = new StreamWriter(stream, Encoding.UTF8NoIdentifier))
       {
-        this.Save(writer, simulation);
+        SimulationSerializer.Save(writer, simulation);
       }
     }
 
-    public void Save(TextWriter writer, Simulation simulation)
+    public static void Save(TextWriter writer, Simulation simulation)
     {
       new SerializerBuilder()
         .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull)

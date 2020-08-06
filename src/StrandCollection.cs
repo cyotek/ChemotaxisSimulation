@@ -15,7 +15,18 @@ namespace Cyotek.ChemotaxisSimulation
     internal Simulation Owner
     {
       get { return _owner; }
-      set { _owner = value; }
+      set
+      {
+        _owner = value;
+
+        if (value != null)
+        {
+          for (int i = 0; i < this.Count; i++)
+          {
+            this[i].Owner = value;
+          }
+        }
+      }
     }
 
     #endregion Internal Properties

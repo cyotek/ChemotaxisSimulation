@@ -1,10 +1,13 @@
 ﻿using Cyotek.ChemotaxisSimulation;
 using Cyotek.ChemotaxisSimulation.Renderer;
+using Cyotek.ChemotaxisSimulation.Serialization;
+using Cyotek.Demo.ChemotaxisSimulation;
 using Cyotek.Demo.Windows.Forms;
 using Cyotek.Windows.Forms;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Cyotek.Demo
@@ -15,11 +18,13 @@ namespace Cyotek.Demo
 
     private bool _antiAlias;
 
-    private Simulation _environment;
-
     private GdiSimulationRenderer _environmentRenderer;
 
+    private string _fileName;
+
     private Random _random;
+
+    private Simulation _simulation;
 
     private int _updateIterations;
 
@@ -38,10 +43,12 @@ namespace Cyotek.Demo
 
     protected override void OnShown(EventArgs e)
     {
+      string[] args;
+
       _random = new Random();
       _antiAlias = true;
 
-      _environment = new Simulation
+      _simulation = new Simulation
       {
         Size = new Size(256, 256)
       };
@@ -55,9 +62,16 @@ namespace Cyotek.Demo
       repellentCollisionModeComboBox.SelectedIndex = (int)(CollisionAction.DestroyOther - 1);
 
       this.SetUpdateSpeed(2);
-      this.InitializeScenario();
+      this.NewFile();
 
       base.OnShown(e);
+
+      args = Environment.GetCommandLineArgs();
+
+      if (args.Length == 2)
+      {
+        this.OpenFile(args[1]);
+      }
     }
 
     #endregion Protected Methods
@@ -82,7 +96,7 @@ namespace Cyotek.Demo
 
       if (count > 0)
       {
-        _environment.Run((int)count);
+        _simulation.Run((int)count);
 
         this.UpdateStatusBar();
 
@@ -92,7 +106,7 @@ namespace Cyotek.Demo
 
     private void AllowBinaryFissionCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
+      _simulation.BinaryFission = allowBinaryFissionCheckBox.Checked;
     }
 
     private void AntiAliasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -106,7 +120,7 @@ namespace Cyotek.Demo
 
     private void AttritionCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _environment.Attrition = attritionCheckBox.Checked;
+      _simulation.Attrition = attritionCheckBox.Checked;
     }
 
     private void BacteriaStrandsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -163,15 +177,15 @@ namespace Cyotek.Demo
     {
       decimal count;
 
-      count = NumericInputDialog.ShowInputDialog(this, "Enter &iteration:", "Go To", 1, 1, int.MaxValue, v => v > _environment.Iteration);
+      count = NumericInputDialog.ShowInputDialog(this, "Enter &iteration:", "Go To", 1, 1, int.MaxValue, v => v > _simulation.Iteration);
 
       if (count > 0)
       {
         long iterations;
 
-        iterations = (long)count - _environment.Iteration;
+        iterations = (long)count - _simulation.Iteration;
 
-        _environment.Run(iterations);
+        _simulation.Run(iterations);
 
         this.UpdateStatusBar();
 
@@ -196,36 +210,36 @@ namespace Cyotek.Demo
     {
       pauseToolStripButton.PerformClick();
 
-      _environment.EnvironmentSeed = (int)environmentSeedNumericUpDown.Value;
-      _environment.MovementSeed = (int)movementSeedNumericUpDown.Value;
-      _environment.MinimumAttractorStrength = (int)minimumAttractorSizeNumericUpDown.Value;
-      _environment.MaximumAttractorStrength = (int)maximumAttractorSizeNumericUpDown.Value;
-      _environment.MinimumRepellentStrength = (int)minimumRepellentSizeNumericUpDown.Value;
-      _environment.MaximumRepellentStrength = (int)maximumRepellentSizeNumericUpDown.Value;
-      _environment.AttractorCollisionAction = (CollisionAction)(attractorCollisionModeComboBox.SelectedIndex + 1);
-      _environment.RepellentCollisionAction = (CollisionAction)(repellentCollisionModeComboBox.SelectedIndex + 1);
-      _environment.RespawnAttractor = respawnAttractorsCheckBox.Checked;
-      _environment.BinaryFission = allowBinaryFissionCheckBox.Checked;
-      _environment.Size = new Size((int)widthNumericUpDown.Value, (int)heightNumericUpDown.Value);
-      _environment.Wrap = wrapCheckBox.Checked;
-      _environment.SolidStrands = solidStrandsCheckBox.Checked;
-      _environment.Attrition = attritionCheckBox.Checked;
-      _environment.MobileRepellents = mobileRepellentsCheckBox.Checked;
-      _environment.Reset();
+      _simulation.EnvironmentSeed = (int)environmentSeedNumericUpDown.Value;
+      _simulation.MovementSeed = (int)movementSeedNumericUpDown.Value;
+      _simulation.MinimumAttractorStrength = (int)minimumAttractorSizeNumericUpDown.Value;
+      _simulation.MaximumAttractorStrength = (int)maximumAttractorSizeNumericUpDown.Value;
+      _simulation.MinimumRepellentStrength = (int)minimumRepellentSizeNumericUpDown.Value;
+      _simulation.MaximumRepellentStrength = (int)maximumRepellentSizeNumericUpDown.Value;
+      _simulation.AttractorCollisionAction = (CollisionAction)(attractorCollisionModeComboBox.SelectedIndex + 1);
+      _simulation.RepellentCollisionAction = (CollisionAction)(repellentCollisionModeComboBox.SelectedIndex + 1);
+      _simulation.RespawnAttractor = respawnAttractorsCheckBox.Checked;
+      _simulation.BinaryFission = allowBinaryFissionCheckBox.Checked;
+      _simulation.Size = new Size((int)widthNumericUpDown.Value, (int)heightNumericUpDown.Value);
+      _simulation.Wrap = wrapCheckBox.Checked;
+      _simulation.SolidStrands = solidStrandsCheckBox.Checked;
+      _simulation.Attrition = attritionCheckBox.Checked;
+      _simulation.MobileRepellents = mobileRepellentsCheckBox.Checked;
+      _simulation.Reset();
 
       for (int i = 0; i < (int)strandsNumericUpDown.Value; i++)
       {
-        _environment.AddStrand();
+        _simulation.AddStrand();
       }
 
       for (int i = 0; i < (int)attractorsNumericUpDown.Value; i++)
       {
-        _environment.AddFoodSource();
+        _simulation.AddFoodSource();
       }
 
       for (int i = 0; i < (int)repellentsNumericUpDown.Value; i++)
       {
-        _environment.AddNoxiousSource();
+        _simulation.AddNoxiousSource();
       }
 
       this.UpdateSimulationControls();
@@ -234,29 +248,63 @@ namespace Cyotek.Demo
       renderPanel.Invalidate();
     }
 
+    private void LoadFields()
+    {
+      environmentSeedNumericUpDown.Value = _simulation.EnvironmentSeed;
+      movementSeedNumericUpDown.Value = _simulation.MovementSeed;
+      minimumAttractorSizeNumericUpDown.Value = _simulation.MinimumAttractorStrength;
+      maximumAttractorSizeNumericUpDown.Value = _simulation.MaximumAttractorStrength;
+      minimumRepellentSizeNumericUpDown.Value = _simulation.MinimumRepellentStrength;
+      maximumRepellentSizeNumericUpDown.Value = _simulation.MaximumRepellentStrength;
+      attractorCollisionModeComboBox.SelectedIndex = (int)_simulation.AttractorCollisionAction - 1;
+      repellentCollisionModeComboBox.SelectedIndex = (int)_simulation.RepellentCollisionAction - 1;
+      respawnAttractorsCheckBox.Checked = _simulation.RespawnAttractor;
+      allowBinaryFissionCheckBox.Checked = _simulation.BinaryFission;
+      widthNumericUpDown.Value = _simulation.Size.Width;
+      heightNumericUpDown.Value = _simulation.Size.Height;
+      wrapCheckBox.Checked = _simulation.Wrap;
+      solidStrandsCheckBox.Checked = _simulation.SolidStrands;
+      attritionCheckBox.Checked = _simulation.Attrition;
+      mobileRepellentsCheckBox.Checked = _simulation.MobileRepellents;
+    }
+
     private void MobileRepellentsCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _environment.MobileRepellents = !_environment.MobileRepellents;
+      _simulation.MobileRepellents = !_simulation.MobileRepellents;
 
-      mobileRepellentsCheckBox.Checked = _environment.MobileRepellents;
+      mobileRepellentsCheckBox.Checked = _simulation.MobileRepellents;
+    }
+
+    private void NewFile()
+    {
+      _simulation = new Simulation();
+
+      _fileName = null;
+      this.UpdateUi();
+      this.InitializeScenario();
+    }
+
+    private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.NewFile();
     }
 
     private void NextMove(bool single)
     {
       int sum;
 
-      sum = _environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count;
+      sum = _simulation.FoodSources.Count + _simulation.NoxiousSources.Count + _simulation.Strands.Count;
 
       if (single)
       {
-        _environment.NextMove();
+        _simulation.NextMove();
       }
       else
       {
-        _environment.Run(_updateIterations);
+        _simulation.Run(_updateIterations);
       }
 
-      if ((_environment.FoodSources.Count + _environment.NoxiousSources.Count + _environment.Strands.Count) != sum)
+      if ((_simulation.FoodSources.Count + _simulation.NoxiousSources.Count + _simulation.Strands.Count) != sum)
       {
         this.UpdateStatusBar();
       }
@@ -289,6 +337,38 @@ namespace Cyotek.Demo
       noxiousSourcesToolStripMenuItem.Checked = _environmentRenderer.ShowNoxiousSources;
 
       renderPanel.Invalidate();
+    }
+
+    private void OpenFile()
+    {
+      string fileName;
+
+      fileName = FileDialogHelper.GetOpenFileName("Open Simulation", Filters.Simulation, "sim");
+
+      if (!string.IsNullOrEmpty(fileName))
+      {
+        this.OpenFile(fileName);
+      }
+    }
+
+    private void OpenFile(string fileName)
+    {
+      try
+      {
+        _simulation = SimulationSerializer.LoadFrom(fileName);
+        _fileName = fileName;
+
+        this.UpdateUi();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(string.Format("Failed to open file. {0}", ex.GetBaseException().Message), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
+    private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.OpenFile();
     }
 
     private void PauseToolStripButton_Click(object sender, EventArgs e)
@@ -325,12 +405,61 @@ namespace Cyotek.Demo
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
       }
 
-      _environmentRenderer.Draw(_environment, e.Graphics);
+      _environmentRenderer.Draw(_simulation, e.Graphics);
     }
 
     private void RespawnAttractorsCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _environment.RespawnAttractor = respawnAttractorsCheckBox.Checked;
+      _simulation.RespawnAttractor = respawnAttractorsCheckBox.Checked;
+    }
+
+    private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.SaveFileAs();
+    }
+
+    private void SaveFile()
+    {
+      if (string.IsNullOrEmpty(_fileName))
+      {
+        this.SaveFileAs();
+      }
+      else
+      {
+        this.SaveFile(_fileName);
+      }
+    }
+
+    private void SaveFile(string fileName)
+    {
+      try
+      {
+        _simulation.Save(_fileName);
+        _fileName = fileName;
+
+        this.UpdateUi();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(string.Format("Failed to save file. {0}", ex.GetBaseException().Message), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
+    private void SaveFileAs()
+    {
+      string fileName;
+
+      fileName = FileDialogHelper.GetSaveFileName("Save Simulation As", Filters.Simulation, "sim", _fileName);
+
+      if (!string.IsNullOrEmpty(fileName))
+      {
+        this.SaveFile(fileName);
+      }
+    }
+
+    private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.SaveFile();
     }
 
     private void ScaleToolStripTrackBar_ValueChanged(object sender, EventArgs e)
@@ -364,7 +493,7 @@ namespace Cyotek.Demo
 
     private void SolidStrandsCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _environment.SolidStrands = solidStrandsCheckBox.Checked;
+      _simulation.SolidStrands = solidStrandsCheckBox.Checked;
     }
 
     private void SpeedToolStripTrackBar_ValueChanged(object sender, EventArgs e)
@@ -379,7 +508,7 @@ namespace Cyotek.Demo
 
     private void UpdateIteration()
     {
-      iterationToolStripStatusLabel.Text = _environment.Iteration.ToString();
+      iterationToolStripStatusLabel.Text = _simulation.Iteration.ToString();
     }
 
     private void UpdateSimulationControls()
@@ -405,15 +534,30 @@ namespace Cyotek.Demo
       else
       {
         this.UpdateIteration();
-        standsToolStripStatusLabel.Text = _environment.Strands.Count.ToString();
-        attractorsToolStripStatusLabel.Text = _environment.FoodSources.Count.ToString();
-        repellentsToolStripStatusLabel.Text = _environment.NoxiousSources.Count.ToString();
+        standsToolStripStatusLabel.Text = _simulation.Strands.Count.ToString();
+        attractorsToolStripStatusLabel.Text = _simulation.FoodSources.Count.ToString();
+        repellentsToolStripStatusLabel.Text = _simulation.NoxiousSources.Count.ToString();
       }
+    }
+
+    private void UpdateUi()
+    {
+      this.LoadFields();
+      this.UpdateSimulationControls();
+      this.UpdateStatusBar();
+      this.UpdateWindowTitle();
+
+      renderPanel.Invalidate();
+    }
+
+    private void UpdateWindowTitle()
+    {
+      this.Text = string.Format("{1} - {0}", Application.ProductName, string.IsNullOrEmpty(_fileName) ? "Untitled" : Path.GetFileName(_fileName));
     }
 
     private void WrapCheckBox_CheckedChanged(object sender, EventArgs e)
     {
-      _environment.Wrap = wrapCheckBox.Checked;
+      _simulation.Wrap = wrapCheckBox.Checked;
     }
 
     private void ZoomInToolStripMenuItem_Click(object sender, EventArgs e)

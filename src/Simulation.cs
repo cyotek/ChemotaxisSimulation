@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Cyotek.ChemotaxisSimulation.Serialization;
+using System;
 using System.Drawing;
+using System.IO;
 
 namespace Cyotek.ChemotaxisSimulation
 {
@@ -303,6 +305,14 @@ namespace Cyotek.ChemotaxisSimulation
       for (int i = 0; i < iterations; i++)
       {
         this.NextMove();
+      }
+    }
+
+    public void Save(string fileName)
+    {
+      using (Stream stream = File.Create(fileName))
+      {
+        SimulationSerializer.Save(stream, this);
       }
     }
 

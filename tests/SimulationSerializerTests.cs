@@ -24,16 +24,13 @@ namespace Cyotek.ChemotaxisSimulation.Tests
     public void LoadAdvancedTest()
     {
       // arrange
-      SimulationSerializer target;
       Simulation expected;
       Simulation actual;
 
       expected = this.CreateDemonstrationSimulation();
 
-      target = new SimulationSerializer();
-
       // act
-      actual = target.Load(this.GetDataFileName("advanced.sim"));
+      actual = SimulationSerializer.LoadFrom(this.GetDataFileName("advanced.sim"));
 
       // assert
       SimulationAssert.AreEqual(expected, actual);
@@ -43,16 +40,13 @@ namespace Cyotek.ChemotaxisSimulation.Tests
     public void LoadTest()
     {
       // arrange
-      SimulationSerializer target;
       Simulation expected;
       Simulation actual;
 
       expected = new Simulation();
 
-      target = new SimulationSerializer();
-
       // act
-      actual = target.Load(this.GetDataFileName("default.sim"));
+      actual = SimulationSerializer.LoadFrom(this.GetDataFileName("default.sim"));
 
       // assert
       SimulationAssert.AreEqual(expected, actual);
@@ -62,7 +56,6 @@ namespace Cyotek.ChemotaxisSimulation.Tests
     public void SaveAdvancedTest()
     {
       // arrange
-      SimulationSerializer target;
       Simulation simulation;
       string expected;
       string actual;
@@ -72,12 +65,10 @@ namespace Cyotek.ChemotaxisSimulation.Tests
 
       expected = File.ReadAllText(this.GetDataFileName("advanced.sim"));
 
-      target = new SimulationSerializer();
-
       writer = new StringWriter();
 
       // act
-      target.Save(writer, simulation);
+      SimulationSerializer.Save(writer, simulation);
 
       // assert
       actual = writer.ToString();
@@ -89,7 +80,6 @@ namespace Cyotek.ChemotaxisSimulation.Tests
     public void SaveTest()
     {
       // arrange
-      SimulationSerializer target;
       Simulation simulation;
       string expected;
       string actual;
@@ -99,12 +89,10 @@ namespace Cyotek.ChemotaxisSimulation.Tests
 
       expected = File.ReadAllText(this.GetDataFileName("default.sim"));
 
-      target = new SimulationSerializer();
-
       writer = new StringWriter();
 
       // act
-      target.Save(writer, simulation);
+      SimulationSerializer.Save(writer, simulation);
 
       // assert
       actual = writer.ToString();

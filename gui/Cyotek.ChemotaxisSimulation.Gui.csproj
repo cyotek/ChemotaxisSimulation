@@ -55,6 +55,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EmptyArray.cs" />
+    <Compile Include="FileDialogHelper.cs" />
+    <Compile Include="Filters.cs" />
     <Compile Include="InputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
