@@ -535,7 +535,7 @@ namespace Cyotek.Demo
     {
       try
       {
-        _simulation.Save(_fileName);
+        _simulation.Save(fileName);
         _fileName = fileName;
 
         this.UpdateUi();
