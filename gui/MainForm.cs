@@ -20,8 +20,6 @@ namespace Cyotek.Demo
 
     private bool _antiAlias;
 
-    private GdiSimulationRenderer _simulationRenderer;
-
     private string _fileName;
 
     private Random _random;
@@ -29,6 +27,8 @@ namespace Cyotek.Demo
     private string _scriptFileName;
 
     private Simulation _simulation;
+
+    private GdiSimulationRenderer _simulationRenderer;
 
     private int _updateIterations;
 
@@ -147,9 +147,33 @@ namespace Cyotek.Demo
       renderPanel.Invalidate();
     }
 
+    private void CopyImageToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      using (Bitmap bitmap = this.CreatePreviewImage())
+      {
+        ClipboardHelper.CopyImage(bitmap);
+      }
+    }
+
     private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.PerformClipboardAction(tb => tb.Copy());
+    }
+
+    private Bitmap CreatePreviewImage()
+    {
+      Bitmap bitmap;
+
+      bitmap = new Bitmap((int)(_simulation.Size.Width * _simulationRenderer.Scale), (int)(_simulation.Size.Height * _simulationRenderer.Scale), PixelFormat.Format32bppRgb);
+
+      using (Graphics g = Graphics.FromImage(bitmap))
+      {
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+
+        _simulationRenderer.Draw(_simulation, g);
+      }
+
+      return bitmap;
     }
 
     private void CutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -548,21 +572,6 @@ namespace Cyotek.Demo
       }
     }
 
-    private void SaveImage(string fileName)
-    {
-      using (Bitmap bitmap = new Bitmap((int)(_simulation.Size.Width * _simulationRenderer.Scale), (int)(_simulation.Size.Height * _simulationRenderer.Scale), PixelFormat.Format32bppRgb))
-      {
-        using (Graphics g = Graphics.FromImage(bitmap))
-        {
-          g.SmoothingMode = SmoothingMode.AntiAlias;
-
-          _simulationRenderer.Draw(_simulation, g);
-        }
-
-        bitmap.Save(fileName, ImageFormat.Png);
-      }
-    }
-
     private void SaveFileAs()
     {
       string fileName;
@@ -572,6 +581,14 @@ namespace Cyotek.Demo
       if (!string.IsNullOrEmpty(fileName))
       {
         this.SaveFile(fileName);
+      }
+    }
+
+    private void SaveImage(string fileName)
+    {
+      using (Bitmap bitmap = this.CreatePreviewImage())
+      {
+        bitmap.Save(fileName, ImageFormat.Png);
       }
     }
 

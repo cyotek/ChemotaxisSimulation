@@ -57,6 +57,7 @@
     <Compile Include="BufferedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ClipboardHelper.cs" />
     <Compile Include="EmptyArray.cs" />
     <Compile Include="FileDialogHelper.cs" />
     <Compile Include="Filters.cs" />
