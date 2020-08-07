@@ -79,9 +79,6 @@
       this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
       this.advanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -108,6 +105,7 @@
       this.splitContainer = new System.Windows.Forms.SplitContainer();
       this.tabControl = new System.Windows.Forms.TabControl();
       this.setupTabPage = new System.Windows.Forms.TabPage();
+      this.initializeButton = new System.Windows.Forms.Button();
       this.mobileRepellentsCheckBox = new System.Windows.Forms.CheckBox();
       this.button10 = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
@@ -162,7 +160,7 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-      this.initializeButton = new System.Windows.Forms.Button();
+      this.saveButton = new System.Windows.Forms.Button();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -241,7 +239,6 @@
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.simulationToolStripMenuItem,
-            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
       this.menuStrip.Location = new System.Drawing.Point(0, 0);
       this.menuStrip.Name = "menuStrip";
@@ -637,27 +634,6 @@
       this.goToToolStripMenuItem.Text = "&Go To...";
       this.goToToolStripMenuItem.Click += new System.EventHandler(this.GoToToolStripMenuItem_Click);
       // 
-      // toolsToolStripMenuItem
-      // 
-      this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customizeToolStripMenuItem,
-            this.optionsToolStripMenuItem});
-      this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-      this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-      this.toolsToolStripMenuItem.Text = "&Tools";
-      // 
-      // customizeToolStripMenuItem
-      // 
-      this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-      this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-      this.customizeToolStripMenuItem.Text = "&Customize";
-      // 
-      // optionsToolStripMenuItem
-      // 
-      this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-      this.optionsToolStripMenuItem.Text = "&Options";
-      // 
       // helpToolStripMenuItem
       // 
       this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -956,6 +932,17 @@
       this.setupTabPage.TabIndex = 0;
       this.setupTabPage.Text = "Setup";
       this.setupTabPage.UseVisualStyleBackColor = true;
+      // 
+      // initializeButton
+      // 
+      this.initializeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.initializeButton.Location = new System.Drawing.Point(258, 277);
+      this.initializeButton.Name = "initializeButton";
+      this.initializeButton.Size = new System.Drawing.Size(75, 23);
+      this.initializeButton.TabIndex = 35;
+      this.initializeButton.Text = "&Initialise";
+      this.initializeButton.UseVisualStyleBackColor = true;
+      this.initializeButton.Click += new System.EventHandler(this.InitializeButton_Click);
       // 
       // mobileRepellentsCheckBox
       // 
@@ -1509,7 +1496,7 @@
       this.scriptTabPage.Location = new System.Drawing.Point(4, 22);
       this.scriptTabPage.Name = "scriptTabPage";
       this.scriptTabPage.Padding = new System.Windows.Forms.Padding(3);
-      this.scriptTabPage.Size = new System.Drawing.Size(342, 439);
+      this.scriptTabPage.Size = new System.Drawing.Size(342, 539);
       this.scriptTabPage.TabIndex = 1;
       this.scriptTabPage.Text = "Script";
       this.scriptTabPage.UseVisualStyleBackColor = true;
@@ -1524,14 +1511,15 @@
       // 
       // scriptSplitContainer.Panel1
       // 
+      this.scriptSplitContainer.Panel1.Controls.Add(this.saveButton);
       this.scriptSplitContainer.Panel1.Controls.Add(this.scriptTextBox);
       this.scriptSplitContainer.Panel1.Controls.Add(this.runButton);
       // 
       // scriptSplitContainer.Panel2
       // 
       this.scriptSplitContainer.Panel2.Controls.Add(this.logTextBox);
-      this.scriptSplitContainer.Size = new System.Drawing.Size(336, 433);
-      this.scriptSplitContainer.SplitterDistance = 231;
+      this.scriptSplitContainer.Size = new System.Drawing.Size(336, 533);
+      this.scriptSplitContainer.SplitterDistance = 331;
       this.scriptSplitContainer.TabIndex = 2;
       // 
       // scriptTextBox
@@ -1545,14 +1533,14 @@
       this.scriptTextBox.Multiline = true;
       this.scriptTextBox.Name = "scriptTextBox";
       this.scriptTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.scriptTextBox.Size = new System.Drawing.Size(330, 196);
+      this.scriptTextBox.Size = new System.Drawing.Size(330, 296);
       this.scriptTextBox.TabIndex = 0;
       this.scriptTextBox.WordWrap = false;
       // 
       // runButton
       // 
       this.runButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.runButton.Location = new System.Drawing.Point(258, 205);
+      this.runButton.Location = new System.Drawing.Point(177, 305);
       this.runButton.Name = "runButton";
       this.runButton.Size = new System.Drawing.Size(75, 23);
       this.runButton.TabIndex = 1;
@@ -1622,16 +1610,16 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
-      // initializeButton
+      // saveButton
       // 
-      this.initializeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.initializeButton.Location = new System.Drawing.Point(258, 277);
-      this.initializeButton.Name = "initializeButton";
-      this.initializeButton.Size = new System.Drawing.Size(75, 23);
-      this.initializeButton.TabIndex = 35;
-      this.initializeButton.Text = "&Initialise";
-      this.initializeButton.UseVisualStyleBackColor = true;
-      this.initializeButton.Click += new System.EventHandler(this.InitializeButton_Click);
+      this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.saveButton.Location = new System.Drawing.Point(258, 305);
+      this.saveButton.Name = "saveButton";
+      this.saveButton.Size = new System.Drawing.Size(75, 23);
+      this.saveButton.TabIndex = 2;
+      this.saveButton.Text = "Save &As";
+      this.saveButton.UseVisualStyleBackColor = true;
+      this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
       // 
       // MainForm
       // 
@@ -1709,9 +1697,6 @@
     private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     private System.Windows.Forms.ToolStrip toolStrip;
@@ -1824,6 +1809,7 @@
     private System.Windows.Forms.SplitContainer scriptSplitContainer;
     private System.Windows.Forms.TextBox logTextBox;
     private System.Windows.Forms.Button initializeButton;
+    private System.Windows.Forms.Button saveButton;
   }
 }
 

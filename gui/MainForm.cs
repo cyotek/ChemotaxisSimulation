@@ -4,13 +4,11 @@ using Cyotek.ChemotaxisSimulation.Serialization;
 using Cyotek.Demo.ChemotaxisSimulation;
 using Cyotek.Demo.Windows.Forms;
 using Cyotek.Windows.Forms;
-using Jint;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Media;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Cyotek.Demo
@@ -26,6 +24,8 @@ namespace Cyotek.Demo
     private string _fileName;
 
     private Random _random;
+
+    private string _scriptFileName;
 
     private Simulation _simulation;
 
@@ -76,7 +76,7 @@ namespace Cyotek.Demo
         this.OpenFile(args[1]);
       }
 
-      scriptTextBox.Text = File.ReadAllText(@"D:\Checkout\trunk\cyotek\source\demo\ChemotaxisSimulation\samples\allgoodthings.js");
+      // scriptTextBox.Text = File.ReadAllText(@"D:\Checkout\trunk\cyotek\source\demo\ChemotaxisSimulation\samples\allgoodthings.js");
     }
 
     #endregion Protected Methods
@@ -146,6 +146,16 @@ namespace Cyotek.Demo
       renderPanel.Invalidate();
     }
 
+    private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.Copy());
+    }
+
+    private void CutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.Cut());
+    }
+
     private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.Close();
@@ -176,6 +186,31 @@ namespace Cyotek.Demo
       foodSourcesToolStripMenuItem.Checked = _environmentRenderer.ShowFoodSources;
 
       renderPanel.Invalidate();
+    }
+
+    private Control GetActiveControl(Control control)
+    {
+      Control activeControl;
+      ContainerControl containerControl;
+      TabControl tabControl;
+
+      containerControl = control as ContainerControl;
+      tabControl = control as TabControl;
+
+      if (containerControl != null)
+      {
+        activeControl = this.GetActiveControl(containerControl.ActiveControl);
+      }
+      else if (tabControl?.SelectedTab?.Controls.Count == 1)
+      {
+        activeControl = tabControl.SelectedTab.Controls[0];
+      }
+      else
+      {
+        activeControl = control;
+      }
+
+      return activeControl;
     }
 
     private void GoToToolStripMenuItem_Click(object sender, EventArgs e)
@@ -346,7 +381,7 @@ namespace Cyotek.Demo
     {
       string fileName;
 
-      fileName = FileDialogHelper.GetOpenFileName("Open Simulation", Filters.Simulation, "sim");
+      fileName = FileDialogHelper.GetOpenFileName("Open File", Filters.General, "sim");
 
       if (!string.IsNullOrEmpty(fileName))
       {
@@ -358,8 +393,19 @@ namespace Cyotek.Demo
     {
       try
       {
-        _simulation = SimulationSerializer.LoadFrom(fileName);
-        _fileName = fileName;
+        if (string.Equals(Path.GetExtension(fileName), ".js"))
+        {
+          scriptTextBox.Text = File.ReadAllText(fileName);
+
+          tabControl.SelectedTab = scriptTabPage;
+
+          _scriptFileName = fileName;
+        }
+        else
+        {
+          _simulation = SimulationSerializer.LoadFrom(fileName);
+          _fileName = fileName;
+        }
 
         this.UpdateUi();
       }
@@ -374,11 +420,32 @@ namespace Cyotek.Demo
       this.OpenFile();
     }
 
+    private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.Paste());
+    }
+
     private void PauseToolStripButton_Click(object sender, EventArgs e)
     {
       timer.Stop();
 
       this.UpdateSimulationControls();
+    }
+
+    private void PerformClipboardAction(Action<TextBoxBase> action)
+    {
+      Control control;
+
+      control = this.GetActiveControl(this);
+
+      if (control is TextBoxBase textBox)
+      {
+        action(textBox);
+      }
+      else
+      {
+        SystemSounds.Beep.Play();
+      }
     }
 
     private void PlayToolStripButton_Click(object sender, EventArgs e)
@@ -416,9 +483,40 @@ namespace Cyotek.Demo
       _simulation.RespawnAttractor = respawnAttractorsCheckBox.Checked;
     }
 
+    private void RunButton_Click(object sender, EventArgs e)
+    {
+      string script;
+
+      script = scriptTextBox.Text;
+
+      if (!string.IsNullOrWhiteSpace(script))
+      {
+        ScriptEnvironment engine;
+
+        engine = new ScriptEnvironment();
+        engine.AddVariable("simulation", _simulation);
+
+        engine.WrappedExecute(script);
+
+        logTextBox.Text = engine.GetOutput();
+
+        this.LoadFields();
+        renderPanel.Invalidate();
+      }
+      else
+      {
+        SystemSounds.Beep.Play();
+      }
+    }
+
     private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.SaveFileAs();
+    }
+
+    private void SaveButton_Click(object sender, EventArgs e)
+    {
+      this.SaveScriptAs();
     }
 
     private void SaveFile()
@@ -460,6 +558,32 @@ namespace Cyotek.Demo
       }
     }
 
+    private void SaveScriptAs()
+    {
+      string fileName;
+
+      fileName = FileDialogHelper.GetSaveFileName("Save Script As", Filters.ScriptFiles, "js", _scriptFileName);
+
+      if (!string.IsNullOrEmpty(fileName))
+      {
+        this.SaveScriptAs(fileName);
+      }
+    }
+
+    private void SaveScriptAs(string fileName)
+    {
+      try
+      {
+        File.WriteAllText(fileName, scriptTextBox.Text);
+
+        _scriptFileName = fileName;
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(string.Format("Failed to save file. {0}", ex.GetBaseException().Message), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
     private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.SaveFile();
@@ -470,6 +594,11 @@ namespace Cyotek.Demo
       _environmentRenderer.Scale = scaleToolStripTrackBar.Value / 10F;
 
       renderPanel.Invalidate();
+    }
+
+    private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.PerformClipboardAction(tb => tb.SelectAll());
     }
 
     private void SetUpdateSpeed(int iterations)
@@ -574,92 +703,5 @@ namespace Cyotek.Demo
     }
 
     #endregion Private Methods
-
-    private void RunButton_Click(object sender, EventArgs e)
-    {
-      string script;
-
-      script = scriptTextBox.Text;
-
-      if (!string.IsNullOrWhiteSpace(script))
-      {
-        ScriptEnvironment engine;
-
-        engine = new ScriptEnvironment();
-        engine.AddVariable("simulation", _simulation);
-
-        engine.WrappedExecute(script);
-
-        logTextBox.Text = engine.GetOutput();
-
-        this.LoadFields();
-        renderPanel.Invalidate();
-      }
-      else
-      {
-        SystemSounds.Beep.Play();
-      }
-    }
-
-    private void CutToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      this.PerformClipboardAction(tb => tb.Cut());
-    }
-
-    private Control GetActiveControl(Control control)
-    {
-      Control activeControl;
-      ContainerControl containerControl;
-      TabControl tabControl;
-
-      containerControl = control as ContainerControl;
-      tabControl = control as TabControl;
-
-      if (containerControl != null)
-      {
-        activeControl = this.GetActiveControl(containerControl.ActiveControl);
-      }
-      else if (tabControl?.SelectedTab?.Controls.Count == 1)
-      {
-        activeControl = tabControl.SelectedTab.Controls[0];
-      }
-      else
-      {
-        activeControl = control;
-      }
-
-      return activeControl;
-    }
-
-    private void PerformClipboardAction(Action<TextBoxBase> action)
-    {
-      Control control;
-
-      control = this.GetActiveControl(this);
-
-      if(control is TextBoxBase textBox)
-      {
-        action(textBox);
-      }
-      else
-      {
-        SystemSounds.Beep.Play();
-      }
-    }
-
-    private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      this.PerformClipboardAction(tb => tb.Copy());
-    }
-
-    private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      this.PerformClipboardAction(tb => tb.Paste());
-    }
-
-    private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      this.PerformClipboardAction(tb => tb.SelectAll());
-    }
   }
 }
