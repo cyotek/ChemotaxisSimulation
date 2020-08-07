@@ -173,17 +173,17 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
       if (_showFoodSources)
       {
-        for (int i = 0; i < simulation.FoodSources.Count; i++)
+        for (int i = 0; i < simulation.Attractors.Count; i++)
         {
-          this.DrawFood(graphics, simulation.FoodSources[i]);
+          this.DrawFood(graphics, simulation.Attractors[i]);
         }
       }
 
       if (_showNoxiousSources)
       {
-        for (int i = 0; i < simulation.NoxiousSources.Count; i++)
+        for (int i = 0; i < simulation.Repellents.Count; i++)
         {
-          this.DrawNoxious(graphics, simulation.NoxiousSources[i]);
+          this.DrawNoxious(graphics, simulation.Repellents[i]);
         }
       }
 

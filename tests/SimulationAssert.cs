@@ -25,8 +25,8 @@ namespace Cyotek.ChemotaxisSimulation.Tests
       Assert.AreEqual(expected.SolidStrands, actual.SolidStrands, nameof(Simulation.SolidStrands) + " does not match.");
       Assert.AreEqual(expected.Wrap, actual.Wrap, nameof(Simulation.Wrap) + " does not match.");
 
-      SimulationAssert.AreEqual(expected.FoodSources, actual.FoodSources);
-      SimulationAssert.AreEqual(expected.NoxiousSources, actual.NoxiousSources);
+      SimulationAssert.AreEqual(expected.Attractors, actual.Attractors);
+      SimulationAssert.AreEqual(expected.Repellents, actual.Repellents);
       SimulationAssert.AreEqual(expected.Strands, actual.Strands);
     }
 

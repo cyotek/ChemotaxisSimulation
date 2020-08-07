@@ -1,8 +1,5 @@
 AttractorCollisionAction: ReduceSelf
-Attrition: false
-BinaryFission: false
-EnvironmentSeed: 20200806
-FoodSources:
+Attractors:
 - Heading:
     X: 0
     Y: 0
@@ -31,6 +28,9 @@ FoodSources:
     X: 75
     Y: 75
   Strength: 24
+Attrition: false
+BinaryFission: false
+EnvironmentSeed: 20200806
 Iteration: 500
 MaximumAttractorStrength: 128
 MaximumRepellentStrength: 128
@@ -38,7 +38,8 @@ MinimumAttractorStrength: 1
 MinimumRepellentStrength: 1
 MobileRepellents: false
 MovementSeed: 736
-NoxiousSources:
+RepellentCollisionAction: ReduceOther
+Repellents:
 - Heading:
     X: 0
     Y: 0
@@ -46,7 +47,6 @@ NoxiousSources:
     X: 50
     Y: 50
   Strength: 50
-RepellentCollisionAction: ReduceOther
 RespawnAttractor: false
 Size:
   Width: 100

@@ -275,12 +275,12 @@ namespace Cyotek.Demo
 
       for (int i = 0; i < (int)attractorsNumericUpDown.Value; i++)
       {
-        _simulation.AddFoodSource();
+        _simulation.AddAttractor();
       }
 
       for (int i = 0; i < (int)repellentsNumericUpDown.Value; i++)
       {
-        _simulation.AddNoxiousSource();
+        _simulation.AddRepellent();
       }
 
       this.UpdateSimulationControls();
@@ -332,7 +332,7 @@ namespace Cyotek.Demo
     {
       int sum;
 
-      sum = _simulation.FoodSources.Count + _simulation.NoxiousSources.Count + _simulation.Strands.Count;
+      sum = _simulation.Attractors.Count + _simulation.Repellents.Count + _simulation.Strands.Count;
 
       if (single)
       {
@@ -343,7 +343,7 @@ namespace Cyotek.Demo
         _simulation.Run(_updateIterations);
       }
 
-      if ((_simulation.FoodSources.Count + _simulation.NoxiousSources.Count + _simulation.Strands.Count) != sum)
+      if ((_simulation.Attractors.Count + _simulation.Repellents.Count + _simulation.Strands.Count) != sum)
       {
         this.UpdateStatusBar();
       }
@@ -684,8 +684,8 @@ namespace Cyotek.Demo
       {
         this.UpdateIteration();
         standsToolStripStatusLabel.Text = _simulation.Strands.Count.ToString();
-        attractorsToolStripStatusLabel.Text = _simulation.FoodSources.Count.ToString();
-        repellentsToolStripStatusLabel.Text = _simulation.NoxiousSources.Count.ToString();
+        attractorsToolStripStatusLabel.Text = _simulation.Attractors.Count.ToString();
+        repellentsToolStripStatusLabel.Text = _simulation.Repellents.Count.ToString();
       }
     }
 

@@ -1,8 +1,8 @@
 AttractorCollisionAction: ReduceSelf
+Attractors: []
 Attrition: false
 BinaryFission: false
 EnvironmentSeed: 20200803
-FoodSources: []
 Iteration: 0
 MaximumAttractorStrength: 128
 MaximumRepellentStrength: 128
@@ -10,8 +10,8 @@ MinimumAttractorStrength: 1
 MinimumRepellentStrength: 1
 MobileRepellents: false
 MovementSeed: 1622
-NoxiousSources: []
 RepellentCollisionAction: ReduceOther
+Repellents: []
 RespawnAttractor: true
 Size:
   Width: 256

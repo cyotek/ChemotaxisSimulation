@@ -389,14 +389,14 @@
       this.bacteriaStrandsToolStripMenuItem.Checked = true;
       this.bacteriaStrandsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.bacteriaStrandsToolStripMenuItem.Name = "bacteriaStrandsToolStripMenuItem";
-      this.bacteriaStrandsToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.bacteriaStrandsToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
       this.bacteriaStrandsToolStripMenuItem.Text = "Bacteria &Strands";
       this.bacteriaStrandsToolStripMenuItem.Click += new System.EventHandler(this.BacteriaStrandsToolStripMenuItem_Click);
       // 
       // bacteriaStrandTailsToolStripMenuItem
       // 
       this.bacteriaStrandTailsToolStripMenuItem.Name = "bacteriaStrandTailsToolStripMenuItem";
-      this.bacteriaStrandTailsToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.bacteriaStrandTailsToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
       this.bacteriaStrandTailsToolStripMenuItem.Text = "Bacteria Strand &Tails";
       this.bacteriaStrandTailsToolStripMenuItem.Click += new System.EventHandler(this.BacteriaStrandTailsToolStripMenuItem_Click);
       // 
@@ -405,8 +405,8 @@
       this.foodSourcesToolStripMenuItem.Checked = true;
       this.foodSourcesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.foodSourcesToolStripMenuItem.Name = "foodSourcesToolStripMenuItem";
-      this.foodSourcesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.foodSourcesToolStripMenuItem.Text = "&Food Sources";
+      this.foodSourcesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+      this.foodSourcesToolStripMenuItem.Text = "&Attractors";
       this.foodSourcesToolStripMenuItem.Click += new System.EventHandler(this.FoodSourcesToolStripMenuItem_Click);
       // 
       // foodSourceDetectionZonesToolStripMenuItem
@@ -414,8 +414,8 @@
       this.foodSourceDetectionZonesToolStripMenuItem.Checked = true;
       this.foodSourceDetectionZonesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.foodSourceDetectionZonesToolStripMenuItem.Name = "foodSourceDetectionZonesToolStripMenuItem";
-      this.foodSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.foodSourceDetectionZonesToolStripMenuItem.Text = "Food Source &Detection Zones";
+      this.foodSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+      this.foodSourceDetectionZonesToolStripMenuItem.Text = "Attractor &Detection Zones";
       this.foodSourceDetectionZonesToolStripMenuItem.Click += new System.EventHandler(this.FoodSourceDetectionZonesToolStripMenuItem_Click);
       // 
       // noxiousSourcesToolStripMenuItem
@@ -423,8 +423,8 @@
       this.noxiousSourcesToolStripMenuItem.Checked = true;
       this.noxiousSourcesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.noxiousSourcesToolStripMenuItem.Name = "noxiousSourcesToolStripMenuItem";
-      this.noxiousSourcesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.noxiousSourcesToolStripMenuItem.Text = "&Noxious Sources";
+      this.noxiousSourcesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+      this.noxiousSourcesToolStripMenuItem.Text = "&Repellents";
       this.noxiousSourcesToolStripMenuItem.Click += new System.EventHandler(this.NoxiousSourcesToolStripMenuItem_Click);
       // 
       // noxiousSourceDetectionZonesToolStripMenuItem
@@ -432,21 +432,21 @@
       this.noxiousSourceDetectionZonesToolStripMenuItem.Checked = true;
       this.noxiousSourceDetectionZonesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.noxiousSourceDetectionZonesToolStripMenuItem.Name = "noxiousSourceDetectionZonesToolStripMenuItem";
-      this.noxiousSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.noxiousSourceDetectionZonesToolStripMenuItem.Text = "N&oxious Source Detection Zones";
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+      this.noxiousSourceDetectionZonesToolStripMenuItem.Text = "R&epellent Detection Zones";
       this.noxiousSourceDetectionZonesToolStripMenuItem.Click += new System.EventHandler(this.NoxiousSourceDetectionZonesToolStripMenuItem_Click);
       // 
       // toolStripMenuItem2
       // 
       this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-      this.toolStripMenuItem2.Size = new System.Drawing.Size(243, 6);
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 6);
       // 
       // shapesToolStripMenuItem
       // 
       this.shapesToolStripMenuItem.Checked = true;
       this.shapesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.shapesToolStripMenuItem.Name = "shapesToolStripMenuItem";
-      this.shapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.shapesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
       this.shapesToolStripMenuItem.Text = "S&hapes";
       this.shapesToolStripMenuItem.Click += new System.EventHandler(this.ShapesToolStripMenuItem_Click);
       // 
@@ -455,7 +455,7 @@
       this.fillShapesToolStripMenuItem.Checked = true;
       this.fillShapesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.fillShapesToolStripMenuItem.Name = "fillShapesToolStripMenuItem";
-      this.fillShapesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.fillShapesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
       this.fillShapesToolStripMenuItem.Text = "&Gradients";
       this.fillShapesToolStripMenuItem.Click += new System.EventHandler(this.FillShapesToolStripMenuItem_Click);
       // 
@@ -464,14 +464,14 @@
       this.antiAliasToolStripMenuItem.Checked = true;
       this.antiAliasToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.antiAliasToolStripMenuItem.Name = "antiAliasToolStripMenuItem";
-      this.antiAliasToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-      this.antiAliasToolStripMenuItem.Text = "&Anti Alias";
+      this.antiAliasToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+      this.antiAliasToolStripMenuItem.Text = "Ant&i Alias";
       this.antiAliasToolStripMenuItem.Click += new System.EventHandler(this.AntiAliasToolStripMenuItem_Click);
       // 
       // toolStripMenuItem3
       // 
       this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-      this.toolStripMenuItem3.Size = new System.Drawing.Size(243, 6);
+      this.toolStripMenuItem3.Size = new System.Drawing.Size(209, 6);
       // 
       // zoomToolStripMenuItem
       // 
@@ -481,7 +481,7 @@
             this.toolStripMenuItem4,
             this.actualSizeToolStripMenuItem});
       this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-      this.zoomToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.zoomToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
       this.zoomToolStripMenuItem.Text = "&Zoom";
       // 
       // zoomInToolStripMenuItem
@@ -518,7 +518,7 @@
       // toolStripMenuItem6
       // 
       this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-      this.toolStripMenuItem6.Size = new System.Drawing.Size(243, 6);
+      this.toolStripMenuItem6.Size = new System.Drawing.Size(209, 6);
       // 
       // refreshIntervalToolStripMenuItem
       // 
@@ -528,7 +528,7 @@
             this.normalToolStripMenuItem,
             this.lowToolStripMenuItem});
       this.refreshIntervalToolStripMenuItem.Name = "refreshIntervalToolStripMenuItem";
-      this.refreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+      this.refreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
       this.refreshIntervalToolStripMenuItem.Text = "&Update Speed";
       // 
       // veryHighToolStripMenuItem
@@ -586,7 +586,7 @@
       this.runToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Play;
       this.runToolStripMenuItem.Name = "runToolStripMenuItem";
       this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-      this.runToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.runToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.runToolStripMenuItem.Text = "&Run";
       this.runToolStripMenuItem.Click += new System.EventHandler(this.PlayToolStripButton_Click);
       // 
@@ -595,33 +595,33 @@
       this.pauseToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Pause;
       this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
       this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.pauseToolStripMenuItem.Text = "&Pause";
       this.pauseToolStripMenuItem.Click += new System.EventHandler(this.PauseToolStripButton_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
       // 
       // nextMoveToolStripMenuItem
       // 
       this.nextMoveToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Next;
       this.nextMoveToolStripMenuItem.Name = "nextMoveToolStripMenuItem";
       this.nextMoveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.nextMoveToolStripMenuItem.Text = "&Next Move";
       this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.NextMoveToolStripButton_Click);
       // 
       // toolStripMenuItem5
       // 
       this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-      this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 6);
+      this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
       // 
       // advanceToolStripMenuItem
       // 
       this.advanceToolStripMenuItem.Name = "advanceToolStripMenuItem";
-      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.advanceToolStripMenuItem.Text = "&Advance...";
       this.advanceToolStripMenuItem.Click += new System.EventHandler(this.AdvanceToolStripMenuItem_Click);
       // 
@@ -629,7 +629,7 @@
       // 
       this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
       this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-      this.goToToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.goToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.goToToolStripMenuItem.Text = "&Go To...";
       this.goToToolStripMenuItem.Click += new System.EventHandler(this.GoToToolStripMenuItem_Click);
       // 

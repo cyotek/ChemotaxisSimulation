@@ -2,7 +2,7 @@ AttractorCollisionAction: ReduceSelf
 Attrition: false
 BinaryFission: false
 EnvironmentSeed: 20200803
-FoodSources:
+Attractors:
 - Heading:
     X: 0
     Y: 0
@@ -150,7 +150,7 @@ MinimumAttractorStrength: 1
 MinimumRepellentStrength: 1
 MobileRepellents: false
 MovementSeed: 1622
-NoxiousSources:
+Repellents:
 - Heading:
     X: 1
     Y: 0

@@ -116,31 +116,31 @@ namespace Cyotek.ChemotaxisSimulation.Tests
         RespawnAttractor = false
       };
 
-      simulation.FoodSources.Add(new Chemoeffector
+      simulation.Attractors.Add(new Chemoeffector
       {
         Position = new Point(25, 25),
         Strength = 25
       });
 
-      simulation.FoodSources.Add(new Chemoeffector
+      simulation.Attractors.Add(new Chemoeffector
       {
         Position = new Point(75, 25),
         Strength = 25
       });
 
-      simulation.FoodSources.Add(new Chemoeffector
+      simulation.Attractors.Add(new Chemoeffector
       {
         Position = new Point(25, 75),
         Strength = 25
       });
 
-      simulation.FoodSources.Add(new Chemoeffector
+      simulation.Attractors.Add(new Chemoeffector
       {
         Position = new Point(75, 75),
         Strength = 25
       });
 
-      simulation.NoxiousSources.Add(new Chemoeffector
+      simulation.Repellents.Add(new Chemoeffector
       {
         Position = new Point(50, 50),
         Strength = 50

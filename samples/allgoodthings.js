@@ -29,11 +29,11 @@ for (let index = 0; index < width; index++)
   nox.Heading = new point(0, 1);
   //nox.CollisionAction = CollisionAction.DestroyOther;
 
-  simulation.NoxiousSources.Add(nox);
+  simulation.Repellents.Add(nox);
 }
 
 for (let index = 0; index < 5; index++) {
-  simulation.AddFoodSource();
+  simulation.AddAttractor();
 }
 
 for (let index = 0; index < 100; index++) {
@@ -47,7 +47,7 @@ for (let index = 0; index < 100; index++) {
 // //food.Strength = 2147483647
 // food.Strength = width;
 
-// simulation.FoodSources.add(food);
+// simulation.Attractors.add(food);
 
 // var strand;
 

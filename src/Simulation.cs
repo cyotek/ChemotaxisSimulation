@@ -11,6 +11,8 @@ namespace Cyotek.ChemotaxisSimulation
 
     private CollisionAction _attractorCollisionAction;
 
+    private ChemoeffectorCollection _attractors;
+
     private bool _attrition;
 
     private bool _binaryFission;
@@ -18,8 +20,6 @@ namespace Cyotek.ChemotaxisSimulation
     private Random _environmentRandom;
 
     private int _environmentSeed;
-
-    private ChemoeffectorCollection _foodSources;
 
     private long _iteration;
 
@@ -37,9 +37,9 @@ namespace Cyotek.ChemotaxisSimulation
 
     private int _movementSeed;
 
-    private ChemoeffectorCollection _noxiousSources;
-
     private CollisionAction _repellentCollisionAction;
+
+    private ChemoeffectorCollection _repellents;
 
     private bool _respawnAttractor;
 
@@ -64,11 +64,11 @@ namespace Cyotek.ChemotaxisSimulation
       {
         Owner = this
       };
-      _foodSources = new ChemoeffectorCollection
+      _attractors = new ChemoeffectorCollection
       {
         Owner = this
       };
-      _noxiousSources = new ChemoeffectorCollection
+      _repellents = new ChemoeffectorCollection
       {
         Owner = this
       };
@@ -94,6 +94,19 @@ namespace Cyotek.ChemotaxisSimulation
       set { _attractorCollisionAction = value; }
     }
 
+    public ChemoeffectorCollection Attractors
+    {
+      get { return _attractors; }
+      set
+      {
+        _attractors = value;
+        if (value != null)
+        {
+          value.Owner = this;
+        }
+      }
+    }
+
     public bool Attrition
     {
       get { return _attrition; }
@@ -110,19 +123,6 @@ namespace Cyotek.ChemotaxisSimulation
     {
       get { return _environmentSeed; }
       set { _environmentSeed = value; }
-    }
-
-    public ChemoeffectorCollection FoodSources
-    {
-      get { return _foodSources; }
-      set
-      {
-        _foodSources = value;
-        if (value != null)
-        {
-          value.Owner = this;
-        }
-      }
     }
 
     public long Iteration
@@ -167,23 +167,23 @@ namespace Cyotek.ChemotaxisSimulation
       set { _movementSeed = value; }
     }
 
-    public ChemoeffectorCollection NoxiousSources
+    public CollisionAction RepellentCollisionAction
     {
-      get { return _noxiousSources; }
+      get { return _repellentCollisionAction; }
+      set { _repellentCollisionAction = value; }
+    }
+
+    public ChemoeffectorCollection Repellents
+    {
+      get { return _repellents; }
       set
       {
-        _noxiousSources = value;
+        _repellents = value;
         if (value != null)
         {
           value.Owner = this;
         }
       }
-    }
-
-    public CollisionAction RepellentCollisionAction
-    {
-      get { return _repellentCollisionAction; }
-      set { _repellentCollisionAction = value; }
     }
 
     public bool RespawnAttractor
@@ -227,18 +227,18 @@ namespace Cyotek.ChemotaxisSimulation
 
     #region Public Methods
 
-    public void AddFoodSource()
+    public void AddAttractor()
     {
-      _foodSources.Add(new Chemoeffector
+      _attractors.Add(new Chemoeffector
       {
         Position = this.GetRandomPoint(),
         Strength = this.GetRandomSize(_minimumAttractorStrength, _maximumAttractorStrength)
       });
     }
 
-    public void AddNoxiousSource()
+    public void AddRepellent()
     {
-      _noxiousSources.Add(new Chemoeffector
+      _repellents.Add(new Chemoeffector
       {
         Position = this.GetRandomPoint(),
         Strength = this.GetRandomSize(_minimumRepellentStrength, _maximumRepellentStrength),
@@ -261,9 +261,9 @@ namespace Cyotek.ChemotaxisSimulation
 
       if (_mobileRepellents)
       {
-        for (int i = 0; i < _noxiousSources.Count; i++)
+        for (int i = 0; i < _repellents.Count; i++)
         {
-          _noxiousSources[i].Move();
+          _repellents[i].Move();
 
           for (int j = 0; j < _strands.Count; j++)
           {
@@ -301,8 +301,8 @@ namespace Cyotek.ChemotaxisSimulation
       _iteration = 0;
 
       _strands.Clear();
-      _foodSources.Clear();
-      _noxiousSources.Clear();
+      _attractors.Clear();
+      _repellents.Clear();
     }
 
     public void Run(long iterations)
@@ -333,7 +333,7 @@ namespace Cyotek.ChemotaxisSimulation
 
       if (distance <= 1)
       {
-        this.ProcessCollision(strand, food, _foodSources, _attractorCollisionAction, this.CheckRespawn);
+        this.ProcessCollision(strand, food, _attractors, _attractorCollisionAction, this.CheckRespawn);
 
         strand.PreviousSensor = 0;
       }
@@ -365,19 +365,19 @@ namespace Cyotek.ChemotaxisSimulation
 
     private void CheckCollisions(Strand strand)
     {
-      for (int i = 0; i < _noxiousSources.Count; i++)
+      for (int i = 0; i < _repellents.Count; i++)
       {
-        if (Geometry.GetDistance(strand.Position, _noxiousSources[i].Position) <= 1)
+        if (Geometry.GetDistance(strand.Position, _repellents[i].Position) <= 1)
         {
-          this.ProcessCollision(strand, _noxiousSources[i], _noxiousSources, _repellentCollisionAction, () => this.AddNoxiousSource());
+          this.ProcessCollision(strand, _repellents[i], _repellents, _repellentCollisionAction, () => this.AddRepellent());
         }
       }
 
-      for (int i = 0; i < _foodSources.Count; i++)
+      for (int i = 0; i < _attractors.Count; i++)
       {
-        if (Geometry.GetDistance(strand.Position, _foodSources[i].Position) <= 1)
+        if (Geometry.GetDistance(strand.Position, _attractors[i].Position) <= 1)
         {
-          this.ProcessCollision(strand, _foodSources[i], _foodSources, _attractorCollisionAction, this.CheckRespawn);
+          this.ProcessCollision(strand, _attractors[i], _attractors, _attractorCollisionAction, this.CheckRespawn);
           break;
         }
       }
@@ -413,7 +413,7 @@ namespace Cyotek.ChemotaxisSimulation
     {
       if (_respawnAttractor)
       {
-        this.AddFoodSource();
+        this.AddAttractor();
       }
     }
 
@@ -425,7 +425,7 @@ namespace Cyotek.ChemotaxisSimulation
 
       if (distance <= 1)
       {
-        this.ProcessCollision(strand, noxious, _noxiousSources, _repellentCollisionAction, () => this.AddNoxiousSource());
+        this.ProcessCollision(strand, noxious, _repellents, _repellentCollisionAction, () => this.AddRepellent());
       }
       else
       {
@@ -455,7 +455,7 @@ namespace Cyotek.ChemotaxisSimulation
 
     private Chemoeffector GetClosestAttractor(Strand strand)
     {
-      return this.GetClosestChemoeffector(strand, _foodSources);
+      return this.GetClosestChemoeffector(strand, _attractors);
     }
 
     private Chemoeffector GetClosestChemoeffector(Strand strand, ChemoeffectorCollection container)
@@ -485,7 +485,7 @@ namespace Cyotek.ChemotaxisSimulation
 
     private Chemoeffector GetClosestRepellor(Strand strand)
     {
-      return this.GetClosestChemoeffector(strand, _noxiousSources);
+      return this.GetClosestChemoeffector(strand, _repellents);
     }
 
     private Point GetRandomHeading()
@@ -514,7 +514,7 @@ namespace Cyotek.ChemotaxisSimulation
 
     private Chemoeffector GetStrongestAttractor(Strand strand)
     {
-      return this.GetStrongestChemoeffector(strand, _foodSources);
+      return this.GetStrongestChemoeffector(strand, _attractors);
     }
 
     private Chemoeffector GetStrongestChemoeffector(Strand strand, ChemoeffectorCollection container)
@@ -544,7 +544,7 @@ namespace Cyotek.ChemotaxisSimulation
 
     private Chemoeffector GetStrongestRepellor(Strand strand)
     {
-      return this.GetStrongestChemoeffector(strand, _noxiousSources);
+      return this.GetStrongestChemoeffector(strand, _repellents);
     }
 
     private void MoveStrand(Strand strand)
