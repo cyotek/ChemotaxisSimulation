@@ -155,35 +155,35 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
     #region Public Methods
 
-    public void Draw(Simulation environment, Graphics graphics)
+    public void Draw(Simulation simulation, Graphics graphics)
     {
       graphics.Clear(SystemColors.Control);
 
       graphics.ScaleTransform(_scale, _scale);
 
-      graphics.FillRectangle(Brushes.White, new Rectangle(Point.Empty, environment.Size));
+      graphics.FillRectangle(Brushes.White, new Rectangle(Point.Empty, simulation.Size));
 
       if (_showFoodSources)
       {
-        for (int i = 0; i < environment.FoodSources.Count; i++)
+        for (int i = 0; i < simulation.FoodSources.Count; i++)
         {
-          this.DrawFood(graphics, environment.FoodSources[i]);
+          this.DrawFood(graphics, simulation.FoodSources[i]);
         }
       }
 
       if (_showNoxiousSources)
       {
-        for (int i = 0; i < environment.NoxiousSources.Count; i++)
+        for (int i = 0; i < simulation.NoxiousSources.Count; i++)
         {
-          this.DrawNoxious(graphics, environment.NoxiousSources[i]);
+          this.DrawNoxious(graphics, simulation.NoxiousSources[i]);
         }
       }
 
       if (_showStrands)
       {
-        for (int i = 0; i < environment.Strands.Count; i++)
+        for (int i = 0; i < simulation.Strands.Count; i++)
         {
-          this.DrawStrand(graphics, environment.Strands[i]);
+          this.DrawStrand(graphics, simulation.Strands[i]);
         }
       }
     }

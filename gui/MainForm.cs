@@ -7,6 +7,7 @@ using Cyotek.Windows.Forms;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace Cyotek.Demo
 
     private bool _antiAlias;
 
-    private GdiSimulationRenderer _environmentRenderer;
+    private GdiSimulationRenderer _simulationRenderer;
 
     private string _fileName;
 
@@ -56,7 +57,7 @@ namespace Cyotek.Demo
         Size = new Size(256, 256)
       };
 
-      _environmentRenderer = new GdiSimulationRenderer
+      _simulationRenderer = new GdiSimulationRenderer
       {
         Scale = 2
       };
@@ -130,18 +131,18 @@ namespace Cyotek.Demo
 
     private void BacteriaStrandsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowStrands = !_environmentRenderer.ShowStrands;
+      _simulationRenderer.ShowStrands = !_simulationRenderer.ShowStrands;
 
-      bacteriaStrandsToolStripMenuItem.Checked = _environmentRenderer.ShowStrands;
+      bacteriaStrandsToolStripMenuItem.Checked = _simulationRenderer.ShowStrands;
 
       renderPanel.Invalidate();
     }
 
     private void BacteriaStrandTailsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowTails = !_environmentRenderer.ShowTails;
+      _simulationRenderer.ShowTails = !_simulationRenderer.ShowTails;
 
-      bacteriaStrandTailsToolStripMenuItem.Checked = _environmentRenderer.ShowTails;
+      bacteriaStrandTailsToolStripMenuItem.Checked = _simulationRenderer.ShowTails;
 
       renderPanel.Invalidate();
     }
@@ -163,27 +164,27 @@ namespace Cyotek.Demo
 
     private void FillShapesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.OutlinesOnly = !_environmentRenderer.OutlinesOnly;
+      _simulationRenderer.OutlinesOnly = !_simulationRenderer.OutlinesOnly;
 
-      fillShapesToolStripMenuItem.Checked = !_environmentRenderer.OutlinesOnly;
+      fillShapesToolStripMenuItem.Checked = !_simulationRenderer.OutlinesOnly;
 
       renderPanel.Invalidate();
     }
 
     private void FoodSourceDetectionZonesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowFoodDetectionZone = !_environmentRenderer.ShowFoodDetectionZone;
+      _simulationRenderer.ShowFoodDetectionZone = !_simulationRenderer.ShowFoodDetectionZone;
 
-      foodSourceDetectionZonesToolStripMenuItem.Checked = _environmentRenderer.ShowFoodDetectionZone;
+      foodSourceDetectionZonesToolStripMenuItem.Checked = _simulationRenderer.ShowFoodDetectionZone;
 
       renderPanel.Invalidate();
     }
 
     private void FoodSourcesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowFoodSources = !_environmentRenderer.ShowFoodSources;
+      _simulationRenderer.ShowFoodSources = !_simulationRenderer.ShowFoodSources;
 
-      foodSourcesToolStripMenuItem.Checked = _environmentRenderer.ShowFoodSources;
+      foodSourcesToolStripMenuItem.Checked = _simulationRenderer.ShowFoodSources;
 
       renderPanel.Invalidate();
     }
@@ -361,18 +362,18 @@ namespace Cyotek.Demo
 
     private void NoxiousSourceDetectionZonesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowNoxiousDetectionZone = !_environmentRenderer.ShowNoxiousDetectionZone;
+      _simulationRenderer.ShowNoxiousDetectionZone = !_simulationRenderer.ShowNoxiousDetectionZone;
 
-      noxiousSourceDetectionZonesToolStripMenuItem.Checked = _environmentRenderer.ShowNoxiousDetectionZone;
+      noxiousSourceDetectionZonesToolStripMenuItem.Checked = _simulationRenderer.ShowNoxiousDetectionZone;
 
       renderPanel.Invalidate();
     }
 
     private void NoxiousSourcesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.ShowNoxiousSources = !_environmentRenderer.ShowNoxiousSources;
+      _simulationRenderer.ShowNoxiousSources = !_simulationRenderer.ShowNoxiousSources;
 
-      noxiousSourcesToolStripMenuItem.Checked = _environmentRenderer.ShowNoxiousSources;
+      noxiousSourcesToolStripMenuItem.Checked = _simulationRenderer.ShowNoxiousSources;
 
       renderPanel.Invalidate();
     }
@@ -475,7 +476,7 @@ namespace Cyotek.Demo
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
       }
 
-      _environmentRenderer.Draw(_simulation, e.Graphics);
+      _simulationRenderer.Draw(_simulation, e.Graphics);
     }
 
     private void RespawnAttractorsCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -536,6 +537,7 @@ namespace Cyotek.Demo
       try
       {
         _simulation.Save(fileName);
+        this.SaveImage(Path.ChangeExtension(fileName, ".png"));
         _fileName = fileName;
 
         this.UpdateUi();
@@ -543,6 +545,21 @@ namespace Cyotek.Demo
       catch (Exception ex)
       {
         MessageBox.Show(string.Format("Failed to save file. {0}", ex.GetBaseException().Message), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
+    private void SaveImage(string fileName)
+    {
+      using (Bitmap bitmap = new Bitmap((int)(_simulation.Size.Width * _simulationRenderer.Scale), (int)(_simulation.Size.Height * _simulationRenderer.Scale), PixelFormat.Format32bppRgb))
+      {
+        using (Graphics g = Graphics.FromImage(bitmap))
+        {
+          g.SmoothingMode = SmoothingMode.AntiAlias;
+
+          _simulationRenderer.Draw(_simulation, g);
+        }
+
+        bitmap.Save(fileName, ImageFormat.Png);
       }
     }
 
@@ -591,7 +608,7 @@ namespace Cyotek.Demo
 
     private void ScaleToolStripTrackBar_ValueChanged(object sender, EventArgs e)
     {
-      _environmentRenderer.Scale = scaleToolStripTrackBar.Value / 10F;
+      _simulationRenderer.Scale = scaleToolStripTrackBar.Value / 10F;
 
       renderPanel.Invalidate();
     }
@@ -616,9 +633,9 @@ namespace Cyotek.Demo
 
     private void ShapesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      _environmentRenderer.DrawShapes = !_environmentRenderer.DrawShapes;
+      _simulationRenderer.DrawShapes = !_simulationRenderer.DrawShapes;
 
-      shapesToolStripMenuItem.Checked = _environmentRenderer.DrawShapes;
+      shapesToolStripMenuItem.Checked = _simulationRenderer.DrawShapes;
 
       renderPanel.Invalidate();
     }
