@@ -43,6 +43,8 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
     private readonly Pen _strandPen;
 
+    private Pen _tailPen;
+
     private bool _drawShapes;
 
     private bool _outlinesOnly;
@@ -69,7 +71,6 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
     {
       _scale = 1;
       _showFoodDetectionZone = true;
-      _showTails = true;
       _showStrands = true;
       _showFoodSources = true;
       _showNoxiousSources = true;
@@ -88,6 +89,13 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
         EndCap = LineCap.Round,
         LineJoin = LineJoin.Round,
         StartCap = LineCap.Round
+      };
+
+      _tailPen = new Pen(Color.CornflowerBlue)
+      {
+        EndCap = LineCap.Round,
+        StartCap = LineCap.Round,
+        LineJoin = LineJoin.Round
       };
 
       _repellentPen = new Pen(Color.Firebrick);
@@ -181,6 +189,14 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
       if (_showStrands)
       {
+        if (_showTails)
+        {
+          for (int i = 0; i < simulation.Strands.Count; i++)
+          {
+            this.DrawStrandTail(graphics, simulation.Strands[i].PreviousPositions);
+          }
+        }
+
         for (int i = 0; i < simulation.Strands.Count; i++)
         {
           this.DrawStrand(graphics, simulation.Strands[i]);
@@ -255,6 +271,22 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
       this.DrawChemoeffector(graphics, noxious, _repellentPen, _repellentShape, _showNoxiousDetectionZone);
     }
 
+    private void DrawSection(Graphics g, PointBuffer points, int start, int length)
+    {
+      if (length > 1) // DrawLines crashes if there isn't at least two points
+      {
+        Point[] _buffer;
+
+        _buffer = ArrayPool<Point>.Shared.Allocate(length);
+
+        points.CopyTo(start, _buffer, 0, length);
+
+        g.DrawLines(_tailPen, _buffer);
+
+        ArrayPool<Point>.Shared.Free(_buffer);
+      }
+    }
+
     private void DrawStrand(Graphics graphics, Strand strand)
     {
       if (_drawShapes)
@@ -278,6 +310,86 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
         graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
         graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
       }
+    }
+
+    private void DrawStrandTail(Graphics g, PointBuffer points)
+    {
+      if (points.Size > 1)
+      {
+        // don't do this!
+        //g.DrawLines(_bodyPen, points.ToArray());
+
+        if (!this.HasSplitResults(points))
+        {
+          Point[] _buffer;
+
+          // this isn't great, but as Graphics.DrawLines
+          // isn't enlightened enough to take a start and length,
+          // we copy the buffer out of the CircularBuffer into an
+          // existing byte array so in theory we aren't allocating
+          // an array over and over again
+
+          _buffer = ArrayPool<Point>.Shared.Allocate(points.Size);
+
+          points.CopyTo(_buffer);
+
+          g.DrawLines(_tailPen, _buffer);
+
+          ArrayPool<Point>.Shared.Free(_buffer);
+        }
+        else
+        {
+          int start;
+          Point previous;
+          Point current;
+
+          // if we've wrapped the playing field, I can't just
+          // call DrawLines with the entire buffer as we'll get
+          // lines drawn across the entire playing field, so
+          // instead I need to break it down into smaller buffers
+
+          start = 0;
+          previous = points.PeekAt(0);
+
+          for (int i = 1; i < points.Size; i++)
+          {
+            current = points.PeekAt(i);
+
+            if (Geometry.GetDistance(previous, current) > 1)
+            {
+              // here we have a split, so let us grab a subset of
+              // the buffer and draw our lines
+              this.DrawSection(g, points, start, i - start);
+              start = i;
+            }
+
+            previous = current;
+          }
+
+          if (start < points.Size)
+          {
+            this.DrawSection(g, points, start, points.Size - start);
+          }
+        }
+      }
+    }
+
+    private bool HasSplitResults(PointBuffer _snakeBody)
+    {
+      bool result;
+
+      result = false;
+
+      for (int i = 1; i < _snakeBody.Size; i++)
+      {
+        if (Geometry.GetDistance(_snakeBody.PeekAt(i - 1), _snakeBody.PeekAt(i)) > 1)
+        {
+          result = true;
+          break;
+        }
+      }
+
+      return result;
     }
 
     #endregion Private Methods

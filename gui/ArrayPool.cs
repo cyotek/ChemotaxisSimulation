@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace Cyotek
 {
-  public sealed class ArrayPool<T> : IDisposable
+  internal sealed class ArrayPool<T> : IDisposable
   {
     #region Private Fields
 

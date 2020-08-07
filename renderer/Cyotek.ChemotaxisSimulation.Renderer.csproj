@@ -38,6 +38,12 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\gui\ArrayPool.cs">
+      <Link>ArrayPool.cs</Link>
+    </Compile>
+    <Compile Include="..\gui\EmptyArray.cs">
+      <Link>EmptyArray.cs</Link>
+    </Compile>
     <Compile Include="GdiSimulationRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

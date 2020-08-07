@@ -8,7 +8,7 @@
 
 namespace Cyotek.Collections
 {
-  public static class EmptyArray<T>
+  internal static class EmptyArray<T>
   {
     #region Constants
 
