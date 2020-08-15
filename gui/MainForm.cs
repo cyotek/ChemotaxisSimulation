@@ -49,6 +49,11 @@ namespace Cyotek.Demo
     {
       string[] args;
 
+      _autoSaveOptions = new AutoSaveOptions
+      {
+        SaveFolder = Application.StartupPath
+      };
+
       _random = new Random();
       _antiAlias = true;
 
@@ -367,6 +372,11 @@ namespace Cyotek.Demo
         _simulation.Run(_updateIterations);
       }
 
+      if (_autoSaveOptions.Enabled)
+      {
+        this.AutoSaveImage();
+      }
+
       if ((_simulation.Attractors.Count + _simulation.Repellents.Count + _simulation.Strands.Count) != sum)
       {
         this.UpdateStatusBar();
@@ -377,6 +387,15 @@ namespace Cyotek.Demo
       }
 
       renderPanel.Invalidate();
+    }
+
+    private void AutoSaveImage()
+    {
+      string fileName;
+
+      fileName = Path.Combine(_autoSaveOptions.SaveFolder, _simulation.Iteration + ".png");
+
+      this.SaveImage(fileName);
     }
 
     private void NextMoveToolStripButton_Click(object sender, EventArgs e)
@@ -737,5 +756,31 @@ namespace Cyotek.Demo
     }
 
     #endregion Private Methods
+
+    private void AutoSaveImagesEnabledToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      _autoSaveOptions.Enabled = !_autoSaveOptions.Enabled;
+
+      autoSaveImagesEnabledToolStripMenuItem.Checked = _autoSaveOptions.Enabled;
+
+      if (_autoSaveOptions.Enabled)
+      {
+        this.AutoSaveImage();
+      }
+    }
+
+    private void AutoSaveImagesConfigureToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      string folderName;
+
+      folderName = FileDialogHelper.GetFolderName("Select Auto Image Folder", _autoSaveOptions.SaveFolder);
+
+      if (!string.IsNullOrEmpty(folderName))
+      {
+        _autoSaveOptions.SaveFolder = folderName;
+      }
+    }
+
+    private AutoSaveOptions _autoSaveOptions;
   }
 }

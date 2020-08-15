@@ -51,6 +51,7 @@
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ArrayPool.cs" />
+    <Compile Include="AutoSaveOptions.cs" />
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>

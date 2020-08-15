@@ -163,6 +163,10 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+      this.autoSaveImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.autoSaveImagesEnabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.autoSaveImagesConfigureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -592,7 +596,9 @@
             this.nextMoveToolStripMenuItem,
             this.toolStripMenuItem5,
             this.advanceToolStripMenuItem,
-            this.goToToolStripMenuItem});
+            this.goToToolStripMenuItem,
+            this.toolStripMenuItem8,
+            this.autoSaveImagesToolStripMenuItem});
       this.simulationToolStripMenuItem.Name = "simulationToolStripMenuItem";
       this.simulationToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
       this.simulationToolStripMenuItem.Text = "&Simulation";
@@ -1638,6 +1644,34 @@
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
       // 
+      // toolStripMenuItem8
+      // 
+      this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+      this.toolStripMenuItem8.Size = new System.Drawing.Size(215, 6);
+      // 
+      // autoSaveImagesToolStripMenuItem
+      // 
+      this.autoSaveImagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoSaveImagesEnabledToolStripMenuItem,
+            this.autoSaveImagesConfigureToolStripMenuItem});
+      this.autoSaveImagesToolStripMenuItem.Name = "autoSaveImagesToolStripMenuItem";
+      this.autoSaveImagesToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+      this.autoSaveImagesToolStripMenuItem.Text = "Auto Save &Images";
+      // 
+      // autoSaveImagesEnabledToolStripMenuItem
+      // 
+      this.autoSaveImagesEnabledToolStripMenuItem.Name = "autoSaveImagesEnabledToolStripMenuItem";
+      this.autoSaveImagesEnabledToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.autoSaveImagesEnabledToolStripMenuItem.Text = "&Enabled";
+      this.autoSaveImagesEnabledToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveImagesEnabledToolStripMenuItem_Click);
+      // 
+      // autoSaveImagesConfigureToolStripMenuItem
+      // 
+      this.autoSaveImagesConfigureToolStripMenuItem.Name = "autoSaveImagesConfigureToolStripMenuItem";
+      this.autoSaveImagesConfigureToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.autoSaveImagesConfigureToolStripMenuItem.Text = "&Configure...";
+      this.autoSaveImagesConfigureToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveImagesConfigureToolStripMenuItem_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1829,6 +1863,10 @@
     private System.Windows.Forms.Button saveButton;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
     private System.Windows.Forms.ToolStripMenuItem copyImageToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
+    private System.Windows.Forms.ToolStripMenuItem autoSaveImagesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem autoSaveImagesEnabledToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem autoSaveImagesConfigureToolStripMenuItem;
   }
 }
 
