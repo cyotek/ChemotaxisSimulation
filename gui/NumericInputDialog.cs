@@ -8,16 +8,71 @@ namespace Cyotek.Windows.Forms
 {
   internal partial class NumericInputDialog : BaseForm
   {
-    #region Constructors
+    #region Private Fields
+
+    private string _footerText;
+
+    private decimal _maximum;
+
+    private decimal _minimum;
+
+    private string _promptText;
+
+    private decimal _value;
+
+    #endregion Private Fields
+
+    #region Public Constructors
 
     public NumericInputDialog()
     {
       this.InitializeComponent();
     }
 
-    #endregion
+    #endregion Public Constructors
 
-    #region Static Methods
+    #region Public Properties
+
+    [DefaultValue(null)]
+    public string FooterText
+    {
+      get { return _footerText; }
+      set { _footerText = value; }
+    }
+
+    [DefaultValue(100)]
+    public decimal Maximum
+    {
+      get { return _maximum; }
+      set { _maximum = value; }
+    }
+
+    [DefaultValue(0)]
+    public decimal Minimum
+    {
+      get { return _minimum; }
+      set { _minimum = value; }
+    }
+
+    [DefaultValue(null)]
+    public string PromptText
+    {
+      get { return _promptText; }
+      set { _promptText = value; }
+    }
+
+    public Func<decimal, bool> ValidationCallback { get; set; }
+
+    [DefaultValue(0)]
+    public decimal Value
+    {
+      get { return _value; }
+      set { _value = value; }
+    }
+
+    #endregion Public Properties
+
+    #region Public Methods
 
     public static decimal ShowInputDialog(string promptText)
     {
@@ -58,6 +113,7 @@ namespace Cyotek.Windows.Forms
     {
       return ShowInputDialog(owner, promptText, caption, defaultValue, 0, 100, validationCallback);
     }
+
     public static decimal ShowInputDialog(IWin32Window owner, string promptText, string caption, decimal defaultValue, decimal minimum, decimal maximum, Func<decimal, bool> validationCallback)
     {
       using (NumericInputDialog dialog = new NumericInputDialog
@@ -74,63 +130,9 @@ namespace Cyotek.Windows.Forms
       }
     }
 
-    #endregion
+    #endregion Public Methods
 
-    #region Properties
-
-
-    private string _promptText;
-
-    [DefaultValue(null)]
-    public string PromptText
-    {
-      get { return _promptText; }
-      set { _promptText = value; }
-    }
-
-    private string _footerText;
-
-    [DefaultValue(null)]
-    public string FooterText
-    {
-      get { return _footerText; }
-      set { _footerText = value; }
-    }
-
-
-    public Func<decimal, bool> ValidationCallback { get; set; }
-
-    private decimal _value;
-
-    [DefaultValue(0)]
-    public decimal Value
-    {
-      get { return _value; }
-      set { _value = value; }
-    }
-
-    private decimal _minimum;
-
-    [DefaultValue(0)]
-    public decimal Minimum
-    {
-      get { return _minimum; }
-      set { _minimum = value; }
-    }
-
-    private decimal _maximum;
-
-    [DefaultValue(100)]
-    public decimal Maximum
-    {
-      get { return _maximum; }
-      set { _maximum = value; }
-    }
-
-
-    #endregion
-
-    #region Methods
+    #region Protected Methods
 
     protected override void OnLoad(EventArgs e)
     {
@@ -163,9 +165,18 @@ namespace Cyotek.Windows.Forms
       //this.SetClientHeight(height);
     }
 
+    #endregion Protected Methods
+
+    #region Private Methods
+
     private void CancelButton_Click(object sender, EventArgs e)
     {
       this.DialogResult = DialogResult.Cancel;
+    }
+
+    private void InputTextBox_Enter(object sender, EventArgs e)
+    {
+      inputTextBox.Select(0, 10);
     }
 
     private void OkButton_Click(object sender, EventArgs e)
@@ -182,6 +193,6 @@ namespace Cyotek.Windows.Forms
       }
     }
 
-    #endregion
+    #endregion Private Methods
   }
 }

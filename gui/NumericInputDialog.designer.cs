@@ -15,6 +15,7 @@
       this.okButton = new System.Windows.Forms.Button();
       this.cancelButton = new System.Windows.Forms.Button();
       this.footerLabel = new System.Windows.Forms.Label();
+      ((System.ComponentModel.ISupportInitialize)(this.inputTextBox)).BeginInit();
       this.SuspendLayout();
       // 
       // promptLabel
@@ -36,6 +37,7 @@
       this.inputTextBox.Name = "inputTextBox";
       this.inputTextBox.Size = new System.Drawing.Size(355, 20);
       this.inputTextBox.TabIndex = 1;
+      this.inputTextBox.Enter += new System.EventHandler(this.InputTextBox_Enter);
       // 
       // okButton
       // 
@@ -72,7 +74,7 @@
       this.footerLabel.TabIndex = 4;
       this.footerLabel.Visible = false;
       // 
-      // InputDialog
+      // NumericInputDialog
       // 
       this.AcceptButton = this.okButton;
       this.CancelButton = this.cancelButton;
@@ -82,10 +84,10 @@
       this.Controls.Add(this.okButton);
       this.Controls.Add(this.inputTextBox);
       this.Controls.Add(this.promptLabel);
-      this.Name = "InputDialog";
+      this.Name = "NumericInputDialog";
       this.Text = "Input";
+      ((System.ComponentModel.ISupportInitialize)(this.inputTextBox)).EndInit();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
     }
 

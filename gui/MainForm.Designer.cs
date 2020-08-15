@@ -48,6 +48,8 @@
       this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
       this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
+      this.copyImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.bacteriaStrandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.bacteriaStrandTailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -161,8 +163,6 @@
       this.simulationToolStrip = new System.Windows.Forms.ToolStrip();
       this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-      this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
-      this.copyImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       line = new Cyotek.Windows.Forms.Line();
       line1 = new Cyotek.Windows.Forms.Line();
       line2 = new Cyotek.Windows.Forms.Line();
@@ -330,7 +330,7 @@
       this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
       this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-      this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.cutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.cutToolStripMenuItem.Text = "Cu&t";
       this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
       // 
@@ -340,7 +340,7 @@
       this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
       this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-      this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.copyToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.copyToolStripMenuItem.Text = "&Copy";
       this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
       // 
@@ -350,22 +350,34 @@
       this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
       this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-      this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.pasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.pasteToolStripMenuItem.Text = "&Paste";
       this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
       // 
       // toolStripSeparator4
       // 
       this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+      this.toolStripSeparator4.Size = new System.Drawing.Size(161, 6);
       // 
       // selectAllToolStripMenuItem
       // 
       this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
       this.selectAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-      this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.selectAllToolStripMenuItem.Text = "Select &All";
       this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
+      // 
+      // toolStripMenuItem7
+      // 
+      this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+      this.toolStripMenuItem7.Size = new System.Drawing.Size(161, 6);
+      // 
+      // copyImageToolStripMenuItem
+      // 
+      this.copyImageToolStripMenuItem.Name = "copyImageToolStripMenuItem";
+      this.copyImageToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.copyImageToolStripMenuItem.Text = "Copy &Image";
+      this.copyImageToolStripMenuItem.Click += new System.EventHandler(this.CopyImageToolStripMenuItem_Click);
       // 
       // viewToolStripMenuItem
       // 
@@ -590,7 +602,7 @@
       this.runToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Play;
       this.runToolStripMenuItem.Name = "runToolStripMenuItem";
       this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-      this.runToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.runToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
       this.runToolStripMenuItem.Text = "&Run";
       this.runToolStripMenuItem.Click += new System.EventHandler(this.PlayToolStripButton_Click);
       // 
@@ -599,41 +611,43 @@
       this.pauseToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Pause;
       this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
       this.pauseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.pauseToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
       this.pauseToolStripMenuItem.Text = "&Pause";
       this.pauseToolStripMenuItem.Click += new System.EventHandler(this.PauseToolStripButton_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(215, 6);
       // 
       // nextMoveToolStripMenuItem
       // 
       this.nextMoveToolStripMenuItem.Image = global::Cyotek.Demo.ChemotaxisSimulation.Properties.Resources.Next;
       this.nextMoveToolStripMenuItem.Name = "nextMoveToolStripMenuItem";
       this.nextMoveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-      this.nextMoveToolStripMenuItem.Text = "&Next Move";
+      this.nextMoveToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+      this.nextMoveToolStripMenuItem.Text = "&Advance";
       this.nextMoveToolStripMenuItem.Click += new System.EventHandler(this.NextMoveToolStripButton_Click);
       // 
       // toolStripMenuItem5
       // 
       this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-      this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 6);
+      this.toolStripMenuItem5.Size = new System.Drawing.Size(215, 6);
       // 
       // advanceToolStripMenuItem
       // 
       this.advanceToolStripMenuItem.Name = "advanceToolStripMenuItem";
-      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-      this.advanceToolStripMenuItem.Text = "&Advance...";
+      this.advanceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.G)));
+      this.advanceToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+      this.advanceToolStripMenuItem.Text = "Advance &To...";
       this.advanceToolStripMenuItem.Click += new System.EventHandler(this.AdvanceToolStripMenuItem_Click);
       // 
       // goToToolStripMenuItem
       // 
       this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
       this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-      this.goToToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+      this.goToToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
       this.goToToolStripMenuItem.Text = "&Go To...";
       this.goToToolStripMenuItem.Click += new System.EventHandler(this.GoToToolStripMenuItem_Click);
       // 
@@ -1623,18 +1637,6 @@
       // 
       this.toolStripSeparator9.Name = "toolStripSeparator9";
       this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripMenuItem7
-      // 
-      this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-      this.toolStripMenuItem7.Size = new System.Drawing.Size(177, 6);
-      // 
-      // copyImageToolStripMenuItem
-      // 
-      this.copyImageToolStripMenuItem.Name = "copyImageToolStripMenuItem";
-      this.copyImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-      this.copyImageToolStripMenuItem.Text = "Copy &Image";
-      this.copyImageToolStripMenuItem.Click += new System.EventHandler(this.CopyImageToolStripMenuItem_Click);
       // 
       // MainForm
       // 
