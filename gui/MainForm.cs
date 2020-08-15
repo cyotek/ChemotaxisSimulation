@@ -170,7 +170,7 @@ namespace Cyotek.Demo
       {
         g.SmoothingMode = SmoothingMode.AntiAlias;
 
-        _simulationRenderer.Draw(_simulation, g);
+        _simulationRenderer.Draw(_simulation, g, new Rectangle(Point.Empty, bitmap.Size));
       }
 
       return bitmap;
@@ -500,7 +500,7 @@ namespace Cyotek.Demo
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
       }
 
-      _simulationRenderer.Draw(_simulation, e.Graphics);
+      _simulationRenderer.Draw(_simulation, e.Graphics, e.ClipRectangle);
     }
 
     private void RespawnAttractorsCheckBox_CheckedChanged(object sender, EventArgs e)

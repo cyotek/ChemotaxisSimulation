@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace Cyotek.ChemotaxisSimulation.Renderer
@@ -43,8 +44,6 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
     private readonly Pen _strandPen;
 
-    private Pen _tailPen;
-
     private bool _drawShapes;
 
     private bool _outlinesOnly;
@@ -62,6 +61,8 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
     private bool _showStrands;
 
     private bool _showTails;
+
+    private Pen _tailPen;
 
     #endregion Private Fields
 
@@ -163,7 +164,7 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
     #region Public Methods
 
-    public void Draw(Simulation simulation, Graphics graphics)
+    public void Draw(Simulation simulation, Graphics graphics, Rectangle clip)
     {
       graphics.Clear(SystemColors.Control);
 
@@ -175,7 +176,7 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
       {
         for (int i = 0; i < simulation.Attractors.Count; i++)
         {
-          this.DrawFood(graphics, simulation.Attractors[i]);
+          this.DrawFood(graphics, clip, simulation.Attractors[i]);
         }
       }
 
@@ -183,7 +184,7 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
       {
         for (int i = 0; i < simulation.Repellents.Count; i++)
         {
-          this.DrawNoxious(graphics, simulation.Repellents[i]);
+          this.DrawNoxious(graphics, clip, simulation.Repellents[i]);
         }
       }
 
@@ -199,7 +200,7 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
         for (int i = 0; i < simulation.Strands.Count; i++)
         {
-          this.DrawStrand(graphics, simulation.Strands[i]);
+          this.DrawStrand(graphics, clip, simulation.Strands[i]);
         }
       }
     }
@@ -208,67 +209,70 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
 
     #region Private Methods
 
-    private void DrawChemoeffector(Graphics graphics, Chemoeffector chemoeffector, Pen pen, Point[] shape, bool showDetectionZone)
+    private void DrawChemoeffector(Graphics graphics, Rectangle clip, Chemoeffector chemoeffector, Pen pen, Point[] shape, bool showDetectionZone)
     {
-      if (showDetectionZone)
+      Rectangle bounds;
+
+      bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Strength / 2), chemoeffector.Position.Y - (chemoeffector.Strength / 2), chemoeffector.Strength, chemoeffector.Strength);
+
+      if (this.ShouldRender(clip, bounds))
       {
-        Rectangle bounds;
-
-        bounds = new Rectangle(chemoeffector.Position.X - (chemoeffector.Strength / 2), chemoeffector.Position.Y - (chemoeffector.Strength / 2), chemoeffector.Strength, chemoeffector.Strength);
-
-        if (_outlinesOnly)
+        if (showDetectionZone)
         {
-          graphics.DrawEllipse(pen, bounds);
-        }
-        else
-        {
-          using (GraphicsPath ellipsePath = new GraphicsPath())
+          if (_outlinesOnly)
           {
-            ellipsePath.AddEllipse(bounds);
-
-            using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
+            graphics.DrawEllipse(pen, bounds);
+          }
+          else
+          {
+            using (GraphicsPath ellipsePath = new GraphicsPath())
             {
-              brush.CenterPoint = chemoeffector.Position;
-              brush.CenterColor = Color.FromArgb(128, pen.Color);
-              brush.SurroundColors = new[] { Color.Transparent };
+              ellipsePath.AddEllipse(bounds);
 
-              graphics.FillEllipse(brush, bounds);
+              using (PathGradientBrush brush = new PathGradientBrush(ellipsePath))
+              {
+                brush.CenterPoint = chemoeffector.Position;
+                brush.CenterColor = Color.FromArgb(128, pen.Color);
+                brush.SurroundColors = new[] { Color.Transparent };
+
+                graphics.FillEllipse(brush, bounds);
+              }
             }
           }
         }
-      }
 
-      if (_drawShapes)
-      {
-        int x;
-        int y;
-        GraphicsState state;
+        if (_drawShapes)
+        {
+          int x;
+          int y;
+          GraphicsState state;
 
-        x = chemoeffector.Position.X;
-        y = chemoeffector.Position.Y;
-        state = graphics.Save();
+          x = chemoeffector.Position.X;
+          y = chemoeffector.Position.Y;
+          state = graphics.Save();
 
-        graphics.TranslateTransform(x, y);
-        graphics.RotateTransform(Compass.GetAngle(chemoeffector.Heading));
-        graphics.DrawPolygon(pen, shape);
+          graphics.TranslateTransform(x, y);
+          graphics.RotateTransform(Compass.GetAngle(chemoeffector.Heading));
+          graphics.DrawPolygon(pen, shape);
 
-        graphics.Restore(state);
-      }
-      else
-      {
-        graphics.DrawLine(pen, new Point(chemoeffector.Position.X - 1, chemoeffector.Position.Y), new Point(chemoeffector.Position.X + 1, chemoeffector.Position.Y));
-        graphics.DrawLine(pen, new Point(chemoeffector.Position.X, chemoeffector.Position.Y - 1), new Point(chemoeffector.Position.X, chemoeffector.Position.Y + 1));
+          graphics.Restore(state);
+        }
+        else
+        {
+          graphics.DrawLine(pen, new Point(chemoeffector.Position.X - 1, chemoeffector.Position.Y), new Point(chemoeffector.Position.X + 1, chemoeffector.Position.Y));
+          graphics.DrawLine(pen, new Point(chemoeffector.Position.X, chemoeffector.Position.Y - 1), new Point(chemoeffector.Position.X, chemoeffector.Position.Y + 1));
+        }
       }
     }
 
-    private void DrawFood(Graphics graphics, Chemoeffector food)
+    private void DrawFood(Graphics graphics, Rectangle clip, Chemoeffector food)
     {
-      this.DrawChemoeffector(graphics, food, _attractorPen, _attractorShape, _showFoodDetectionZone);
+      this.DrawChemoeffector(graphics, clip, food, _attractorPen, _attractorShape, _showFoodDetectionZone);
     }
 
-    private void DrawNoxious(Graphics graphics, Chemoeffector noxious)
+    private void DrawNoxious(Graphics graphics, Rectangle clip, Chemoeffector noxious)
     {
-      this.DrawChemoeffector(graphics, noxious, _repellentPen, _repellentShape, _showNoxiousDetectionZone);
+      this.DrawChemoeffector(graphics, clip, noxious, _repellentPen, _repellentShape, _showNoxiousDetectionZone);
     }
 
     private void DrawSection(Graphics g, PointBuffer points, int start, int length)
@@ -287,28 +291,33 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
       }
     }
 
-    private void DrawStrand(Graphics graphics, Strand strand)
+    private void DrawStrand(Graphics graphics, Rectangle clip, Strand strand)
     {
-      if (_drawShapes)
+      int x;
+      int y;
+
+      x = strand.Position.X;
+      y = strand.Position.Y;
+
+      if (this.ShouldRender(clip, x, y))
       {
-        int x;
-        int y;
-        GraphicsState state;
+        if (_drawShapes)
+        {
+          GraphicsState state;
 
-        x = strand.Position.X;
-        y = strand.Position.Y;
-        state = graphics.Save();
+          state = graphics.Save();
 
-        graphics.TranslateTransform(x, y);
-        graphics.RotateTransform(Compass.GetAngle(strand.Heading));
-        graphics.DrawPolygon(_strandPen, _strandShape);
+          graphics.TranslateTransform(x, y);
+          graphics.RotateTransform(Compass.GetAngle(strand.Heading));
+          graphics.DrawPolygon(_strandPen, _strandShape);
 
-        graphics.Restore(state);
-      }
-      else
-      {
-        graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
-        graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
+          graphics.Restore(state);
+        }
+        else
+        {
+          graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y - 1), new Point(strand.Position.X + 1, strand.Position.Y + 1));
+          graphics.DrawLine(_strandPen, new Point(strand.Position.X - 1, strand.Position.Y + 1), new Point(strand.Position.X + 1, strand.Position.Y - 1));
+        }
       }
     }
 
@@ -390,6 +399,31 @@ namespace Cyotek.ChemotaxisSimulation.Renderer
       }
 
       return result;
+    }
+
+    private bool ShouldRender(Rectangle clip, Rectangle bounds)
+    {
+      int x;
+      int y;
+      int w;
+      int h;
+      Rectangle newBounds;
+
+      x = Convert.ToInt32(bounds.X * _scale);
+      y = Convert.ToInt32(bounds.Y * _scale);
+      w = Convert.ToInt32(bounds.Width * _scale);
+      h = Convert.ToInt32(bounds.Height * _scale);
+      newBounds = new Rectangle(x, y, w, h);
+
+      return clip.IntersectsWith(newBounds);
+    }
+
+    private bool ShouldRender(Rectangle clip, int x, int y)
+    {
+      x = Convert.ToInt32(x * _scale);
+      y = Convert.ToInt32(y * _scale);
+
+      return clip.Contains(x, y);
     }
 
     #endregion Private Methods
