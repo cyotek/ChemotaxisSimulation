@@ -6,19 +6,27 @@ using Jint.Parser.Ast;
 using Jint.Runtime;
 using Jint.Runtime.Interop;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using JsProgram = Jint.Parser.Ast.Program;
+
+// Simulating Bacterial Chemotaxis
+// https://www.cyotek.com/blog/simulating-bacterial-chemotaxis
+
+// Copyright © 2020 Cyotek Ltd. All Rights Reserved.
+
+// This work is licensed under the MIT License.
+// See LICENSE.TXT for the full text
+
+// Found this example useful?
+// https://www.paypal.me/cyotek
 
 namespace Cyotek.Demo.ChemotaxisSimulation
 {
   internal class ScriptEnvironment
   {
-
     #region Public Fields
 
     public const string MainFunctionName = "main";
@@ -103,6 +111,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
     {
       this.Engine.Execute(new JavaScriptParser().Parse(script));
     }
+
     public void WrappedExecute(string script)
     {
       try
@@ -194,6 +203,7 @@ namespace Cyotek.Demo.ChemotaxisSimulation
       this.SetValue("chemoeffector", TypeReference.CreateTypeReference(this.Engine, typeof(Chemoeffector)));
       this.SetValue("CollisionAction", TypeReference.CreateTypeReference(this.Engine, typeof(CollisionAction)));
     }
+
     protected void SetValue(string name, object value)
     {
       this.Engine.SetValue(name, value);
@@ -242,6 +252,5 @@ namespace Cyotek.Demo.ChemotaxisSimulation
     }
 
     #endregion Protected Methods
-
   }
 }

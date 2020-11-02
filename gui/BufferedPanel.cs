@@ -1,4 +1,6 @@
-﻿// Arranging items radially around a central point using C#
+﻿using System.Windows.Forms;
+
+// Arranging items radially around a central point using C#
 // http://www.cyotek.com/blog/arranging-items-radially-around-a-central-point-using-csharp
 
 // Copyright © 2017 Cyotek Ltd. All Rights Reserved.
@@ -8,8 +10,6 @@
 
 // Found this example useful?
 // https://www.paypal.me/cyotek
-
-using System.Windows.Forms;
 
 namespace Cyotek.Demo.Windows.Forms
 {
