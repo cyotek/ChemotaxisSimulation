@@ -91,9 +91,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ScriptEnvironment.cs" />
-    <Compile Include="Timer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ToolStripControllerHosts\ToolStripTrackBar.cs">
       <SubType>Component</SubType>
     </Compile>
